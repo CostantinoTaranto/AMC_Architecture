@@ -12,7 +12,7 @@ architecture rtl of sign_extender is
 	signal extension : std_logic_vector( N_out-N_in-1 downto 0);
 begin
 
-	extension <= (others => toExtend(N_in-1);
+	extension <= (others => toExtend(N_in-1));
 	extended  <= extension & toExtend;						
 
 end architecture rtl;

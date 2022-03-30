@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity RS_B2 is
+entity RS_B2_unsigned is
 	generic ( N: integer);
 	port ( RS_in: in std_logic_vector( N-1 downto 0);
 		   cmd:   in std_logic_vector( 1 downto 0);
@@ -19,5 +19,7 @@ begin
 				cmd_int := to_integer(unsigned(cmd));
 				RS_out_tmp <= std_logic_vector(shift_right(unsigned(RS_in),cmd_int));
 			  end process;
+
+RS_out<=RS_out_tmp;
 
 end architecture rtl;
