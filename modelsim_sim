@@ -1,0 +1,8 @@
+cd /home/thesis/costantino.taranto/git/AME_Architecture/sim
+source /software/scripts/init_msim6.2g
+rm -r work
+vlib work
+vcom -93 -work ./work ../src/generic/LS_B2.vhd
+vcom -93 -work ./work ../src/generic/RS_B2.vhd
+vcom -93 -work ./work ../src/generic/sign_extender.vhd
+vcom -93 -work ./work ../src/constructor/LS_RS_B2.vhd
