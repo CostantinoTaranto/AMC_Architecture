@@ -1,0 +1,11 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/LS_B2.vhd
+vcom -93 -work ./work ../src/generic/RS_B2.vhd
+vcom -93 -work ./work ../src/generic/sign_extender.vhd
+vcom -93 -work ./work ../src/constructor/LS_RS_B2.vhd
+--TESTBENCH
+vcom -93 -work ./work ../tb/tb_LS_RS_B2.vhd
+--TB_NAME
+tb_LS_RS_B2
