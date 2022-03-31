@@ -10,6 +10,6 @@ end entity;
 
 architecture rtl of comparator is
 begin
-	isGreater <= 1 when (unsigned(in_pos) > unsigned(in_neg)) else 0; 
+	isGreater <= '1' when (unsigned(in_pos) > unsigned(in_neg)) else '0'; 
 
 end architecture rtl;

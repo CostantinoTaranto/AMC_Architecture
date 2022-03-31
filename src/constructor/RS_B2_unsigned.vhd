@@ -9,7 +9,7 @@ entity RS_B2_unsigned is
 		   RS_out:out std_logic_vector( N-1 downto 0));
 end entity;
 
-architecture rtl of RS_B2 is
+architecture rtl of RS_B2_unsigned is
 	signal RS_out_tmp: std_logic_vector( N-1 downto 0);
 begin
 

@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity h_over_w is
-	port ( h,w: (1 downto 0);
-		   SH_cmd: (2 downto 0));
+	port ( h,w:   in std_logic_vector  (1 downto 0);
+		   SH_cmd:out std_logic_vector (2 downto 0));
 end entity;
 
 architecture rtl of h_over_w is
