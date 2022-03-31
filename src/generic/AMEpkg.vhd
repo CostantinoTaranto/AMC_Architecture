@@ -47,7 +47,7 @@ package AMEpkg is
 				  isGreater:		out std_logic);
 	end component;
 
-end package
+end package;
 
 package body AMEpkg is
 end package body;

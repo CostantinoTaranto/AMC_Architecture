@@ -17,9 +17,13 @@ while read LINE <&3 ; do
 done
 LogFilename=$LINE
 
-#Prepare the simulator
+#Move in the simulation folder and delete the old log
 SimPath="/home/thesis/costantino.taranto/git/AME_Architecture/sim"
 cd $SimPath
+if [ -f "$LogFilename" ] ; then
+	rm "$LogFilename"
+fi
+#Prepare the simulation tool
 source /eda/scripts/init_questa
 if [ -d "work" ]
 then
