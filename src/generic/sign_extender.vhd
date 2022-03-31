@@ -4,8 +4,8 @@ use IEEE.numeric_std.all;
 
 entity sign_extender is
 	generic ( N_in, N_out: integer);
-	port	( toExtend: std_logic_vector( N_in-1 downto 0);
-			  extended: std_logic_vector( N_out-1 downto 0));
+	port	( toExtend: in std_logic_vector( N_in-1 downto 0);
+			  extended: out std_logic_vector( N_out-1 downto 0));
 end entity;
 
 architecture rtl of sign_extender is
