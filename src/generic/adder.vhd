@@ -9,7 +9,13 @@ entity adder is
 end entity;
 
 architecture rtl of adder is
+
+	signal op1_ext, op2_ext: std_logic_vector(N downto 0);
+
 begin
-	sum <= std_logic_vector(signed(op1)+signed(op2));
+
+	op1_ext<= op1(N-1) & op1;
+	op2_ext<= op2(N-1) & op2;
+	sum <= std_logic_vector(signed(op1_ext)+signed(op2_ext));
 
 end architecture rtl;

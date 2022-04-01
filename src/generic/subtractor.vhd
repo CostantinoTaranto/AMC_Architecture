@@ -9,7 +9,13 @@ entity subtractor is
 end entity;
 
 architecture rtl of subtractor is
+
+	signal minuend_ext, subtrahend_ext: std_logic_vector(N downto 0);
+
 begin
-	subtraction <= std_logic_vector(signed(minuend)-signed(subtrahend));
+
+	minuend_ext 	<= minuend(N-1) 	& minuend;
+	subtrahend_ext	<= subtrahend(N-1)	& subtrahend;
+	subtraction <= std_logic_vector(signed(minuend_ext)-signed(subtrahend_ext));
 
 end architecture rtl;

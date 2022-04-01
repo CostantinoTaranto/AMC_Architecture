@@ -51,7 +51,7 @@ while read LINE <&3 ; do
 done
 	
 #launch the simulation
-if grep -Fq "Error:" $SimPath/$LogFilename
+if grep -Fq "** Error" $SimPath/$LogFilename
 then
 	echo "Compliation error. See \"/sim/$LogFilename\" file for more."
 else 

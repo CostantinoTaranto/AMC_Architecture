@@ -44,7 +44,7 @@ begin
 
 	L_sub2: subtractor
 		generic map(N=>14)
-		port map(diff_mult_v,MV0_h_ext,MV2p_h);
+		port map(MV0_h_ext,diff_mult_v,MV2p_h);
 
 	L_MV2_h_ext: sign_extender
 		generic map(N_in=>11, N_out=>15)
