@@ -57,6 +57,46 @@ begin
 		MV1_t(1)<=std_logic_vector(to_signed(   48,MV0_t(0)'length));
 		MV2_t(0)<=std_logic_vector(to_signed(   16,MV0_t(0)'length));
 		MV2_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		wait for 2 ns;
+		--Example 21, candidate 1:(1,1,1)
+		CU_h_t	<=std_logic_vector(to_signed(32,CU_h_t'length));
+		CU_w_t	<=std_logic_vector(to_signed(16,CU_h_t'length));
+		MV0_t(0)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV0_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV1_t(0)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV1_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV2_t(0)<=std_logic_vector(to_signed(  -10,MV0_t(0)'length));
+		MV2_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		wait for 2 ns;
+		--Example 21, candidate 7:(1,1,2)
+		CU_h_t	<=std_logic_vector(to_signed(32,CU_h_t'length));
+		CU_w_t	<=std_logic_vector(to_signed(16,CU_h_t'length));
+		MV0_t(0)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV0_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV1_t(0)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV1_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV2_t(0)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		MV2_t(1)<=std_logic_vector(to_signed(    0,MV0_t(0)'length));
+		wait for 2 ns;
+		--Example 25, candidate 3:(3,1,1)
+		CU_h_t	<=std_logic_vector(to_signed(32,CU_h_t'length));
+		CU_w_t	<=std_logic_vector(to_signed(16,CU_h_t'length));
+		MV0_t(0)<=std_logic_vector(to_signed(   40,MV0_t(0)'length));
+		MV0_t(1)<=std_logic_vector(to_signed(   -6,MV0_t(0)'length));
+		MV1_t(0)<=std_logic_vector(to_signed(   40,MV0_t(0)'length));
+		MV1_t(1)<=std_logic_vector(to_signed(   -6,MV0_t(0)'length));
+		MV2_t(0)<=std_logic_vector(to_signed(   28,MV0_t(0)'length));
+		MV2_t(1)<=std_logic_vector(to_signed(    4,MV0_t(0)'length));
+		wait for 2 ns;
+		--Example 20, candidate 1:(1,1,1)
+		CU_h_t	<=std_logic_vector(to_signed(16,CU_h_t'length));
+		CU_w_t	<=std_logic_vector(to_signed(64,CU_h_t'length));
+		MV0_t(0)<=std_logic_vector(to_signed(   24,MV0_t(0)'length));
+		MV0_t(1)<=std_logic_vector(to_signed(   -4,MV0_t(0)'length));
+		MV1_t(0)<=std_logic_vector(to_signed(  118,MV0_t(0)'length));
+		MV1_t(1)<=std_logic_vector(to_signed(   17,MV0_t(0)'length));
+		MV2_t(0)<=std_logic_vector(to_signed(   22,MV0_t(0)'length));
+		MV2_t(1)<=std_logic_vector(to_signed(   -3,MV0_t(0)'length));
 		wait;
 	end process;
 		
