@@ -1,0 +1,12 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/extimator/enc2b.vhd
+vcom -93 -work ./work ../src/extimator/cnt_RSTs_CEs.vhd
+vcom -93 -work ./work ../src/extimator/T_FF.vhd
+vcom -93 -work ./work ../src/extimator/firstPelPos_comp.vhd
+vcom -93 -work ./work ../src/extimator/firstPelPos.vhd
+
+
+
+
