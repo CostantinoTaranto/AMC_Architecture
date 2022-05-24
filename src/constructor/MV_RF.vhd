@@ -5,21 +5,21 @@ library work;
 use work.AMEpkg.all;
 
 entity MV_RF is
-	port( MV_in:  in  motion_vector(2 downto 0);
+	port( MV_in:  in  std_logic_vector(10 downto 0);	
 		  clk, RST, LE: std_logic;
-		  MV_out: out motion_vector(2 downto 0)
+		  MV_out: out std_logic_vector(10 downto 0)	--Same
 		);
 end entity;
 
 architecture beh of MV_RF is
-	signal MV_out_int: motion_vector(2 downto 0);
+	signal MV_out_int: std_logic_vector(10 downto 0);
 begin
 
 	MV_sampling: process(clk,RST)
 	begin
 		--Asynchronous reset
 		if (RST='1') then
-			MV_out_int<= (others=>"00000000000");
+			MV_out_int<= "00000000000";
 		elsif rising_edge(clk) AND LE='1' then
 			MV_out_int<=MV_in;
 		else

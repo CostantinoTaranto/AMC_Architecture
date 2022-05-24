@@ -7,8 +7,11 @@ use work.AMEpkg.all;
 
 entity constructor is
 	port ( MV0,MV1,MV2: in motion_vector(0 to 1); --0:h,1:v
+		   RST, RSH_LE, cmd_SH_en : in std_logic;
 		   CU_h,CU_w:	in std_logic_vector(6 downto 0);
-		   comp_out:	out std_logic);--For the time being, we will check only the results of the comparison
+		   CE_final: in std_logic;
+		   CE_final_OUT: out std_logic;
+		   MVP0,MVP1,MVP2: out motion_vector(0 to 1)); --0:h,1:v
 end entity;
 
 architecture structural of constructor is
