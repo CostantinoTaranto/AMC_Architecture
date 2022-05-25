@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-entity FF is
+entity FlFl is
 	port (D, RST, clk: in std_logic;
 		  Q: out std_logic);
 end entity;
 
-architecture beh of FF is
+architecture beh of FlFl is
 	signal Q_int: std_logic;
 begin
 

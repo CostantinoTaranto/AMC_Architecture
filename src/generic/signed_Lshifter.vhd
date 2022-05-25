@@ -19,7 +19,7 @@ begin
 			SH_out<= (others => '0');
 		elsif rising_edge(clk) then
 			if LE='1' AND SH_EN='1' then
-				SH_in_int(N_out-1 downto N_in+1)<= (others => SH_in(N_in-1));
+				SH_out_int(N_out-1 downto N_in+1)<= (others => SH_in(N_in-1));
 				SH_out_int(N_in downto 1)<=SH_in(N_in-1 downto 0);
 				SH_out_int(0)<='0';
 			elsif LE='1'then

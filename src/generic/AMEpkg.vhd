@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.all;
 package AMEpkg is
 -----TYPES
 	type motion_vector is array (natural range <>) of std_logic_vector(10 downto 0);
-	type slv_11 is array (natural range <>) of std_logic_vector(11 downto 0);
+	type slv_12 is array (natural range <>) of std_logic_vector(11 downto 0);
 	type slv_14 is array (natural range <>) of std_logic_vector(13 downto 0);
 	type slv_15 is array (natural range <>) of std_logic_vector(14 downto 0);
 
@@ -22,8 +22,9 @@ package AMEpkg is
 	end component;
 
 	component h_over_w is
-	port ( h,w:   in std_logic_vector (1 downto 0);
-		   SH_cmd:out std_logic_vector (2 downto 0));
+		port ( h,w:   in std_logic_vector  (1 downto 0);
+			   clk, RSH_LE, cmd_SH_EN: in std_logic;
+			   SH_cmd:out std_logic_vector (2 downto 0));
 	end component;
 
 	component adder is
@@ -64,7 +65,7 @@ package AMEpkg is
 			);
 	end component;
 
-	component FF is
+	component FlFl is
 		port (D, RST, clk: in std_logic;
 			  Q: out std_logic);
 	end component;
@@ -77,7 +78,7 @@ package AMEpkg is
 	end component;
 
 	component REG_N_LE is
-		generic map(N: integer);
+		generic (N: integer);
 		port( D:  in  std_logic_vector(N-1 downto 0);	
 			  clk, RST, LE: std_logic;
 			  Q: out std_logic_vector(N-1 downto 0)
@@ -94,7 +95,7 @@ package AMEpkg is
 	end component;
 
 	component if_UA is
-		port ( MV_in: in std_logic_vector (10 downto 0);
+		port ( MV_in_h, MV_in_v: in std_logic_vector (10 downto 0);
 			   UA_flag: out std_logic);
 	end component;
 

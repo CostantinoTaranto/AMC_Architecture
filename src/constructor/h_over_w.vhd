@@ -21,7 +21,7 @@ architecture rtl of h_over_w is
 				 );
 	end component;
 
-	component FF is
+	component FlFl is
 		port (D, RST, clk: in std_logic;
 			  Q: out std_logic);
 	end component;
@@ -30,7 +30,7 @@ begin
 	--Comparator & Delay
 	shift_dir_int(0) <=  '1' when (unsigned(h)>unsigned(w)) else '0';
 	DELAY_GEN: for I in 1 to 3 generate
-		FF_X: FF
+		FF_X: FlFl
 			port map (D=>shift_dir_int(I-1),RST=>'0',clk=>clk,Q=>shift_dir_int(I));
 	end generate DELAY_GEN;
 	

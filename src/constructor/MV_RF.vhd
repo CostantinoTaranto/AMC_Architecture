@@ -1,9 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library work;
-use work.AMEpkg.all;
-
 entity MV_RF is
 	port( MV_in:  in  std_logic_vector(10 downto 0);	
 		  clk, RST, LE: std_logic;

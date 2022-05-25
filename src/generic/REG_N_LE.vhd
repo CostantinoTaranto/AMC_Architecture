@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity REG_N_LE is
-	generic map(N: integer);
+	generic (N: integer);
 	port( D:  in  std_logic_vector(N-1 downto 0);	
 		  clk, RST, LE: std_logic;
 		  Q: out std_logic_vector(N-1 downto 0)
