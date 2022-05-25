@@ -18,5 +18,6 @@ vcom -93 -work ./work ../src/generic/comparator.vhd
 vcom -93 -work ./work ../src/generic/COUNT_N.vhd
 vcom -93 -work ./work ../src/constructor/MV_RF.vhd
 vcom -93 -work ./work ../src/constructor/if_UA.vhd
+vcom -93 -work ./work ../src/constructor/DP_constructor.vhd
+vcom -93 -work ./work ../src/constructor/CU_constructor.vhd
 vcom -93 -work ./work ../src/constructor/constructor.vhd
-
