@@ -4,6 +4,9 @@ use IEEE.std_logic_1164.all;
 package AMEpkg is
 -----TYPES
 	type motion_vector is array (natural range <>) of std_logic_vector(10 downto 0);
+	type slv_11 is array (natural range <>) of std_logic_vector(11 downto 0);
+	type slv_14 is array (natural range <>) of std_logic_vector(13 downto 0);
+	type slv_15 is array (natural range <>) of std_logic_vector(14 downto 0);
 
 -----COMPONENTS
 	component subtractor is
@@ -21,12 +24,6 @@ package AMEpkg is
 	component h_over_w is
 	port ( h,w:   in std_logic_vector (1 downto 0);
 		   SH_cmd:out std_logic_vector (2 downto 0));
-	end component;
-
-	component LS_RS_B2 is
-	port ( SH_in: in  std_logic_vector(11 downto 0);
-		   SH_cmd:in  std_logic_vector(2  downto 0); 
-		   SH_out:out std_logic_vector(13 downto 0));
 	end component;
 
 	component adder is
@@ -65,6 +62,46 @@ package AMEpkg is
 			   LE1, LE2, LE3: in std_logic; --LE1 for the first 2 registers, LE3 for the last one, LE2 for the middle ones
 			   MVP: out motion_vector (2 downto 0) --The predictions
 			);
+	end component;
+
+	component FF is
+		port (D, RST, clk: in std_logic;
+			  Q: out std_logic);
+	end component;
+
+	component REG_N is
+		generic (N: integer);
+		port (D: in std_logic_vector (N-1 downto 0);
+			  RST, clk: in std_logic;
+			  Q: out std_logic_vector (N-1 downto 0));
+	end component;
+
+	component REG_N_LE is
+		generic map(N: integer);
+		port( D:  in  std_logic_vector(N-1 downto 0);	
+			  clk, RST, LE: std_logic;
+			  Q: out std_logic_vector(N-1 downto 0)
+			);
+	end component;
+
+	component LR_SH2 is
+		port ( shift_dir: in std_logic;
+			   shift_amt: in std_logic_vector(1 downto 0);
+			   MV1_MV0: in std_logic_vector(11 downto 0);
+			   RST, clk: in std_logic;
+			   diff_mult: out std_logic_vector(13 downto 0)
+				);
+	end component;
+
+	component if_UA is
+		port ( MV_in: in std_logic_vector (10 downto 0);
+			   UA_flag: out std_logic);
+	end component;
+
+	component COUNT_N is
+		generic (N,TARGET: integer);
+		port (CE, RST, clk: 	in std_logic;
+			  COUNT_OUT:out std_logic);
 	end component;
 
 end package;

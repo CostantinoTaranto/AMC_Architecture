@@ -1,15 +1,22 @@
 --LOG_FILENAME
 com_log.txt
 --SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
 vcom -93 -work ./work ../src/generic/subtractor.vhd
 vcom -93 -work ./work ../src/generic/sign_extender.vhd
-vcom -93 -work ./work ../src/constructor/RS_B2_unsigned.vhd
+vcom -93 -work ./work ../src/generic/signed_shifter.vhd
+vcom -93 -work ./work ../src/generic/unsigned_shifter.vhd
+vcom -93 -work ./work ../src/generic/signed_Lshifter.vhd
+vcom -93 -work ./work ../src/generic/FF.vhd
+vcom -93 -work ./work ../src/generic/REG_N.vhd
+vcom -93 -work ./work ../src/generic/REG_N_LE.vhd
 vcom -93 -work ./work ../src/constructor/h_over_w.vhd
-vcom -93 -work ./work ../src/generic/LS_B2.vhd
-vcom -93 -work ./work ../src/generic/RS_B2.vhd
-vcom -93 -work ./work ../src/constructor/LS_RS_B2.vhd
+vcom -93 -work ./work ../src/constructor/LR_SH2.vhd
 vcom -93 -work ./work ../src/generic/adder.vhd
 vcom -93 -work ./work ../src/generic/multiplier.vhd
 vcom -93 -work ./work ../src/generic/comparator.vhd
-vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/COUNT_N.vhd
+vcom -93 -work ./work ../src/constructor/MV_RF.vhd
+vcom -93 -work ./work ../src/constructor/if_UA.vhd
 vcom -93 -work ./work ../src/constructor/constructor.vhd
+
