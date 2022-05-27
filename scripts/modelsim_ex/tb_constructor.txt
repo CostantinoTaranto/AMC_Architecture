@@ -23,6 +23,6 @@ vcom -93 -work ./work ../src/constructor/DP_constructor.vhd
 vcom -93 -work ./work ../src/constructor/CU_constructor.vhd
 vcom -93 -work ./work ../src/constructor/constructor.vhd
 --TESTBENCH
-vcom -93 -work ./work ../tb/tb_constructor.vhd
+vcom -93 -work ./work ../tb/tb_constructor.vhd	
 --TB_NAME
 tb_constructor

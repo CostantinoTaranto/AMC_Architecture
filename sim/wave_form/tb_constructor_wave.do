@@ -1,17 +1,17 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /tb_constructor/clk
-add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV0_t(0) -radix decimal} {/tb_constructor/MV0_t(1) -radix decimal}} -expand -subitemconfig {/tb_constructor/MV0_t(0) {-height 16 -radix decimal} /tb_constructor/MV0_t(1) {-height 16 -radix decimal}} /tb_constructor/MV0_t
-add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV1_t(0) -radix decimal} {/tb_constructor/MV1_t(1) -radix decimal}} -expand -subitemconfig {/tb_constructor/MV1_t(0) {-height 16 -radix decimal} /tb_constructor/MV1_t(1) {-height 16 -radix decimal}} /tb_constructor/MV1_t
-add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV2_t(0) -radix decimal} {/tb_constructor/MV2_t(1) -radix decimal}} -expand -subitemconfig {/tb_constructor/MV2_t(0) {-height 16 -radix decimal} /tb_constructor/MV2_t(1) {-height 16 -radix decimal}} /tb_constructor/MV2_t
+add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV0_t(0) -radix decimal} {/tb_constructor/MV0_t(1) -radix decimal}} -subitemconfig {/tb_constructor/MV0_t(0) {-height 16 -radix decimal} /tb_constructor/MV0_t(1) {-height 16 -radix decimal}} /tb_constructor/MV0_t
+add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV1_t(0) -radix decimal} {/tb_constructor/MV1_t(1) -radix decimal}} -subitemconfig {/tb_constructor/MV1_t(0) {-height 16 -radix decimal} /tb_constructor/MV1_t(1) {-height 16 -radix decimal}} /tb_constructor/MV1_t
+add wave -noupdate -radix decimal -childformat {{/tb_constructor/MV2_t(0) -radix decimal} {/tb_constructor/MV2_t(1) -radix decimal}} -subitemconfig {/tb_constructor/MV2_t(0) {-height 16 -radix decimal} /tb_constructor/MV2_t(1) {-height 16 -radix decimal}} /tb_constructor/MV2_t
 add wave -noupdate -radix unsigned /tb_constructor/CU_h_t
 add wave -noupdate -radix unsigned /tb_constructor/CU_w_t
 add wave -noupdate /tb_constructor/START_t
 add wave -noupdate /tb_constructor/GOT_t
 add wave -noupdate /tb_constructor/CU_RST_t
-add wave -noupdate /tb_constructor/MVP0_t
-add wave -noupdate /tb_constructor/MVP1_t
-add wave -noupdate /tb_constructor/MVP2_t
+add wave -noupdate -radix decimal /tb_constructor/MVP0_t
+add wave -noupdate -radix decimal /tb_constructor/MVP1_t
+add wave -noupdate -radix decimal /tb_constructor/MVP2_t
 add wave -noupdate /tb_constructor/uut/Control_Unit/PS
 add wave -noupdate /tb_constructor/uut/Control_Unit/NS
 add wave -noupdate -radix decimal /tb_constructor/uut/Datapath/L_sub1/subtraction
@@ -37,8 +37,10 @@ add wave -noupdate -radix decimal /tb_constructor/uut/Datapath/D_adder/op1
 add wave -noupdate -radix decimal /tb_constructor/uut/Datapath/D_adder/op2
 add wave -noupdate -radix decimal /tb_constructor/uut/Datapath/D_adder/sum
 add wave -noupdate -radix decimal /tb_constructor/uut/Datapath/D_Cur
+add wave -noupdate /tb_constructor/uut/Datapath/compEN
+add wave -noupdate /tb_constructor/uut/Datapath/LE3
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {23 ns} 0}
+WaveRestoreCursors {{Cursor 1} {67 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 334
 configure wave -valuecolwidth 148
@@ -54,4 +56,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {26 ns} {70 ns}
+WaveRestoreZoom {47 ns} {75 ns}

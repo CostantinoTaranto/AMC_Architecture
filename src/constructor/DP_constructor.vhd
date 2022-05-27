@@ -9,8 +9,8 @@ entity DP_constructor is
 	port ( MV0,MV1,MV2: in motion_vector(0 to 1); --0:h,1:v
 		   clk, RST, RSH_LE, cmd_SH_en : in std_logic;
 		   CU_h,CU_w:	in std_logic_vector(6 downto 0);
-		   CE_final: in std_logic;
-		   CE_final_OUT: out std_logic;
+		   CE_compEN, CE_STOPcompEN, compEN: in std_logic;
+		   CNT_compEN_OUT, CNT_STOPcompEN_OUT: out std_logic;
 		   MVP0,MVP1,MVP2: out motion_vector(0 to 1)); --0:h,1:v
 end entity;
 
@@ -53,9 +53,12 @@ architecture structural of DP_constructor is
 	signal UA_flag_int: std_logic_vector(if_UA_DEPTH downto 0);	--Propagated through the pipeline
 
 	--Final stage
-	constant CE_FINAL_TARGET: integer := 19;
-	signal D_sel, comp_out, comp_out_d: std_logic;
+	signal D_sel, comp_out_tmp, comp_out, comp_out_d: std_logic;
 	signal D_Cur_tmp, D_Cur, D_D, D_min, D_comp: std_logic_vector(27 downto 0);
+
+	--Counters
+	constant CNT_compEN_TARGET: integer := 6;
+	constant CNT_STOPcompEN_TARGET: integer := 10;
 
 begin
 
@@ -262,15 +265,20 @@ begin
 
 	final_comp: comparator
 		generic map(N=>28)
-		port map(D_comp,D_Cur,comp_out);
+		port map(D_comp,D_Cur,comp_out_tmp);
+
+	comp_out<=comp_out_tmp AND compEN;
 
 	comp_out_d_ff: FlFl
 		port map(D=>comp_out,Q=>comp_out_d,RST=>RST,clk=>clk);
 
-----COUNT FINAL
-	COUNT_Final: COUNT_N
-		generic map(N=>5,TARGET=>CE_FINAL_TARGET)
-		port map(CE=>CE_final,RST=>RST,clk=>clk,COUNT_OUT=>CE_final_OUT);
+----COUNTERS
+	COUNT_compEN: COUNT_N
+		generic map(N=>3,TARGET=>CNT_compEN_TARGET)
+		port map(CE=>CE_compEN,RST=>RST,clk=>clk,COUNT_OUT=>CNT_compEN_OUT);
+	COUNT_STOPcompEN: COUNT_N
+		generic map(N=>4,TARGET=>CNT_STOPcompEN_TARGET)
+		port map(CE=>CE_STOPcompEN,RST=>RST,clk=>clk,COUNT_OUT=>CNT_STOPcompEN_OUT);
 
 ------------------------------- MOTION VECTOR PIPELINE
 ----MV_iN Pipe v
