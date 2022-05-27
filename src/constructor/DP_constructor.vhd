@@ -168,7 +168,7 @@ begin
 		generic map(N=>14)
 		port map(D=>diff_mult_h_int(0),Q=>diff_mult_h_int(1),RST=>RST,clk=>clk);
 
-------R_SUB2
+------R_SUM
 
 	R_MV0_v_ext: sign_extender
 		generic map(N_in=>11, N_out=>14)
@@ -178,7 +178,7 @@ begin
 		generic map(N=>14)
 		port map(D=>MV0_int_v_ext(0),Q=>MV0_int_v_ext(1),RST=>RST,clk=>clk);
 
-	R_sub2: subtractor
+	R_sum: adder 
 		generic map(N=>14)
 		port map(MV0_int_v_ext(1),diff_mult_h_int(1),MV2p_int_v(0));
 
@@ -255,8 +255,7 @@ begin
 		generic map(N=>28)
 		port map(D=>D_Cur,Q=>D_D,RST=>RST,clk=>clk);
 
-	D_min_register: REG_N_LE
-		generic map(N=>28)
+	D_min_register: D_min_REG
 		port map(D=>D_D,Q=>D_min,RST=>RST,clk=>clk,LE=>comp_out_d);
 
 	D_comp<= D_min WHEN (comp_out_d='0') ELSE D_D;
@@ -277,9 +276,9 @@ begin
 ----MV_iN Pipe v
 	--La profondità della pipeline è pari a 14, ma in realta' io ho 12 candidati. Agendo sui LE dei vari registri potrei ridurre il numero minimo
 	--di registiri necessario a 12. Il risparmio pero' sarebbe di due soli registri, quindi per il momento non aggiungo questa complicazione.
-	MV0_int_v(0)<=MV0(0);
-	MV1_int_v(0)<=MV1(0);
-	MV2_int_v(0)<=MV2(0);
+	MV0_int_v(0)<=MV0(1);
+	MV1_int_v(0)<=MV1(1);
+	MV2_int_v(0)<=MV2(1);
 
 	--First and Second (registers)
 	FaS_generate0_v: for I in 1 to 2 generate	

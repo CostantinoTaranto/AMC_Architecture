@@ -105,6 +105,36 @@ package AMEpkg is
 			  COUNT_OUT:out std_logic);
 	end component;
 
+	component signed_Lshifter is
+		generic (N_in, N_out: integer);
+		port	(SH_in:	 in  std_logic_vector (N_in-1 downto 0);
+				 clk, SH_EN, LE, RST: in std_logic;
+				 SH_out: out std_logic_vector (N_out-1 downto 0)
+				 );
+	end component;
+
+	component signed_shifter is
+		generic (N: integer);
+		port	(SH_in:	 in  std_logic_vector (N-1 downto 0);
+				 clk, SH_EN, LE, RST: in std_logic;
+				 SH_out: out std_logic_vector (N-1 downto 0)
+				 );
+	end component;
+
+	component unsigned_shifter is
+		generic (N: integer);
+		port	(SH_in:	 in  std_logic_vector (N-1 downto 0);
+				 clk, SH_EN, LE, RST: in std_logic;
+				 SH_out: out std_logic_vector (N-1 downto 0)
+				 );
+	end component;
+
+	component D_min_REG is
+		port (D: in std_logic_vector (27 downto 0);
+			  RST, clk, LE: in std_logic;
+			  Q: out std_logic_vector (27 downto 0));
+	end component;
+
 end package;
 
 package body AMEpkg is

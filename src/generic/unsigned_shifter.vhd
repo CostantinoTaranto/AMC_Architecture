@@ -10,19 +10,19 @@ entity unsigned_shifter is
 end entity;
 
 architecture beh of unsigned_shifter is
-	signal SH_in_int, SH_out_int: std_logic_vector(N-1 downto 0);
+	signal SH_out_int: std_logic_vector(N-1 downto 0);
 begin
 
 	shifting: process(clk,SH_EN,RST)
 	begin
 		--Asynchronous reset
 		if (RST='1') then
-			SH_out<= (others => '0');
+			SH_out_int<= (others => '0');
 		elsif rising_edge(clk) then
 			if LE='1' then
-				SH_in_int<=SH_in;
+				SH_out_int<=SH_in;
 			elsif SH_EN='1'then
-				SH_out_int(N-2 downto 0)<=SH_in_int(N-1 downto 1);
+				SH_out_int(N-2 downto 0)<=SH_out_int(N-1 downto 1);
 				SH_out_int(N-1)<='0';
 			else
 				SH_out_int<=SH_out_int;

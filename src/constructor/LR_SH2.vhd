@@ -1,6 +1,9 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
+library work;
+use work.AMEpkg.all;
+
 entity LR_SH2 is
 	port ( shift_dir: in std_logic;
 		   shift_amt: in std_logic_vector(1 downto 0);
@@ -19,43 +22,12 @@ architecture rtl of LR_SH2 is
 	signal MV1_MV0_d1R, MV1_MV0_d2R: std_logic_vector(11 downto 0);
 	signal MV1_MV0_d1L: std_logic_vector(12 downto 0);
 	signal MV1_MV0_d2L, MV1_MV0_d2R_ext: std_logic_vector(13 downto 0);
-	component FF is
-		port (D, RST, clk: in std_logic;
-			  Q: out std_logic);
-	end component;
-	component signed_shifter is
-		generic (N: integer);
-		port	(SH_in:	 in  std_logic_vector (N-1 downto 0);
-				 clk, SH_EN, LE, RST: in std_logic;
-				 SH_out: out std_logic_vector (N-1 downto 0)
-				 );
-	end component;
-	component sign_extender is
-	generic ( N_in, N_out: integer);
-	port	( toExtend: in std_logic_vector( N_in-1 downto 0);
-			  extended: out std_logic_vector( N_out-1 downto 0));
-	end component;
-	component signed_Lshifter is
-		generic (N_in, N_out: integer);
-		port	(SH_in:	 in  std_logic_vector (N_in-1 downto 0);
-				 clk, SH_EN, LE, RST: in std_logic;
-				 SH_out: out std_logic_vector (N_out-1 downto 0)
-				 );
-	end component;
-
-	component REG_N is
-		generic (N: integer);
-		port (D: in std_logic_vector (N-1 downto 0);
-			  RST, clk: in std_logic;
-			  Q: out std_logic_vector (N-1 downto 0));
-	end component;
-
 
 begin
 	
 	shift_dir_int(0)<=shift_dir;
 	shift_dir_sample: for I in 1 to 3 generate
-		FF_X: FF
+		FF_X: FlFl
 			port map (D=>shift_dir_int(I-1),RST=>'0',clk=>clk,Q=>shift_dir_int(I));
 	end generate shift_dir_sample;
 
@@ -69,7 +41,7 @@ begin
 		port map (D=>shift_amt,RST=>RST,clk=>clk, Q=>shift_amt_int);
 
 	SH_en<=shift_amt_int(1) OR shift_amt_int(0);
-	SH_en2_sampling: FF
+	SH_en2_sampling: FlFl
 		port map(D=>shift_amt_int(1),RST=>RST,clk=>clk, Q=>SH_en2);
 
 	--Right shift
