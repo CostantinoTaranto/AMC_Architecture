@@ -1,0 +1,14 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/COUNT_VAL_N.vhd
+vcom -93 -work ./work ../src/generic/REG_N.vhd
+vcom -93 -work ./work ../src/generic/adder.vhd
+vcom -93 -work ./work ../src/generic/REG_N_LE.vhd
+vcom -93 -work ./work ../src/generic/FlFl.vhd
+vcom -93 -work ./work ../src/extimator/MULT1.vhd
+--TESTBENCH
+vcom -93 -work ./work ../tb/tb_MULT1.vhd
+--TB_NAME
+tb_MULT1

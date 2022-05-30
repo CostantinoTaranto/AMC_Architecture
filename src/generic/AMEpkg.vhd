@@ -135,6 +135,13 @@ package AMEpkg is
 			  Q: out std_logic_vector (27 downto 0));
 	end component;
 
+	component COUNT_VAL_N is
+		generic (N,TARGET: integer);
+		port (CE, RST, clk: 	in std_logic;
+			  COUNT: out std_logic_vector(N-1 downto 0);
+			  HIT:out std_logic);
+	end component;
+
 end package;
 
 package body AMEpkg is
