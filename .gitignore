@@ -24,3 +24,6 @@ vsim.dbg
 
 #ignore "work"
 */work
+
+#ingore log files
+*log.txt

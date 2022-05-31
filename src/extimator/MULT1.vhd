@@ -67,18 +67,21 @@ begin
 			port map(D=>SUM_rst(I-1),Q=>SUM_rst(I),clk=>clk,RST=>RST);
 	end generate;
 
-	product_int_rst<=RST OR  SUM_rst(2);
+	product_int_rst<=RST OR  SUM_rst(1);
 	--Shift Enable for the internal register
 	int_shEN<=count_int(0);
 
 	inermediate_reg: process(clk,product_int_rst,int_shEN,int_LE)
 		begin
-			if product_int_rst='1' then
+			--Synchronous reset (Mandatory, otherwise the register would be reset for two clock
+			--cycles). Quando il clock batte il reset è ancora alto e quindi il registro resta resettato
+			--per due cicli di clock
+			if rising_edge(clk) AND product_int_rst='1' then
 				product_int<= ( others=>'0');
 			elsif rising_edge(clk) AND int_shEN='1' THEN
 				product_int(N/2-1 downto 0)<=product_int(N-1 downto N/2);
 				product_int(3*N/2+1 downto N/2)<=add_out(N+1 downto 0);
-				product_int(2*N+1 downto 3*N/2+2)<=(others =>product_int(3*N/2+1));
+				product_int(2*N+1 downto 3*N/2+2)<=(others =>add_out(N+1));
 			elsif rising_edge(clk) AND int_LE='1' THEN
 				product_int(N-1 downto 0)<=product_int(N-1 downto 0);
 				product_int(2*N+1 downto N)<=add_out(N+1 downto 0);

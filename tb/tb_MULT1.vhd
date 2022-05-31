@@ -50,9 +50,22 @@ begin
 		op1_t	<=std_logic_vector(to_signed(-1142,op1_t'length));
 		op2_t	<=std_logic_vector(to_signed(-848,op2_t'length));
 		wait for 4*Tc;
-		VALID_T<='0';
-		wait for Tc;
-
+		op1_t	<=std_logic_vector(to_signed(1422,op1_t'length));
+		op2_t	<=std_logic_vector(to_signed(118,op2_t'length));
+		wait for 4*Tc;
+		op1_t	<=std_logic_vector(to_signed(742,op1_t'length));
+		op2_t	<=std_logic_vector(to_signed(-1448,op2_t'length));
+		wait for 4*Tc;
+		VALID_t<='0';
+		wait for 5*Tc;
+		VALID_t<='1';
+		op1_t	<=std_logic_vector(to_signed(-42,op1_t'length));
+		op2_t	<=std_logic_vector(to_signed(913,op2_t'length));
+		wait for 4*Tc;
+		op1_t	<=std_logic_vector(to_signed(3,op1_t'length));
+		op2_t	<=std_logic_vector(to_signed(3,op2_t'length));
+		wait for 4*Tc;
+		VALID_t<='0';
 		wait;
 	end process;
 		
