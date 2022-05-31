@@ -1,76 +1,22 @@
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/generic/AMEpkg.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package AMEpkg
--- Compiling package body AMEpkg
--- Loading package AMEpkg
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/generic/FlFl.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity FlFl
--- Compiling architecture beh of FlFl
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/generic/REG_N.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity REG_N
--- Compiling architecture beh of REG_N
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/generic/adder.vhd 
+Start time: 18:44:32 on May 31,2022
+vcom -93 -work ./work ../src/extimator/Round.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity adder
--- Compiling architecture rtl of adder
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
+-- Compiling entity Round
+-- Compiling architecture struct of Round
+End time: 18:44:32 on May 31,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/generic/REG_N_LE.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity REG_N_LE
--- Compiling architecture beh of REG_N_LE
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../src/extimator/ADD3.vhd 
+Start time: 18:44:32 on May 31,2022
+vcom -93 -work ./work ../tb/tb_Round.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Loading package AMEpkg
--- Compiling entity ADD3
--- Compiling architecture beh of ADD3
-End time: 15:55:57 on May 31,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 15:55:57 on May 31,2022
-vcom -93 -work ./work ../tb/tb_ADD3.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package AMEpkg
--- Compiling entity tb_ADD3
--- Compiling architecture tb of tb_ADD3
-End time: 15:55:58 on May 31,2022, Elapsed time: 0:00:01
+-- Compiling entity tb_Round
+-- Compiling architecture tb of tb_Round
+End time: 18:44:32 on May 31,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
