@@ -1,0 +1,11 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/FlFl.vhd
+vcom -93 -work ./work ../src/generic/REG_N.vhd
+vcom -93 -work ./work ../src/generic/adder.vhd
+vcom -93 -work ./work ../src/generic/REG_N_LE.vhd
+vcom -93 -work ./work ../src/extimator/ADD3.vhd
+
+
