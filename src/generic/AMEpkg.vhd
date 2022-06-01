@@ -4,6 +4,9 @@ use IEEE.std_logic_1164.all;
 package AMEpkg is
 -----TYPES
 	type motion_vector is array (natural range <>) of std_logic_vector(10 downto 0);
+	type slv_2  is array (natural range <>) of std_logic_vector(1  downto 0);
+	type slv_6  is array (natural range <>) of std_logic_vector(5  downto 0);
+	type slv_11 is array (natural range <>) of std_logic_vector(10 downto 0);
 	type slv_12 is array (natural range <>) of std_logic_vector(11 downto 0);
 	type slv_14 is array (natural range <>) of std_logic_vector(13 downto 0);
 	type slv_15 is array (natural range <>) of std_logic_vector(14 downto 0);
@@ -141,6 +144,29 @@ package AMEpkg is
 			  COUNT: out std_logic_vector(N-1 downto 0);
 			  HIT:out std_logic);
 	end component;
+
+	component FlFl_LE is
+	port (D, RST, clk, LE: in std_logic;
+		  Q: out std_logic);
+	end component;
+
+	component firstPelPos is
+		port ( CE_REPx, CE_BLKx, RST_BLKx, clk, RST: in std_logic;
+			   CE_REPy, CE_BLKy, RST_BLKy : in std_logic;
+			   CU_w, CU_h: in std_logic_vector(1 downto 0);
+			   last_block_x, last_block_y:  out std_logic;
+			   x0, y0: out std_logic_vector( 5 downto 0)	
+			  );
+	end component;
+
+	component Ext_RF is
+		port( RF_Addr: in std_logic;
+			  MV0_in,MV1_in,MV2_in: in motion_vector(1 downto 0); --0:h, 1:v
+			  clk, WE, RE, RST: in std_logic;
+			  MV0_out,MV1_out,MV2_out: out motion_vector(1 downto 0)
+			);
+	end component;
+
 
 end package;
 

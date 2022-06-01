@@ -1,62 +1,33 @@
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:53 on Jun 01,2022
-vcom -93 -work ./work ../src/extimator/enc2b.vhd 
+Start time: 12:04:52 on Jun 01,2022
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity enc2b
--- Compiling architecture structural of enc2b
-End time: 10:50:53 on Jun 01,2022, Elapsed time: 0:00:00
+-- Compiling package AMEpkg
+-- Compiling package body AMEpkg
+-- Loading package AMEpkg
+End time: 12:04:52 on Jun 01,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:53 on Jun 01,2022
-vcom -93 -work ./work ../src/extimator/cnt_RSTs_CEs.vhd 
+Start time: 12:04:52 on Jun 01,2022
+vcom -93 -work ./work ../src/generic/FlFl_LE.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FlFl_LE
+-- Compiling architecture beh of FlFl_LE
+End time: 12:04:53 on Jun 01,2022, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 12:04:53 on Jun 01,2022
+vcom -93 -work ./work ../src/extimator/Ext_RF.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity cnt_RSTs_CEs
--- Compiling architecture beh of cnt_RSTs_CEs
-End time: 10:50:53 on Jun 01,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:53 on Jun 01,2022
-vcom -93 -work ./work ../src/extimator/T_FF.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity T_FF
--- Compiling architecture Behavioral of T_FF
-End time: 10:50:53 on Jun 01,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:53 on Jun 01,2022
-vcom -93 -work ./work ../src/extimator/firstPelPos_comp.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity firstPelPos_comp
--- Compiling architecture struct of firstPelPos_comp
-End time: 10:50:53 on Jun 01,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:53 on Jun 01,2022
-vcom -93 -work ./work ../src/extimator/firstPelPos.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity firstPelPos
--- Compiling architecture structural of firstPelPos
-End time: 10:50:53 on Jun 01,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 10:50:54 on Jun 01,2022
-vcom -93 -work ./work ../tb/tb_firstPelPos.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity tb_firstPelPos
--- Compiling architecture tb of tb_firstPelPos
-End time: 10:50:54 on Jun 01,2022, Elapsed time: 0:00:00
+-- Loading package AMEpkg
+-- Compiling entity Ext_RF
+-- Compiling architecture beh of Ext_RF
+End time: 12:04:53 on Jun 01,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
