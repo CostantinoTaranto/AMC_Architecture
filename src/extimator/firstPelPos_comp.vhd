@@ -4,7 +4,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity firstPelPos_comp is
-	port ( CE_REP, CE_BLK, RST_BLK, clk: in std_logic;
+	port ( CE_REP, CE_BLK, RST_BLK, clk, RST: in std_logic;
 		   CU_dim: in std_logic_vector(1 downto 0);
 		   last_block: out std_logic;
 		   comp0: out std_logic_vector( 5 downto 0)	--"component0" (can be x or y)
@@ -22,7 +22,7 @@ architecture struct of firstPelPos_comp is
 
 	component T_FF is
 	port( T: in std_logic;
-		  clk: in std_logic;
+		  clk, RST: in std_logic;
 		  Q: out std_logic);
 	end component;
 
@@ -33,19 +33,23 @@ architecture struct of firstPelPos_comp is
 	end component;
 
 	signal LSBs: std_logic_vector(3 downto 0);
-	signal LSBs_ctrl, comp_out: std_logic;
+	signal LSBs_ctrl, comp_out, count_RST: std_logic;
 	signal MSBs, block_num: std_logic_vector(1 downto 0);
 
 begin
 
 	CurRep: T_FF
-		port map(CE_REP ,clk, LSBs_ctrl );
+		port map(T=>CE_REP , Q=>LSBs_ctrl ,clk=>clk, RST=>RST );
 
-	LSBs<= "1100" when LSBS_ctrl='1' else "0000";
+	--In this way we are able to build "1100" or "0000" depending on LSBs_ctrl
+	LSBs(3 downto 2)<= (others => LSBS_ctrl);
+	LSBs(1 downto 0)<= "00";
+
+	count_RST<= RST OR RST_BLK;
 
 	CurBlock: cnt_RSTs_CEs
 		generic map(N=>2)
-		port map(clk, CE_BLK, RST_BLK, MSBs);
+		port map(clk, CE_BLK, count_RST, MSBs);
 
 	comp0<= MSBs & LSBs;
 
@@ -62,6 +66,5 @@ begin
 	end process;
 
 	last_block<=comp_out;
-	
 
 end architecture struct;
