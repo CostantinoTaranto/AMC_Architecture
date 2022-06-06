@@ -6,10 +6,15 @@ package AMEpkg is
 	type motion_vector is array (natural range <>) of std_logic_vector(10 downto 0);
 	type slv_2  is array (natural range <>) of std_logic_vector(1  downto 0);
 	type slv_6  is array (natural range <>) of std_logic_vector(5  downto 0);
+	type slv_8  is array (natural range <>) of std_logic_vector(7  downto 0);
+	type slv_9  is array (natural range <>) of std_logic_vector(8  downto 0);
 	type slv_11 is array (natural range <>) of std_logic_vector(10 downto 0);
 	type slv_12 is array (natural range <>) of std_logic_vector(11 downto 0);
 	type slv_14 is array (natural range <>) of std_logic_vector(13 downto 0);
 	type slv_15 is array (natural range <>) of std_logic_vector(14 downto 0);
+	type slv_18 is array (natural range <>) of std_logic_vector(17 downto 0);
+	type slv_20 is array (natural range <>) of std_logic_vector(19 downto 0);
+	type slv_24 is array (natural range <>) of std_logic_vector(23 downto 0);
 
 -----COMPONENTS
 	component subtractor is
@@ -166,7 +171,53 @@ package AMEpkg is
 			  MV0_out,MV1_out,MV2_out: out motion_vector(1 downto 0)
 			);
 	end component;
+	
+	component COUNT_VAL is
+		generic (N: integer);
+		port (CE, RST, clk: 	in std_logic;
+			  COUNT: out std_logic_vector(N-1 downto 0));
+	end component;
 
+	component R_SH2 is
+		generic(N: integer);
+		port( SH_in: in std_logic_vector(N-1 downto 0);
+			  clk, LE, RST: in std_logic;
+			  shift_amt: std_logic_vector(1 downto 0);
+			  SH_out: out std_logic_vector(N-1 downto 0));
+	end component;
+	
+	component MULT1 is
+		generic ( N: integer);
+		port 	( op1, op2:	in std_logic_vector(N-1 downto 0);
+				  VALID, RST,clk : in std_logic; --For the internal signals and sequential components
+				  product:		out std_logic_vector((2*N)-1 downto 0));
+	end component;
+
+	component Round is
+		generic (N: integer);
+		port (round_in: in std_logic_vector (N downto 0);
+			  round_out: out std_logic_vector (N-1 downto 0));
+	end component;
+
+	component ADD3 is
+		generic (N: integer);
+		port( op1,op2,op3: in std_logic_vector (N-1 downto 0);
+			  VALID, RST, clk: in std_logic;
+			  sum: out std_logic_vector (N+1 downto 0)
+			);
+	end component;
+
+	component abs_unit is
+		generic ( N: integer);
+		port	( abs_in:	in std_logic_vector(N-1 downto 0);
+				  abs_out:		out std_logic_vector(N-2 downto 0));
+	end component;
+
+	component unsigned_adder is
+		generic ( N: integer);
+		port	( op1, op2:	in std_logic_vector(N-1 downto 0);
+				  sum:		out std_logic_vector(N downto 0));
+	end component;
 
 end package;
 

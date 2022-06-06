@@ -1,0 +1,19 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/COUNT_VAL.vhd
+vcom -93 -work ./work ../src/generic/REG_N.vhd
+vcom -93 -work ./work ../src/extimator/Ext_RF.vhd
+vcom -93 -work ./work ../src/extimator/firstPelPos.vhd
+vcom -93 -work ./work ../src/extimator/R_SH2.vhd
+vcom -93 -work ./work ../src/generic/adder.vhd
+vcom -93 -work ./work ../src/generic/multiplier.vhd
+vcom -93 -work ./work ../src/generic/sign_extender.vhd
+vcom -93 -work ./work ../src/extimator/ADD3.vhd
+vcom -93 -work ./work ../src/extimator/Round.vhd
+vcom -93 -work ./work ../src/generic/REG_N_LE.vhd
+vcom -93 -work ./work ../src/extimator/MULT1.vhd
+vcom -93 -work ./work ../src/extimator/extimator_PelRet.vhd
+
+
