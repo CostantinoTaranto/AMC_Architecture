@@ -15,6 +15,10 @@ package AMEpkg is
 	type slv_18 is array (natural range <>) of std_logic_vector(17 downto 0);
 	type slv_20 is array (natural range <>) of std_logic_vector(19 downto 0);
 	type slv_24 is array (natural range <>) of std_logic_vector(23 downto 0);
+	
+	--Extimator CU state type
+	type CU_extimator_state is (ON_RESET,IDLE,SREP_WAIT2,SREP_WAIT3,SECOND_REP,TREP_WAIT1,TREP_WAIT2,TREP_WAIT3,THIRD_REP,FREP_WAIT1,FREP_WAIT2,FREP_WAIT3,
+	FOURTH_REP,NB_WAIT1,NB_WAIT2,NB_WAIT3,NEW_LINE,NEXT_BLOCK,TERM_CANDIDATE1,SREP_WAIT1,SECOND_CANDIDATE_WAIT,TERM_LAST_CAND,WAIT_FOR_COUNT,READ_BEST_CAND,WRITE_BEST_CAND,EXTIMATE);
 
 -----COMPONENTS
 	component subtractor is
