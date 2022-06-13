@@ -16,7 +16,7 @@ entity extimator_PelRet is
 		   CE_REPx, CE_BLKx, RST_BLKx, CE_REPy, CE_BLKy, RST_BLKy: in std_logic;
 		   last_block_x, last_block_y: out std_logic;
 		   CurCU_h, CurCU_w: in std_logic_vector(6 downto 0);
-		   sixPar,RST1, RST2: in std_logic; --The RST1 is for the first two registers, RST2 is for the remaining ones
+		   sixPar,RST1, RST2, LE_ab: in std_logic; --The RST1 is for the first two registers, RST2 is for the remaining ones
 		   RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
 		   RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
 		   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0)--0:h, 1:v
@@ -122,9 +122,9 @@ begin
 		R_SH2_X: R_SH2
 			generic map(N=>12)
 			port map(SH_in=>sub1_out_samp(I),shift_amt=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST2,LE=>'1',SH_out=>R_SH2_out(I));
-		a12b12_REG: REG_N
+		a12b12_REG: REG_N_LE
 			generic map(N=>12)
-			port map(D=>R_SH2_out(I),Q=>R_SH2_out_samp(I), RST=>RST2, clk=>clk);
+			port map(D=>R_SH2_out(I),Q=>R_SH2_out_samp(I), RST=>RST2, clk=>clk, LE=>LE_ab);
 			--a2<=(0);a1<=(1);b2(2);b1<=(3);
 	end generate;
 
@@ -234,7 +234,8 @@ begin
 		generic map(N=>12)
 		port map(MVr_v,y,RADDR_RefCu_y);
 	
-	RADDR_CurCu_x<=y(5 downto 0);
+	RADDR_CurCu_x<=x(5 downto 0);
+	RADDR_CurCu_y<=y(5 downto 0);
 
 -----Output assignment. This output goes directly into the output register file
 	MV0_out<=RF_out0;

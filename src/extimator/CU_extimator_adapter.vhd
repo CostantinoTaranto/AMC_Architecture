@@ -144,7 +144,7 @@ begin
 	LE_ab_int(0)<=LE_ab_CU;
 	LE_ab_delay_gen: for I in 1 to LE_ab_DELAY generate
 		LE_ab_delay: FlFl
-			port map(D=>LE_ab_int(I),Q=>LE_ab_int(I+1),clk=>clk,RST=>RST);
+			port map(D=>LE_ab_int(I-1),Q=>LE_ab_int(I),clk=>clk,RST=>RST);
 	end generate;
 	LE_ab_DP<=LE_ab_int(LE_ab_DELAY);
 
@@ -152,7 +152,7 @@ begin
 	SAD_tmp_RST_int(0)<=SAD_tmp_RST_CU;
 	SAD_tmp_RST_gen: for I in 1 to SAD_tmp_RST_DELAY generate
 		SAD_tmp_RST_delay: FlFl
-			port map(D=>SAD_tmp_RST_int(I),Q=>SAD_tmp_RST_int(I+1),clk=>clk,RST=>RST);
+			port map(D=>SAD_tmp_RST_int(I-1),Q=>SAD_tmp_RST_int(I),clk=>clk,RST=>RST);
 	end generate;
 	SAD_tmp_RST_DP<=SAD_tmp_RST_int(SAD_tmp_RST_DELAY);
 
@@ -160,7 +160,7 @@ begin
 	Comp_EN_int(0)<=Comp_EN_CU;
 	Comp_EN_gen: for I in 1 to Comp_EN_DELAY generate
 		Comp_EN_delay: FlFl
-			port map(D=>Comp_EN_int(I),Q=>Comp_EN_int(I+1),clk=>clk,RST=>RST);
+			port map(D=>Comp_EN_int(I-1),Q=>Comp_EN_int(I),clk=>clk,RST=>RST);
 	end generate;
 	Comp_EN_DP<=Comp_EN_int(Comp_EN_DELAY);
 

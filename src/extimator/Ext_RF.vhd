@@ -103,7 +103,7 @@ begin
 	RF_Addr_sampling: FlFl_LE
 		port map(D=>RF_Addr,Q=>RF_Addr_samp,clk=>clk,RST=>RST,LE=>RE);
 
-	reading: process(RF_Addr_samp)
+	reading: process(RF_Addr_samp,MV0_h,MV0_v,MV1_h,MV1_v,MV2_h,MV2_v)
 	begin
 		case RF_Addr_samp is
 			when '0' =>
