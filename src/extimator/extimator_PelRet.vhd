@@ -37,6 +37,8 @@ architecture structural of extimator_PelRet is
 	signal sub1_pos_in, sub1_neg_in: motion_vector(3 downto 0);
 	signal sub1_out_tmp: slv_12(3 downto 0);
 	signal sub1_out_samp: slv_12(3 downto 0);
+	signal sub1_out_samp_tmp: slv_12(3 downto 0);
+	signal sub1_out_samp2_inv: std_logic_vector(11 downto 0);
 	signal R_SH2_cmd, R_SH2_cmd_samp: slv_2(3 downto 0);
 	signal R_SH2_out, R_SH2_out_samp: slv_12(3 downto 0);
 	--Multiplication {a_(1,2);b_(1,2)}*{x0;y0}
@@ -47,6 +49,7 @@ architecture structural of extimator_PelRet is
 	signal MULT1_out_cut: slv_18(3 downto 0);
 	--ADD3 stage
 	signal MV0_in_ADD3 : motion_vector(1 downto 0);
+	signal MV0_in_ADD3_sh4 : slv_15(1 downto 0);
 	signal MV0_in_ADD3_ext : slv_18(1 downto 0);
 	signal MVr_ex_v, MVr_ex_h: std_logic_vector(19 downto 0);
 	--Rounding stage
@@ -115,10 +118,21 @@ begin
 			port map(sub1_pos_in(I),sub1_neg_in(I),sub1_out_tmp(I));
 		SUB_OUT_samp_x: REG_N
 			generic map(N=>12)
-			port map(D=>sub1_out_tmp(I),Q=>sub1_out_samp(I), clk=>clk,RST=>RST1);
+			port map(D=>sub1_out_tmp(I),Q=>sub1_out_samp_tmp(I), clk=>clk,RST=>RST1);
 		R_SH2_cmd_samp_x: REG_N
 			generic map(N=>2)
 			port map(D=>R_SH2_cmd(I),Q=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST1);
+	end generate;
+	
+	--In this intermediate passage, the inversion of b2 is done if sixPar='0'
+	sub1_out_samp(0)<=sub1_out_samp_tmp(0);
+	sub1_out_samp(1)<=sub1_out_samp_tmp(1);
+	sub1_out_samp(3)<=sub1_out_samp_tmp(3);
+	
+	sub1_out_samp2_inv<=std_logic_vector(signed(NOT sub1_out_samp_tmp(2))+1); --the negative of b2
+	sub1_out_samp(2)<= sub1_out_samp_tmp(2) WHEN sixPar_samp='1' ELSE sub1_out_samp2_inv;
+	
+	RSH2_GEN: for I in 0 to 3 generate
 		R_SH2_X: R_SH2
 			generic map(N=>12)
 			port map(SH_in=>sub1_out_samp(I),shift_amt=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST2,LE=>'1',SH_out=>R_SH2_out(I));
@@ -142,9 +156,9 @@ begin
 		generic map(N_in=>6,N_out=>8)
 		port map(y0_int(4),y0_int_ext);
 	
-	coord_comp(0)<= x0_int_ext&"0000";
+	coord_comp(0)<= "0000" & x0_int_ext;
 	coord_comp(1)<= coord_comp(0);
-	coord_comp(2)<= y0_int_ext&"0000";
+	coord_comp(2)<= "0000" & y0_int_ext;
 	coord_comp(3)<= coord_comp(2);
 	
 	MULT1_GEN: for I in 0 to 3 generate
@@ -173,9 +187,10 @@ begin
 	end generate;
 	
 	MV0_forADD3_extender_gen: for I in 0 to 1 generate
+		MV0_in_ADD3_sh4(I)<= MV0_in_ADD3(I) & "0000";
 		MV0_forADD3_extender: sign_extender
-			generic map(N_in=>11,N_out=>18)
-			port map(MV0_in_ADD3(I),MV0_in_ADD3_ext(I));
+			generic map(N_in=>15,N_out=>18)
+			port map(MV0_in_ADD3_sh4(I),MV0_in_ADD3_ext(I));
 	end generate;
 
 	ADD3_1: ADD3
@@ -189,12 +204,10 @@ begin
 ----Round Stage
 	
 	MVr_ex_v_round: Round
-		generic map(N=>12)
-		port map(Round_in=>MVr_ex_v(19 downto 7),Round_out=>MVr_v_tmp);
+		port map(Round_in=>MVr_ex_v,Round_out=>MVr_v_tmp);
 	
 	MVr_ex_h_round: Round
-		generic map(N=>12)
-		port map(Round_in=>MVr_ex_h(19 downto 7),Round_out=>MVr_h_tmp);
+		port map(Round_in=>MVr_ex_h,Round_out=>MVr_h_tmp);
 
 	MVr_v_REG: REG_N
 		generic map(N=>12)

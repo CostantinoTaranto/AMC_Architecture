@@ -198,9 +198,8 @@ package AMEpkg is
 	end component;
 
 	component Round is
-		generic (N: integer);
-		port (round_in: in std_logic_vector (N downto 0);
-			  round_out: out std_logic_vector (N-1 downto 0));
+		port (round_in: in std_logic_vector (19 downto 0);
+			  round_out: out std_logic_vector (11 downto 0));
 	end component;
 
 	component ADD3 is

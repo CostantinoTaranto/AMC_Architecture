@@ -14,10 +14,10 @@ add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/MV2_o
 add wave -noupdate -radix binary /tb_extimator_addcalc/CurCU_h_t
 add wave -noupdate -radix binary /tb_extimator_addcalc/CurCU_w_t
 add wave -noupdate /tb_extimator_addcalc/sixPar_t
-add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_RefCu_x_t
-add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_RefCu_y_t
 add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_CurCu_x_t
 add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_CurCu_y_t
+add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_RefCu_x_t
+add wave -noupdate -radix unsigned /tb_extimator_addcalc/RADDR_RefCu_y_t
 add wave -noupdate /tb_extimator_addcalc/extimator_READY_t
 add wave -noupdate /tb_extimator_addcalc/uut/VALID_int
 add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/RE
@@ -34,9 +34,24 @@ add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/MV0_h
 add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/MV0_v
 add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/MV1_h
 add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/input_RF/MV1_v
-add wave -noupdate -radix decimal -childformat {{/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(3) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(2) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(1) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(0) -radix decimal}} -expand -subitemconfig {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(3) {-radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(2) {-radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(1) {-radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(0) {-radix decimal}} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp
+add wave -noupdate -radix decimal -childformat {{/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(3) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(2) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(1) -radix decimal} {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(0) -radix decimal}} -expand -subitemconfig {/tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(3) {-height 15 -radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(2) {-height 15 -radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(1) {-height 15 -radix decimal} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp(0) {-height 15 -radix decimal}} /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/R_SH2_out_samp
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/coord_comp
+add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MULT1_out_cut
+add wave -noupdate /tb_extimator_addcalc/uut/CU_adapter/ADD3_VALID_int
+add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_1/count
+add wave -noupdate /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_0/count
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_1/op1
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_1/op2
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_1/op3
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_ex_v
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_0/op1
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_0/op2
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/ADD3_0/op3
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_ex_h
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_h
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_v
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {11 ns} 0}
+WaveRestoreCursors {{Cursor 1} {31 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 200
 configure wave -valuecolwidth 100

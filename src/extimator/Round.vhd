@@ -7,28 +7,32 @@ use IEEE.numeric_std.all;
 -- -1.5 -> -2
 -- 5.3 -> 5
 -- -5.3 -> -5
---We assume that the input data is in the form XXXXX.X where ".X" is the part to be discarded.
 
 entity Round is
-	generic (N: integer);
-	port (round_in: in std_logic_vector (N downto 0);
-		  round_out: out std_logic_vector (N-1 downto 0));
+	port (round_in: in std_logic_vector (19 downto 0);
+		  round_out: out std_logic_vector (11 downto 0));
 end entity;
 
 architecture struct of Round is
 
-	--To add the (LSB-1)th digit, it is necessary to extend it in this signal
-	signal lsb_1_ext, round_up, round_down: std_logic_vector(N-1 downto 0);
+	signal input_sign, high_frac_part, at_least_another_one : std_logic;
+	signal lsb_ext: std_logic_vector(11 downto 0);
+	signal round_up, truncate: std_logic_vector(11 downto 0);
 
 begin
 
-	lsb_1_ext(N-1 downto 1)<= (others=>'0');
-	lsb_1_ext(0)<= round_in(0);	
+	input_sign<=round_in(19);
+	
+	at_least_another_one <= round_in(6) OR round_in(5) OR round_in(4) OR round_in(3) OR round_in(2) OR round_in(1) OR round_in(0);
+	high_frac_part<= round_in(7) AND at_least_another_one;
 
-	round_up <=  std_logic_vector(signed(round_in(N downto 1))+signed(lsb_1_ext));
-	round_down<= std_logic_vector(signed(round_in(N downto 1))-signed(lsb_1_ext));
+	lsb_ext(11 downto 1)<= (others=>'0');
+	lsb_ext(0)<= round_in(7);	
+
+	round_up <=  std_logic_vector(signed(round_in(19 downto 8))+signed(lsb_ext));
+	truncate <=  round_in(19 downto 8);
 
 	--Depending on the number sign, it is rounded in a different way
-	round_out<= round_up when round_in(N)='0' else round_down;
+	round_out<= round_up when (input_sign='0' OR high_frac_part='1') else truncate;
 
 end architecture struct;
