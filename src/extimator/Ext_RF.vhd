@@ -1,3 +1,4 @@
+--Extimator Register File
 --In this register file, reading and writing are performed snchronously,
 --the synchrounous reading operation is simply obtained by sampling the RF_Addr which
 --is involved in the reading process
@@ -22,6 +23,8 @@ architecture beh of Ext_RF is
 	signal RF_Addr_samp, RE_samp: std_Logic;
 
 begin
+
+------Reading process
 
 	writing: process(clk,RST)
 	begin
@@ -95,7 +98,7 @@ begin
 	end process;
 
 
-------Writing process
+------Reading process
 
 	RF_Addr_sampling: FlFl_LE
 		port map(D=>RF_Addr,Q=>RF_Addr_samp,clk=>clk,RST=>RST,LE=>RE);
