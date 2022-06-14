@@ -59,6 +59,8 @@ architecture structural of extimator_PelRet is
 	signal y_count_out: std_logic_vector(1 downto 0);
 	signal y_count_out_ext: std_logic_vector(5 downto 0);
 	signal y_short: std_logic_vector(5 downto 0);
+	signal RADDR_RefCu_x_tmp, RADDR_RefCu_y_tmp: std_logic_vector(12 downto 0);
+	signal RADDR_CurCu_x_tmp, RADDR_CurCu_y_tmp: std_logic_vector(5 downto 0);
 
 begin
 
@@ -226,9 +228,9 @@ begin
 	--and it is treated as one
 	RADDR_RefCu_x_calculator: adder
 		generic map(N=>12)
-		port map(MVr_h,x,RADDR_RefCu_x);
+		port map(MVr_h,x,RADDR_RefCu_x_tmp);
 	
-	RADDR_CurCu_x<=x0_int(X0Y0_DEPTH);
+	RADDR_CurCu_x_tmp<=x0_int(X0Y0_DEPTH);
 	
 	--y
 	
@@ -245,10 +247,24 @@ begin
 	--and it is treated as one
 	RADDR_RefCu_y_calculator: adder
 		generic map(N=>12)
-		port map(MVr_v,y,RADDR_RefCu_y);
+		port map(MVr_v,y,RADDR_RefCu_y_tmp);
 	
-	RADDR_CurCu_x<=x(5 downto 0);
-	RADDR_CurCu_y<=y(5 downto 0);
+	RADDR_CurCu_y_tmp<=y(5 downto 0);
+
+	--RADDR_sampling
+	RADDR_CurCu_x_sampling: REG_N
+		generic map(N=>6)
+		port map(D=>RADDR_CurCu_x_tmp,Q=>RADDR_CurCu_x,clk=>clk,RST=>RST2);
+	RADDR_CurCu_y_sampling: REG_N
+		generic map(N=>6)
+		port map(D=>RADDR_CurCu_y_tmp,Q=>RADDR_CurCu_y,clk=>clk,RST=>RST2);
+	
+	RADDR_RefCu_x_sampling: REG_N
+		generic map(N=>13)
+		port map(D=>RADDR_RefCu_x_tmp,Q=>RADDR_RefCu_x,clk=>clk,RST=>RST2);
+	RADDR_RefCu_y_sampling: REG_N
+		generic map(N=>13)
+		port map(D=>RADDR_RefCu_y_tmp,Q=>RADDR_RefCu_y,clk=>clk,RST=>RST2);
 
 -----Output assignment. This output goes directly into the output register file
 	MV0_out<=RF_out0;

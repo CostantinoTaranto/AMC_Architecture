@@ -1,5 +1,4 @@
---This component calculates the memory addresses for the motion extimation,
---given the motion vectors with the proper control signals
+--The complete extimator, without the memory unit
 
 library IEEE;
 use IEEE.std_logic_1164.all;
@@ -7,20 +6,23 @@ use IEEE.std_logic_1164.all;
 library work;
 use work.AMEpkg.all;
 
-entity extimator_AddCalc is
+entity extimator is
 	port( VALID_VTM, VALID_CONST: in std_logic;	--The "Valid" signal can be supplied by the constructor or the VTM alternatively
 		  MV0_in, MV1_in, MV2_in: in motion_vector(1 downto 0);--0:h, 1:v
 		  CurCU_h, CurCU_w: in std_logic_vector(6 downto 0);
 		  sixPar: in std_logic;
 		  clk, CU_RST: in std_logic;
+		  RefPel, CurPel: in slv_8(3 downto 0);
 		  RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
 		  RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
 		  MEM_RE: out std_logic; --Memory Read Enable
-		  extimator_READY: out std_logic
+		  extimator_READY: out std_logic;
+		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
+		  
 	);
 end entity;
 
-architecture structural of extimator_AddCalc is
+architecture structural of extimator is
 
 	component extimator_PelRet is
 	port ( MV0_in, MV1_in, MV2_in: in motion_vector(1 downto 0);--0:h, 1:v
@@ -81,6 +83,15 @@ architecture structural of extimator_AddCalc is
 		);
 	end component;
 
+	component extimator_ResCal is
+		port( MV0_in, MV1_in, MV2_in: in motion_vector(1 downto 0);
+			  clk, RST, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE: in std_logic;
+			  RefPel, CurPel: in slv_8(3 downto 0);
+			  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0);
+			  BestCand, CountTerm_OUT, last_cand: out std_logic
+			 );
+	end component;
+
 	--extimator PelRet
 	signal RF_Addr_DP_int, RF_in_WE_int, RF_in_RE_int, MULT1_VALID_int, ADD3_MVin_LE_int, ADD3_VALID_int, incrY_int : std_logic;
 	signal CE_REPx_int, CE_BLKx_int, RST_BLKx_int, CE_REPy_int, CE_BLKy_int, RST_BLKy_int, last_block_x_int, last_block_y_int: std_logic;
@@ -95,6 +106,8 @@ architecture structural of extimator_AddCalc is
 	signal READY_int, GOT_int: std_logic;
 	--CU Adapter
 	signal SAD_tmp_RST_DP_int, Comp_EN_DP_int: std_logic;
+	--extimator ResCal
+	signal BestCand_int, CountTerm_OUT_int, last_cand_int: std_logic;
 
 begin
 
@@ -115,7 +128,7 @@ begin
 	
 	extimator_CU: CU_extimator
 		port map( VALID=>VALID_int, last_block_x=>last_block_x_int, last_block_y=>last_block_y_int,
-			  last_cand=>'0', Second_ready=>Second_ready_int, CountTerm_OUT=>'0',
+			  last_cand=>last_cand_int, Second_ready=>Second_ready_int, CountTerm_OUT=>CountTerm_OUT_int,
 			  clk=>clk, CU_RST=>CU_RST,	INTER_DATA_VALID_SET=>INTER_DATA_VALID_SET_int, INTER_DATA_VALID_RESET=>INTER_DATA_VALID_RESET_int,
 			  ADD3_MVin_LE_fSET=>ADD3_MVin_LE_fSET_int, ADD3_MVin_LE_nSET=>ADD3_MVin_LE_nSET_int, ADD3_MVin_LE_fRESET=>ADD3_MVin_LE_fRESET_int,
 			  READY_RST=>READY_RST_int, RST1=>RST1_int, RST2=>RST2_int, CE_REPx=>CE_REPx_int, CE_BLKx=>CE_BLKx_int, RST_BLKx=>RST_BLKx_int, CE_REPy=>CE_REPy_int, CE_BLKy=>CE_BLKy_int, RST_BLKy=>RST_BLKy_int,
@@ -131,12 +144,17 @@ begin
 		port map(	INTER_DATA_VALID_SET=>INTER_DATA_VALID_SET_int, INTER_DATA_VALID_RESET=>INTER_DATA_VALID_RESET_int,
 			  ADD3_MVin_LE_fSET=>ADD3_MVin_LE_fSET_int, ADD3_MVin_LE_nSET=>ADD3_MVin_LE_nSET_int, ADD3_MVin_LE_fRESET=>ADD3_MVin_LE_fRESET_int,
 			  RF_Addr_CU=>RF_Addr_CU_int,
-			  LE_ab_CU=>LE_ab_CU_int, SAD_tmp_RST_CU=>SAD_tmp_RST_CU_int, Comp_EN_CU=>Comp_EN_CU_int, BestCand=>'0',
+			  LE_ab_CU=>LE_ab_CU_int, SAD_tmp_RST_CU=>SAD_tmp_RST_CU_int, Comp_EN_CU=>Comp_EN_CU_int, BestCand=>BestCand_int,
 			  clk=>clk, RST=>CU_RST,
 			  MULT1_VALID=>MULT1_VALID_int, ADD3_VALID=>ADD3_VALID_int, incrY=>incrY_int, MEM_RE=>MEM_RE,
 			  ADD3_MVin_LE=>ADD3_MVin_LE_int,
 			  RF_Addr_DP=>RF_Addr_DP_int, LE_ab_DP=>LE_ab_DP_int, SAD_tmp_RST_DP=>SAD_tmp_RST_DP_int, Comp_EN_DP=>Comp_EN_DP_int
 		);
 
-
+	Results_calculator: extimator_ResCal
+		port map( MV0_in=>MV0_out_int, MV1_in=>MV1_out_int, MV2_in=>MV2_out_int, clk=>clk, RST=>RST2_int, SAD_tmp_RST=>SAD_tmp_RST_DP_int, Comp_EN=>Comp_EN_DP_int,
+				OUT_LE=>OUT_LE_int, CountTerm_EN=>CountTerm_EN_int, CandCount_CE=>CandCount_CE_int, RefPel=>RefPel, CurPel=>CurPel, MV0_out=>MV0_out, MV1_out=>MV1_out, MV2_out=>MV2_out,
+			  BestCand=>BestCand_int, CountTerm_OUT=>CountTerm_OUT_int, last_cand=>last_cand_int
+			 );
+			 
 end architecture structural;

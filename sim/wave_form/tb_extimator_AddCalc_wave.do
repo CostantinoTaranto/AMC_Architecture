@@ -50,8 +50,15 @@ add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit
 add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_ex_h
 add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_h
 add wave -noupdate -radix decimal /tb_extimator_addcalc/uut/Pixel_Retrieval_Unit/MVr_v
+add wave -noupdate -radix unsigned -childformat {{/tb_extimator_addcalc/uut_mem/Curframe_OUT_int(3) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Curframe_OUT_int(2) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Curframe_OUT_int(1) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Curframe_OUT_int(0) -radix unsigned}} -expand -subitemconfig {/tb_extimator_addcalc/uut_mem/Curframe_OUT_int(3) {-height 15 -radix unsigned} /tb_extimator_addcalc/uut_mem/Curframe_OUT_int(2) {-height 15 -radix unsigned} /tb_extimator_addcalc/uut_mem/Curframe_OUT_int(1) {-height 15 -radix unsigned} /tb_extimator_addcalc/uut_mem/Curframe_OUT_int(0) {-height 15 -radix unsigned}} /tb_extimator_addcalc/uut_mem/Curframe_OUT_int
+add wave -noupdate -radix decimal /tb_extimator_addcalc/uut_mem/RADDR_CurCu_x
+add wave -noupdate -radix decimal -childformat {{/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(5) -radix decimal} {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(4) -radix decimal} {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(3) -radix decimal} {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(2) -radix decimal} {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(1) -radix decimal} {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(0) -radix decimal}} -subitemconfig {/tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(5) {-height 15 -radix decimal} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(4) {-height 15 -radix decimal} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(3) {-height 15 -radix decimal} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(2) {-height 15 -radix decimal} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(1) {-height 15 -radix decimal} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y(0) {-height 15 -radix decimal}} /tb_extimator_addcalc/uut_mem/RADDR_CurCu_y
+add wave -noupdate /tb_extimator_addcalc/uut_mem/RE
+add wave -noupdate /tb_extimator_addcalc/uut_mem/RST
+add wave -noupdate -radix unsigned /tb_extimator_addcalc/uut_mem/DM_ADDR
+add wave -noupdate -radix unsigned -childformat {{/tb_extimator_addcalc/uut_mem/Refframe_OUT_int(3) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Refframe_OUT_int(2) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Refframe_OUT_int(1) -radix unsigned} {/tb_extimator_addcalc/uut_mem/Refframe_OUT_int(0) -radix unsigned}} -expand -subitemconfig {/tb_extimator_addcalc/uut_mem/Refframe_OUT_int(3) {-radix unsigned} /tb_extimator_addcalc/uut_mem/Refframe_OUT_int(2) {-radix unsigned} /tb_extimator_addcalc/uut_mem/Refframe_OUT_int(1) {-radix unsigned} /tb_extimator_addcalc/uut_mem/Refframe_OUT_int(0) {-radix unsigned}} /tb_extimator_addcalc/uut_mem/Refframe_OUT_int
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {31 ns} 0}
+WaveRestoreCursors {{Cursor 1} {1 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 200
 configure wave -valuecolwidth 100
@@ -67,4 +74,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {23 ns}
+WaveRestoreZoom {27 ns} {50 ns}

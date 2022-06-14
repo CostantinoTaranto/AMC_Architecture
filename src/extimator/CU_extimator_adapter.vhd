@@ -20,7 +20,7 @@ entity CU_extimator_adapter is
 		  LE_ab_CU, SAD_tmp_RST_CU, Comp_EN_CU: in std_logic;
 		  BestCand: in std_logic;
 		  clk, RST: in std_logic;
-		  MULT1_VALID, ADD3_VALID, incrY: out std_logic;
+		  MULT1_VALID, ADD3_VALID, incrY, MEM_RE: out std_logic;
 		  ADD3_MVin_LE: out std_logic;
 		  RF_Addr_DP, LE_ab_DP, SAD_tmp_RST_DP, Comp_EN_DP: out std_logic
 	);
@@ -41,6 +41,9 @@ architecture beh of CU_extimator_adapter is
 	
 	constant incrY_DELAY: integer := 3; --This is the delay w.r.to ADD3
 	signal incrY_int: std_logic_vector(incrY_DELAY downto 0);
+	
+	constant MEM_RE_DELAY: integer := 1; --This is the delay w.r.to incrY
+	signal MEM_RE_int: std_logic_vector(MEM_RE_DELAY downto 0);
 	
 ----ADD3_MVin_LE
 	constant nSET_DELAY: integer := 9; --The number of clock cycles after which the signal is observed
@@ -105,6 +108,13 @@ begin
 			port map(D=>incrY_int(I-1),Q=>incrY_int(I),clk=>clk,RST=>RST);
 	end generate;
 	incrY<=incrY_int(incrY_DELAY);
+	
+	MEM_RE_int(0)<=incrY_int(incrY_DELAY);
+	MEM_RE_gen: for I in 1 to MEM_RE_DELAY generate
+		MEM_RE_delay: FlFl
+			port map(D=>MEM_RE_int(I-1),Q=>MEM_RE_int(I),clk=>clk,RST=>RST);
+	end generate;
+	MEM_RE<=MEM_RE_int(MEM_RE_DELAY);
 
 ----ADD3_MVin_LE
 	ADD3_MVin_LE_nSET_int(0)<=ADD3_MVin_LE_nSET;

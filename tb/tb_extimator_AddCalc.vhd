@@ -18,8 +18,17 @@ architecture tb of tb_extimator_AddCalc is
 			  clk, CU_RST: in std_logic;
 			  RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
 			  RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
+			  MEM_RE: out std_logic;
 			  extimator_READY: out std_logic
 		);
+	end component;
+
+	component DATA_MEMORY_ex26 is
+		port( clk, RST, RE: in std_logic;
+			  RADDR_CurCu_x, RADDR_CurCu_y: in std_logic_vector(5 downto 0);
+			  RADDR_RefCu_x, RADDR_RefCu_y: in std_logic_vector(12 downto 0);
+			  Curframe_OUT: out slv_8(3 downto 0);
+			  Refframe_OUT: out slv_8(3 downto 0));
 	end component;
 
 	signal VALID_VTM_t, VALID_CONST_t: std_logic;
@@ -28,7 +37,10 @@ architecture tb of tb_extimator_AddCalc is
 	signal sixPar_t, clk, CU_RST_t: std_logic;
 	signal RADDR_RefCu_x_t, RADDR_RefCu_y_t: std_logic_vector(12 downto 0);
 	signal RADDR_CurCu_x_t, RADDR_CurCu_y_t: std_logic_vector(5 downto 0);
+	signal MEM_RE_int: std_logic;
 	signal extimator_READY_t: std_logic;
+	
+	signal CurPel_t, RefPel_t : slv_8(3 downto 0);
 	
 	constant Tc: time := 2 ns;
 
@@ -36,7 +48,10 @@ begin
 
 	uut: extimator_AddCalc
 		port map(VALID_VTM_t, VALID_CONST_t, MV0_in_t, MV1_in_t, MV2_in_t, CurCU_h_t, CurCU_w_t,
-			  sixPar_t, clk, CU_RST_t, RADDR_RefCu_x_t, RADDR_RefCu_y_t, RADDR_CurCu_x_t, RADDR_CurCu_y_t, extimator_READY_t);
+			  sixPar_t, clk, CU_RST_t, RADDR_RefCu_x_t, RADDR_RefCu_y_t, RADDR_CurCu_x_t, RADDR_CurCu_y_t, MEM_RE_int, extimator_READY_t);
+	
+	uut_mem: DATA_MEMORY_ex26
+		port map(clk, CU_RST_t, MEM_RE_int, RADDR_CurCu_x_t, RADDR_CurCu_y_t, RADDR_RefCu_x_t, RADDR_RefCu_y_t, CurPel_t, RefPel_t);
 
 	clock_gen: process
 	begin
@@ -61,6 +76,14 @@ begin
 		MV0_in_t(1)<=std_logic_vector(to_signed(-6,MV0_in_t(1)'length));
 		MV1_in_t(0)<=std_logic_vector(to_signed(23,MV1_in_t(0)'length));
 		MV1_in_t(1)<=std_logic_vector(to_signed(12,MV1_in_t(1)'length));
+		wait for Tc;
+		VALID_VTM_t<='0';
+		wait for Tc;
+		VALID_VTM_t<='1';
+		MV0_in_t(0)<=std_logic_vector(to_signed(28,MV0_in_t(0)'length));
+		MV0_in_t(1)<=std_logic_vector(to_signed(-4,MV0_in_t(1)'length));
+		MV1_in_t(0)<=std_logic_vector(to_signed(28,MV1_in_t(0)'length));
+		MV1_in_t(1)<=std_logic_vector(to_signed(-4,MV1_in_t(1)'length));
 		wait for Tc;
 		VALID_VTM_t<='0';
 		wait;
