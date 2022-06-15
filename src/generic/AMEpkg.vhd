@@ -26,6 +26,12 @@ package AMEpkg is
 	port 	( minuend, subtrahend:	in std_logic_vector(N-1 downto 0);
 		  subtraction:		out std_logic_vector(N downto 0));
 	end component;
+	
+	component unsigned_subtractor is
+		generic ( N: integer);
+		port 	( minuend, subtrahend:	in std_logic_vector(N-1 downto 0);
+			  subtraction:		out std_logic_vector(N downto 0));
+	end component;
 
 	component sign_extender is
 		generic ( N_in, N_out: integer);

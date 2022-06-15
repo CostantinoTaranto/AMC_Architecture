@@ -46,7 +46,7 @@ begin
 
 ------Absolute differences calculation
 	Abs_diff_gen: for I in 0 to 3 generate
-		Pel_sub_X: subtractor
+		Pel_sub_X: unsigned_subtractor
 			generic map(N=> 8)
 			port map(RefPel(I),CurPel(I),Pel_diff(I));
 		Pel_diff_reg: REG_N
@@ -65,7 +65,7 @@ begin
 	PelAdd_stage1: for I in 0 to 1 generate
 		PelAdd_stage1_X: unsigned_adder
 			generic map(N=>8)
-			port map(Abs_Pel_diff_samp(I),Abs_Pel_diff_samp(I+1),PelAdd_stage1_out(I));
+			port map(Abs_Pel_diff_samp(2*I),Abs_Pel_diff_samp(2*I+1),PelAdd_stage1_out(I));
 		PelAdd_stage1_out_reg: REG_N
 			generic map(N=>9)
 			port map(D=>PelAdd_stage1_out(I),Q=>PelAdd_stage1_out_samp(I),clk=>clk,RST=>RST);
