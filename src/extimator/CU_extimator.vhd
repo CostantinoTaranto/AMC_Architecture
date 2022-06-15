@@ -113,10 +113,12 @@ begin
 				NS<=SREP_WAIT1;
 			when TERM_CANDIDATE1 =>
 				if Second_ready_int='1' OR VALID_int='1' THEN
-					NS<=SREP_WAIT1;
+					NS<=SREP_WAIT1_NEW_CANDIDATE;
 				else
 					NS<=SECOND_CANDIDATE_WAIT;
 				end if;
+			when SREP_WAIT1_NEW_CANDIDATE =>
+				NS<=SREP_WAIT2;
 			when SREP_WAIT1 =>
 				NS<=SREP_WAIT2;
 			when SECOND_CANDIDATE_WAIT =>
@@ -462,6 +464,30 @@ begin
 				ADD3_MVin_LE_fRESET<='0';
 				DONE<='0';
 			when SREP_WAIT1 =>
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';----
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
+			when SREP_WAIT1_NEW_CANDIDATE =>
 				READY_RST<='0';
 				RST1<='0';
 				RST2<='0';

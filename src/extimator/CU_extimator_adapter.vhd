@@ -123,7 +123,7 @@ begin
 			port map(D=>ADD3_MVin_LE_nSET_int(I-1),Q=>ADD3_MVin_LE_nSET_int(I),clk=>clk,RST=>RST);
 	end generate;
 
-	ADD3_MVin_LE_register: process(RST,ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET)
+	ADD3_MVin_LE_register: process(RST,ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET_int(nSET_DELAY), ADD3_MVin_LE_fRESET)
 	begin
 		if ADD3_MVin_LE_fRESET='1' then
 			ADD3_MVin_LE_int<='0';
