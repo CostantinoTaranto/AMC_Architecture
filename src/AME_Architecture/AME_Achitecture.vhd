@@ -1,0 +1,70 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+library work;
+use work.AMEpkg.all;
+
+entity AME_Architecture is
+	port ( cMV0_in, cMV1_in, cMV2_in: in motion_vector(1 downto 0);--Constructor motion vectors (0:h, 1:v)
+		   START: in std_logic; --constructor's "START"
+		   CU_h, CU_w: in std_logic_vector(6 downto 0);
+		   clk, RST: in std_logic;
+		   cREADY: out std_logic; --constructor's READY
+		   VALID: in std_logic; --extimator's VALID
+		   eMV0_in, eMV1_in, eMV2_in: in motion_vector(1 downto 0);--Extimator motion vectors (0:h, 1:v)
+		   sixPar : in std_logic;
+		   eIN_SEL : in std_logic; --extimator input selector: 0: from VTM, 1: form constructor
+		   RefPel, CurPel: in slv_8(3 downto 0);
+		   RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
+		   RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
+		   MEM_RE: out std_logic; --Memory Read Enable
+		   eREADY: out std_logic; --extimator's READY
+		   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
+		);
+end entity;
+
+architecture structural of AME_Architecture is
+
+	component constructor is
+	port( MV0,MV1,MV2: in motion_vector(1 downto 0); --0:h,1:v
+		  CU_h, CU_W: in std_logic_vector(6 downto 0);
+		  START, GOT, clk, CU_RST: in std_logic;
+		  READY, DONE: out std_logic;
+		  MVP0,MVP1,MVP2: out motion_vector(1 downto 0) --MV Prediction
+		);
+	end component;
+
+	component extimator is
+	port( VALID_VTM, VALID_CONST: in std_logic;	--The "Valid" signal can be supplied by the constructor or the VTM alternatively
+		  MV0_in, MV1_in, MV2_in: in motion_vector(1 downto 0);--0:h, 1:v
+		  CurCU_h, CurCU_w: in std_logic_vector(6 downto 0);
+		  sixPar: in std_logic;
+		  clk, CU_RST: in std_logic;
+		  RefPel, CurPel: in slv_8(3 downto 0);
+		  RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
+		  RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
+		  MEM_RE: out std_logic; --Memory Read Enable
+		  extimator_READY, GOT: out std_logic;
+		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
+		  
+	);
+	end component;
+
+	signal GOT_int, VALID_CONST_int : std_logic;
+	signal cMVP0, cMVP1, cMVP2: motion_vector(1 downto 0);
+	signal eMV0_in_int, eMV1_in_int, eMV2_in_int: motion_vector(1 downto 0);--Extimator motion vectors (0:h, 1:v)
+
+begin
+
+	constructing_unit: constructor
+		port map ( cMV0_in, cMV1_in, cMV2_in, CU_h, CU_w, START, GOT_int, clk, RST, cREADY, VALID_CONST_int, cMVP0, cMVP1, cMVP2);
+	
+	extimating_unit: extimator
+		port map ( VALID, VALID_CONST_int, eMV0_in_int, eMV1_in_int, eMV2_in_int, CU_h, CU_w, sixPar, clk, RST, RefPel, CurPel, RADDR_RefCu_x, RADDR_RefCu_y,
+				   RADDR_CurCu_x, RADDR_CurCu_y, MEM_RE, eREADY, GOT_int, MV0_out, MV1_out, MV2_out);
+	
+	eMV0_in_int<= eMV0_in when eIN_SEL='0' else cMVP0;
+	eMV1_in_int<= eMV1_in when eIN_SEL='0' else cMVP1;
+	eMV2_in_int<= eMV2_in when eIN_SEL='0' else cMVP2;
+	
+end architecture structural;

@@ -16,7 +16,7 @@ entity extimator is
 		  RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
 		  RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
 		  MEM_RE: out std_logic; --Memory Read Enable
-		  extimator_READY: out std_logic;
+		  extimator_READY, GOT: out std_logic;
 		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
 		  
 	);
@@ -103,7 +103,7 @@ architecture structural of extimator is
 	signal RF_Addr_CU_int : std_logic_vector(1 downto 0);
 	signal LE_ab_CU_int, SAD_tmp_RST_CU_int, Comp_EN_CU_int, OUT_LE_int, CountTerm_EN_int, CandCount_CE_int, DONE_int: std_logic;
 	--Ready Handler
-	signal READY_int, GOT_int: std_logic;
+	signal READY_int: std_logic;
 	--CU Adapter
 	signal SAD_tmp_RST_DP_int, Comp_EN_DP_int: std_logic;
 	--extimator ResCal
@@ -136,7 +136,7 @@ begin
 			  RF_in_RE=>RF_in_RE_int, DONE=>DONE_int);
 
 	Ready_Handler: CU_Ready_Handler 
-		port map( VALID=>VALID_int, Ready_RST=>Ready_RST_int, clk=>clk, RST=>CU_RST, READY=>READY_int, Second_Ready=>Second_Ready_int, GOT=>GOT_int);
+		port map( VALID=>VALID_int, Ready_RST=>Ready_RST_int, clk=>clk, RST=>CU_RST, READY=>READY_int, Second_Ready=>Second_Ready_int, GOT=>GOT);
 	
 	extimator_READY<=READY_int;
 

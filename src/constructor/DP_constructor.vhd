@@ -6,12 +6,12 @@ library work;
 use work.AMEpkg.all;
 
 entity DP_constructor is
-	port ( MV0,MV1,MV2: in motion_vector(0 to 1); --0:h,1:v
+	port ( MV0,MV1,MV2: in motion_vector(1 downto 0); --0:h,1:v
 		   clk, RST, RSH_LE, cmd_SH_en : in std_logic;
 		   CU_h,CU_w:	in std_logic_vector(6 downto 0);
 		   CE_compEN, CE_STOPcompEN, compEN: in std_logic;
 		   CNT_compEN_OUT, CNT_STOPcompEN_OUT: out std_logic;
-		   MVP0,MVP1,MVP2: out motion_vector(0 to 1)); --0:h,1:v
+		   MVP0,MVP1,MVP2: out motion_vector(1 downto 0)); --0:h,1:v
 end entity;
 
 architecture structural of DP_constructor is
