@@ -26,7 +26,13 @@ architecture tb of tb_AME_Architecture is
 			   RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
 			   MEM_RE: out std_logic; --Memory Read Enable
 			   eREADY: out std_logic; --extimator's READY
-			   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
+			   eDONE: out std_logic;  --extimator's DONE
+			   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0); --Extimation result
+			   --For the output checker
+			   cComp_EN, cDONE, eComp_EN: out std_logic;
+			   MVP0, MVP1, MVP2: out motion_vector(1 downto 0);
+			   CurSAD: out std_logic_vector(17 downto 0);
+			   D_Cur: out std_logic_vector(27 downto 0)
 			);
 	end component;
 
@@ -36,6 +42,15 @@ architecture tb of tb_AME_Architecture is
 			  RADDR_RefCu_x, RADDR_RefCu_y: in std_logic_vector(12 downto 0);
 			  Curframe_OUT: out slv_8(3 downto 0);
 			  Refframe_OUT: out slv_8(3 downto 0));
+	end component;
+	
+	component output_checker is
+		port( cComp_EN, cDONE, eComp_EN, eDONE, sixPar, clk, END_SIM: in std_logic;
+			  MVP0, MVP1, MVP2: in motion_vector(1 downto 0);
+			  MV0_out, MV1_out, MV2_out: in motion_vector(1 downto 0);
+			  CurSAD: in std_logic_vector(17 downto 0);
+			  D_Cur: in std_logic_vector(27 downto 0)
+			  );
 	end component;
 
 	signal cMV0_in_t, cMV1_in_t, cMV2_in_t: motion_vector(1 downto 0);
@@ -57,16 +72,29 @@ architecture tb of tb_AME_Architecture is
 	signal eMV0_in_r, eMV1_in_r, eMV2_in_r: integer_array(0 to 1);
 	signal eMV0_in_r2, eMV1_in_r2, eMV2_in_r2: integer_array(0 to 1); --Second VTM canditate (to be used when constructed_r=0)
 	
+	--For the output checker
+	signal cComp_EN_int, cDONE_int, eComp_EN_int, eDONE_int: std_logic;
+	signal MVP0_int, MVP1_int, MVP2_int: motion_vector(1 downto 0);
+	signal CurSAD_int: std_logic_vector(17 downto 0);
+	signal D_Cur_int: std_logic_vector(27 downto 0);
+	signal END_SIM: std_logic;
+
 	constant Tc: time := 2 ns;
 
 begin
 
 	uut: AME_Architecture
 		port map( cMV0_in_t, cMV1_in_t, cMV2_in_t, START_t, CU_h_t, CU_w_t, clk, RST_t, cREADY_t, VALID_t, eMV0_in_t, eMV1_in_t, eMV2_in_t, sixPar_t, eIN_SEL_t,
-				  RefPel_int, CurPel_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, MEM_RE_int, eREADY_t, MV0_out_t, MV1_out_t, MV2_out_t);
+				  RefPel_int, CurPel_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, MEM_RE_int, eREADY_t, eDONE_int , MV0_out_t, MV1_out_t, MV2_out_t, cComp_EN_int, cDONE_int, eComp_EN_int,
+			      MVP0_int, MVP1_int, MVP2_int, CurSAD_int, D_Cur_int);
+
 	
 	uut_mem: DATA_MEMORY
 		port map(clk, RST_t, MEM_RE_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, CurPel_int, RefPel_int);
+	
+	output_check: output_checker
+		port map( cComp_EN_int, cDONE_int, eComp_EN_int, eDONE_int, sixPar_t, clk, END_SIM, MVP0_int, MVP1_int, MVP2_int,
+			  MV0_out_t, MV1_out_t, MV2_out_t, CurSAD_int, D_Cur_int );
 
 	clock_gen: process
 	begin
@@ -162,6 +190,7 @@ begin
 			wait;
 		end if;
 		wait for Tc;
+		END_SIM<='0';
 		RST_t<='1';
 		wait for Tc;
 		RST_t<='0';
@@ -201,6 +230,8 @@ begin
 		end loop;
 		wait for Tc;
 		eIN_SEL_t<='1'; --Constructor input
+		wait for 100*Tc;
+		END_SIM<='1';
 		wait;
 	end process;
 	

@@ -17,8 +17,11 @@ entity extimator is
 		  RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
 		  MEM_RE: out std_logic; --Memory Read Enable
 		  extimator_READY, GOT: out std_logic;
-		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0) --Extimation result
-		  
+		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0); --Extimation result
+		  DONE: out std_logic;
+		  --For the output checker
+		  eComp_EN: out std_logic;
+		  CurSAD: out std_logic_vector(17 downto 0)
 	);
 end entity;
 
@@ -88,7 +91,9 @@ architecture structural of extimator is
 			  clk, RST, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE: in std_logic;
 			  RefPel, CurPel: in slv_8(3 downto 0);
 			  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0);
-			  BestCand, CountTerm_OUT, last_cand: out std_logic
+			  BestCand, CountTerm_OUT, last_cand: out std_logic;
+			  --For the output checker
+			  CurSAD_out: out std_logic_vector(17 downto 0)
 			 );
 	end component;
 
@@ -154,7 +159,12 @@ begin
 	Results_calculator: extimator_ResCal
 		port map( MV0_in=>MV0_out_int, MV1_in=>MV1_out_int, MV2_in=>MV2_out_int, clk=>clk, RST=>RST2_int, SAD_tmp_RST=>SAD_tmp_RST_DP_int, Comp_EN=>Comp_EN_DP_int,
 				OUT_LE=>OUT_LE_int, CountTerm_EN=>CountTerm_EN_int, CandCount_CE=>CandCount_CE_int, RefPel=>RefPel, CurPel=>CurPel, MV0_out=>MV0_out, MV1_out=>MV1_out, MV2_out=>MV2_out,
-			  BestCand=>BestCand_int, CountTerm_OUT=>CountTerm_OUT_int, last_cand=>last_cand_int
+			  BestCand=>BestCand_int, CountTerm_OUT=>CountTerm_OUT_int, last_cand=>last_cand_int, CurSAD_out=>CurSAD
 			 );
-			 
+	
+	DONE<=DONE_int;
+
+	--For the output checker		 
+	eComp_EN<=Comp_EN_DP_int;
+	
 end architecture structural;

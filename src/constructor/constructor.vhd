@@ -9,7 +9,10 @@ entity constructor is
 		  CU_h, CU_W: in std_logic_vector(6 downto 0);
 		  START, GOT, clk, CU_RST: in std_logic;
 		  READY, DONE: out std_logic;
-		  MVP0,MVP1,MVP2: out motion_vector(1 downto 0) --MV Prediction
+		  MVP0,MVP1,MVP2: out motion_vector(1 downto 0); --MV Prediction
+		  --For the output checker
+		  cComp_EN: out std_logic;
+		  D_Cur: out std_logic_vector(27 downto 0)
 		);
 end entity;
 
@@ -27,7 +30,10 @@ architecture structural of constructor is
 			   CU_h,CU_w:	in std_logic_vector(6 downto 0);
 			   CE_compEN, CE_STOPcompEN, compEN: in std_logic;
 			   CNT_compEN_OUT, CNT_STOPcompEN_OUT: out std_logic;
-			   MVP0,MVP1,MVP2: out motion_vector(1 downto 0)); --0:h,1:v
+			   MVP0,MVP1,MVP2: out motion_vector(1 downto 0);
+			   --For the output checker
+			   D_Cur_out: out std_logic_vector(27 downto 0)
+			   ); --0:h,1:v
 	end component;
 
 	signal CNT_compEN_OUT_int,CNT_STOPcompEN_OUT_int,RST_int,RSH_LE_int,cmd_SH_EN_int: std_logic;
@@ -43,9 +49,12 @@ begin
 	Datapath: DP_constructor
 		port map(MV0=>MV0,MV1=>MV1,MV2=>MV2,clk=>clk,RST=>RST_int,RSH_LE=>RSH_LE_int,cmd_SH_en=>cmd_SH_EN_int,CU_h=>CU_h,CU_w=>CU_w,
 				CE_compEN=>CE_compEN_int,CE_STOPcompEN=>CE_STOPcompEN_int,CNT_compEN_OUT=>CNT_compEN_OUT_int,
-				CNT_STOPcompEN_OUT=>CNT_STOPcompEN_OUT_int,MVP0=>MVP0,MVP1=>MVP1,MVP2=>MVP2, compEN=>compEN_int);
+				CNT_STOPcompEN_OUT=>CNT_STOPcompEN_OUT_int,MVP0=>MVP0,MVP1=>MVP1,MVP2=>MVP2, compEN=>compEN_int, D_Cur_out=>D_Cur);
 
 	DONE<=DONE_int;
+	
+	--For the output checker
+	cComp_EN<=compEN_int;
 
 end architecture structural;
 

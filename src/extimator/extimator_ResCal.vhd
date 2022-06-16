@@ -15,7 +15,9 @@ entity extimator_ResCal is
 		  clk, RST, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE: in std_logic;
 		  RefPel, CurPel: in slv_8(3 downto 0);
 		  MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0);
-		  BestCand, CountTerm_OUT, last_cand: out std_logic
+		  BestCand, CountTerm_OUT, last_cand: out std_logic;
+		  --For the output checker
+		  CurSAD_out: out std_logic_vector(17 downto 0)		  
 		 );
 
 end entity;
@@ -143,5 +145,8 @@ begin
 	MV0_out<=MV0_in_int;
 	MV1_out<=MV1_in_int;
 	MV2_out<=MV2_in_int;
+
+	--For the output checker
+	CurSAD_out<=CurSAD;
 
 end architecture struct;

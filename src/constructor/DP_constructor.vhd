@@ -11,7 +11,10 @@ entity DP_constructor is
 		   CU_h,CU_w:	in std_logic_vector(6 downto 0);
 		   CE_compEN, CE_STOPcompEN, compEN: in std_logic;
 		   CNT_compEN_OUT, CNT_STOPcompEN_OUT: out std_logic;
-		   MVP0,MVP1,MVP2: out motion_vector(1 downto 0)); --0:h,1:v
+		   MVP0,MVP1,MVP2: out motion_vector(1 downto 0);
+		   --For the output checker
+		   D_Cur_out: out std_logic_vector(27 downto 0)
+		   ); --0:h,1:v
 end entity;
 
 architecture structural of DP_constructor is
@@ -382,5 +385,8 @@ begin
 	MVP1(1)<=MV1_int_v(PIPE_DEPTH);
 	MVP2(0)<=MV2_int_h(PIPE_DEPTH);
 	MVP2(1)<=MV2_int_v(PIPE_DEPTH);
+	
+	--For the output checker
+	D_Cur_out<=D_Cur;
 
 end architecture structural;
