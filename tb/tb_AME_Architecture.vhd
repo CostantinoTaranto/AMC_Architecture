@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+use std.textio.all;
 
 library work;
 use work.AMEpkg.all;
@@ -29,7 +30,7 @@ architecture tb of tb_AME_Architecture is
 			);
 	end component;
 
-	component DATA_MEMORY_ex28 is
+	component DATA_MEMORY is
 		port( clk, RST, RE: in std_logic;
 			  RADDR_CurCu_x, RADDR_CurCu_y: in std_logic_vector(5 downto 0);
 			  RADDR_RefCu_x, RADDR_RefCu_y: in std_logic_vector(12 downto 0);
@@ -49,9 +50,12 @@ architecture tb of tb_AME_Architecture is
 	signal MV0_out_t, MV1_out_t, MV2_out_t: motion_vector(1 downto 0);
 
 	type integer_array is array (natural range <>) of integer;
+	signal CU_w_r, CU_h_r, constructed_r, sixPar_r:integer;	-- "_r" stands for "read (from file VTM_inputs.txt)"
 	signal candidate_MV0_h, candidate_MV0_v: integer_array(0 to 2);
 	signal candidate_MV1_h, candidate_MV1_v: integer_array(0 to 1);
 	signal candidate_MV2_h, candidate_MV2_v: integer_array(0 to 1);
+	signal eMV0_in_r, eMV1_in_r, eMV2_in_r: integer_array(0 to 1);
+	signal eMV0_in_r2, eMV1_in_r2, eMV2_in_r2: integer_array(0 to 1); --Second VTM canditate (to be used when constructed_r=0)
 	
 	constant Tc: time := 2 ns;
 
@@ -61,7 +65,7 @@ begin
 		port map( cMV0_in_t, cMV1_in_t, cMV2_in_t, START_t, CU_h_t, CU_w_t, clk, RST_t, cREADY_t, VALID_t, eMV0_in_t, eMV1_in_t, eMV2_in_t, sixPar_t, eIN_SEL_t,
 				  RefPel_int, CurPel_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, MEM_RE_int, eREADY_t, MV0_out_t, MV1_out_t, MV2_out_t);
 	
-	uut_mem: DATA_MEMORY_ex28
+	uut_mem: DATA_MEMORY
 		port map(clk, RST_t, MEM_RE_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, CurPel_int, RefPel_int);
 
 	clock_gen: process
@@ -71,41 +75,115 @@ begin
 		clk<='1';
 		wait for Tc/2;
 	end process;
-	
-	candidate_MV0_h(0)<=88;
-	candidate_MV0_h(1)<=88;
-	candidate_MV0_h(2)<=102;
-	candidate_MV0_v(0)<=-24;
-	candidate_MV0_v(1)<=-24;
-	candidate_MV0_v(2)<=-12;
-	
-	candidate_MV1_h(0)<=103;
-	candidate_MV1_h(1)<=112;
-	candidate_MV1_v(0)<=-9;
-	candidate_MV1_v(1)<=16;
-	
-	candidate_MV2_h(0)<=88;
-	candidate_MV2_h(1)<=88;
-	candidate_MV2_v(0)<=-24;
-	candidate_MV2_v(1)<=-24;
-	
-	stimuli: process
+
+	VTM_inputs_loading: process
+		file fp_param: text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\VTM_inputs.txt";
+		variable row : line;
+		variable row_data_read : integer;
 	begin
+		--First row: CU_w CU_h
+		readline(fp_param,row);
+		read(row,row_data_read);
+		CU_w_r<=row_data_read;
+		read(row,row_data_read);
+		CU_h_r<=row_data_read;
+		--Second row: constructed sixPar
+		readline(fp_param,row);
+		read(row,row_data_read);
+		constructed_r<=row_data_read;
+		read(row,row_data_read);
+		sixPar_r<=row_data_read;
+		--Third row: VTM candidate 0
+		readline(fp_param,row);
+		read(row,row_data_read);
+		eMV0_in_r(0)<=row_data_read;
+		read(row,row_data_read);
+		eMV0_in_r(1)<=row_data_read;
+		readline(fp_param,row);
+		read(row,row_data_read);
+		eMV1_in_r(0)<=row_data_read;
+		read(row,row_data_read);
+		eMV1_in_r(1)<=row_data_read;
+		if sixPar_r=1 then	--if sixPar='1' there is also the third eMV2 to take into account
+			readline(fp_param,row);
+			read(row,row_data_read);
+			eMV2_in_r(0)<=row_data_read;
+			read(row,row_data_read);
+			eMV2_in_r(1)<=row_data_read;
+		end if;
+		if constructed_r=0 then	--If there are no constructed candidates, load the second eMV2
+			readline(fp_param,row);
+			read(row,row_data_read);
+			eMV0_in_r2(0)<=row_data_read;
+			read(row,row_data_read);
+			eMV0_in_r2(1)<=row_data_read;
+			readline(fp_param,row);
+			read(row,row_data_read);
+			eMV1_in_r2(0)<=row_data_read;
+			read(row,row_data_read);
+			eMV1_in_r2(1)<=row_data_read;
+			if sixPar_r=1 then	--if sixPar='1' there is also the third eMV2 to take into account
+				readline(fp_param,row);
+				read(row,row_data_read);
+				eMV2_in_r2(0)<=row_data_read;
+				read(row,row_data_read);
+				eMV2_in_r2(1)<=row_data_read;
+			end if;
+		else --If the constructor needs to be used, load the constructed candidates
+			for I in 0 to 2 loop
+				readline(fp_param,row);
+				read(row,row_data_read);
+				candidate_MV0_h(I)<=row_data_read;
+				read(row,row_data_read);
+				candidate_MV0_v(I)<=row_data_read;
+			end loop;
+			for I in 0 to 1 loop
+				readline(fp_param,row);
+				read(row,row_data_read);
+				candidate_MV1_h(I)<=row_data_read;
+				read(row,row_data_read);
+				candidate_MV1_v(I)<=row_data_read;
+			end loop;
+			for I in 0 to 1 loop
+				readline(fp_param,row);
+				read(row,row_data_read);
+				candidate_MV2_h(I)<=row_data_read;
+				read(row,row_data_read);
+				candidate_MV2_v(I)<=row_data_read;
+			end loop;
+		end if;
+	wait;
+	end process;
+	
+	
+	stimuli_whith_constructor: process
+	begin
+		if constructed_r=0 then
+			wait;
+		end if;
 		wait for Tc;
 		RST_t<='1';
 		wait for Tc;
 		RST_t<='0';
 		wait for Tc;
 		START_t<='1';
-		CU_h_t<=std_logic_vector(to_signed(16,CU_h_t'length));
-		CU_w_t<=std_logic_vector(to_signed(16,CU_w_t'length));
-		sixPar_t<='0';
+		CU_w_t<=std_logic_vector(to_unsigned(CU_w_r,CU_w_t'length));
+		CU_h_t<=std_logic_vector(to_unsigned(CU_h_r,CU_h_t'length));
+		if sixPar_r=0 then
+			sixPar_t<='0';
+		else
+			sixPar_t<='1';
+		end if;
 		VALID_t<='1';
 		eIN_SEL_t<='0';--VTM input
-		eMV0_in_t(0)<=std_logic_vector(to_signed(104,eMV0_in_t(0)'length));
-		eMV0_in_t(1)<=std_logic_vector(to_signed(-4,eMV0_in_t(1)'length));
-		eMV1_in_t(0)<=std_logic_vector(to_signed(108,eMV1_in_t(0)'length));
-		eMV1_in_t(1)<=std_logic_vector(to_signed(0,eMV1_in_t(1)'length));
+		eMV0_in_t(0)<=std_logic_vector(to_signed(eMV0_in_r(0),eMV0_in_t(0)'length));
+		eMV0_in_t(1)<=std_logic_vector(to_signed(eMV0_in_r(1),eMV0_in_t(1)'length));
+		eMV1_in_t(0)<=std_logic_vector(to_signed(eMV1_in_r(0),eMV1_in_t(0)'length));
+		eMV1_in_t(1)<=std_logic_vector(to_signed(eMV1_in_r(1),eMV1_in_t(1)'length));
+		if sixPar_r=1 then
+			eMV2_in_t(0)<=std_logic_vector(to_signed(eMV2_in_r(0),eMV2_in_t(0)'length));
+			eMV2_in_t(1)<=std_logic_vector(to_signed(eMV2_in_r(1),eMV2_in_t(1)'length));
+		end if;
 		for I in 0 to 2 loop		
 			cMV0_in_t(0)<=std_logic_vector(to_signed(candidate_MV0_h(I),cMV0_in_t(0)'length));
 			cMV0_in_t(1)<=std_logic_vector(to_signed(candidate_MV0_v(I),cMV0_in_t(1)'length));
@@ -125,5 +203,7 @@ begin
 		eIN_SEL_t<='1'; --Constructor input
 		wait;
 	end process;
+	
+	--NEED TO WRITE STIMULI WITHOUT CONSTRUCTOR!!!
 
 end architecture tb;
