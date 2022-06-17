@@ -51,7 +51,7 @@ begin
 
 ----Curframe loading
 	Curframe_loading: process
-	file fp_cur : text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\Curframe_ex12.txt";
+	file fp_cur : text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\Curframe.txt";
 	variable row : line;
 	variable row_data_read : integer_array(0 to frame_w-1);
 	variable row_counter : integer :=0;
@@ -116,7 +116,7 @@ begin
 
 ----Refframe loading
 	Refframe_loading: process
-	file fp_ref : text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\Refframe_ex12.txt";
+	file fp_ref : text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\Refframe.txt";
 	variable row : line;
 	variable row_data_read : integer_array(0 to frame_w-1);
 	variable row_counter : integer :=0;
