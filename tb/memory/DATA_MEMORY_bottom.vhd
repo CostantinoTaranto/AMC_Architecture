@@ -1,25 +1,3 @@
-library ieee;
-use ieee.std_logic_1164.all;
-USE IEEE.NUMERIC_STD.ALL;
-use std.textio.all;
-
-library work;
-use work.AMEpkg.all;
-
-entity DATA_MEMORY is
-	port( clk, RST, RE: in std_logic;
-		  RADDR_CurCu_x, RADDR_CurCu_y: in std_logic_vector(5 downto 0);
-		  RADDR_RefCu_x, RADDR_RefCu_y: in std_logic_vector(12 downto 0);
-		  Curframe_OUT: out slv_8(3 downto 0);
-		  Refframe_OUT: out slv_8(3 downto 0));
-end entity;
-
-architecture beh of DATA_MEMORY is
-
-	constant frame_w : integer := 416;
-	constant frame_h : integer := 240;
-	constant x0 : integer := 136;
-	constant y0 : integer := 168;
 	type integer_array is array (natural range <>) of integer;
 	type dm_array is array (0 to (frame_w*frame_h-1)) of std_logic_vector(7 downto 0);
 	
