@@ -22,13 +22,13 @@ architecture beh of output_checker is
 begin
 
 	output_results_check: process(clk)
-		file res_fp : text open WRITE_MODE is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\results\results.txt";
+		file res_fp : text open WRITE_MODE is "../tb/results/results.txt";
 		variable line_out : line;
 		
-		file correctOutConstr_fp : text open READ_MODE is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\constructor_out\constructor_out.txt";
+		file correctOutConstr_fp : text open READ_MODE is "../tb/constructor_out/constructor_out.txt";
 		variable cline: line;--cosntructor line
 		variable cvalue: integer;
-		file correctOutExtim_fp : text open READ_MODE is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\extimator_out\extimator_out.txt";
+		file correctOutExtim_fp : text open READ_MODE is "../tb/extimator_out/extimator_out.txt";
 		variable eline: line;--extimator line
 		variable evalue: integer;
 		
@@ -41,7 +41,7 @@ begin
 		variable write_first_line_out, error : std_logic := '0';
 		
 	begin
-		if rising_edge(clk) then
+		if rising_edge(clk) and END_SIM_written=0 then
 			if write_first_line_out = '0' then 
 				write(line_out, string'("EXPECTED OUTPUT, OUTPUT, TEST RESULT"));
 				writeline(res_fp, line_out);
@@ -203,7 +203,6 @@ begin
 					end if;
 					END_SIM_written:=1;
 				end if;
-				wait;
 			end if;
 		end if;	
 	end process;

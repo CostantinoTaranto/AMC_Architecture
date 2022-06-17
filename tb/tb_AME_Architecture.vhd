@@ -106,7 +106,7 @@ begin
 	end process;
 
 	stimuli: process
-		file fp_param: text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\VTM_inputs\VTM_inputs.txt";
+		file fp_param: text open read_mode is "../tb/VTM_inputs/VTM_inputs.txt";
 		variable row : line;
 		variable row_data_read : integer;
 		variable CU_w_r, CU_h_r, constructed_r, sixPar_r:integer;	-- "_r" stands for "read (from file VTM_inputs.txt)"
@@ -116,14 +116,12 @@ begin
 		readline(fp_param,row);
 		read(row,row_data_read);
 		CU_w_r:=row_data_read;
-		report "The value of 'CU_w_r' is " & integer'image(CU_w_r);
 		read(row,row_data_read);
 		CU_h_r:=row_data_read;
 		--Second row: constructed sixPar
 		readline(fp_param,row);
 		read(row,row_data_read);
 		constructed_r:=row_data_read;
-		report "The value of 'constructed_r' is " & integer'image(constructed_r);
 		read(row,row_data_read);
 		sixPar_r:=row_data_read;
 		--Third row: VTM candidate 0

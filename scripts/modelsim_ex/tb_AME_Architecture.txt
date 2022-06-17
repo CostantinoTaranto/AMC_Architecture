@@ -1,0 +1,14 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/*
+vcom -93 -work ./work ../src/constructor/*
+vcom -93 -work ./work ../src/extimator/*
+vcom -93 -work ./work ../src/AME_Architecture/*
+vcom -93 -work ./work ../tb/output_checker.vhd
+vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd
+--TESTBENCH
+vcom -93 -work ./work ../tb/tb_AME_Architecture.vhd	
+--TB_NAME
+tb_AME_Architecture
