@@ -186,9 +186,6 @@ begin
 	
 	stimuli_whith_constructor: process
 	begin
-		if constructed_r=0 then
-			wait;
-		end if;
 		wait for Tc;
 		END_SIM<='0';
 		RST_t<='1';
@@ -213,28 +210,42 @@ begin
 			eMV2_in_t(0)<=std_logic_vector(to_signed(eMV2_in_r(0),eMV2_in_t(0)'length));
 			eMV2_in_t(1)<=std_logic_vector(to_signed(eMV2_in_r(1),eMV2_in_t(1)'length));
 		end if;
-		for I in 0 to 2 loop		
-			cMV0_in_t(0)<=std_logic_vector(to_signed(candidate_MV0_h(I),cMV0_in_t(0)'length));
-			cMV0_in_t(1)<=std_logic_vector(to_signed(candidate_MV0_v(I),cMV0_in_t(1)'length));
-			for J in 0 to 1 loop
-				cMV1_in_t(0)<=std_logic_vector(to_signed(candidate_MV1_h(J),cMV1_in_t(0)'length));
-				cMV1_in_t(1)<=std_logic_vector(to_signed(candidate_MV1_v(J),cMV1_in_t(1)'length));
-				for K in 0 to 1 loop
-					cMV2_in_t(0)<=std_logic_vector(to_signed(candidate_MV2_h(K),cMV2_in_t(0)'length));
-					cMV2_in_t(1)<=std_logic_vector(to_signed(candidate_MV2_v(K),cMV2_in_t(1)'length));
-					wait for Tc;
+		if constructed_r=1 then --When the constructor needs to be used
+			for I in 0 to 2 loop		
+				cMV0_in_t(0)<=std_logic_vector(to_signed(candidate_MV0_h(I),cMV0_in_t(0)'length));
+				cMV0_in_t(1)<=std_logic_vector(to_signed(candidate_MV0_v(I),cMV0_in_t(1)'length));
+				for J in 0 to 1 loop
+					cMV1_in_t(0)<=std_logic_vector(to_signed(candidate_MV1_h(J),cMV1_in_t(0)'length));
+					cMV1_in_t(1)<=std_logic_vector(to_signed(candidate_MV1_v(J),cMV1_in_t(1)'length));
+					for K in 0 to 1 loop
+						cMV2_in_t(0)<=std_logic_vector(to_signed(candidate_MV2_h(K),cMV2_in_t(0)'length));
+						cMV2_in_t(1)<=std_logic_vector(to_signed(candidate_MV2_v(K),cMV2_in_t(1)'length));
+						wait for Tc;
+					end loop;
 				end loop;
+				START_t<='0';
+				VALID_t<='0';
 			end loop;
-			START_t<='0';
+			wait for Tc;
+			eIN_SEL_t<='1'; --Constructor input
+		else --when both candidates are from VTM
+			wait for Tc;
 			VALID_t<='0';
-		end loop;
-		wait for Tc;
-		eIN_SEL_t<='1'; --Constructor input
+			wait for Tc;
+			VALID_t<='1';
+			eMV0_in_t(0)<=std_logic_vector(to_signed(eMV0_in_r2(0),eMV0_in_t(0)'length));
+			eMV0_in_t(1)<=std_logic_vector(to_signed(eMV0_in_r2(1),eMV0_in_t(1)'length));
+			eMV1_in_t(0)<=std_logic_vector(to_signed(eMV1_in_r2(0),eMV1_in_t(0)'length));
+			eMV1_in_t(1)<=std_logic_vector(to_signed(eMV1_in_r2(1),eMV1_in_t(1)'length));
+			if sixPar_r=1 then
+				eMV2_in_t(0)<=std_logic_vector(to_signed(eMV2_in_r2(0),eMV2_in_t(0)'length));
+				eMV2_in_t(1)<=std_logic_vector(to_signed(eMV2_in_r2(1),eMV2_in_t(1)'length));
+			end if;
+			wait for Tc;
+			VALID_t<='0';
 		wait for 100*Tc;
 		END_SIM<='1';
 		wait;
 	end process;
-	
-	--NEED TO WRITE STIMULI WITHOUT CONSTRUCTOR!!!
 
 end architecture tb;
