@@ -96,7 +96,7 @@ begin
 			when NB_WAIT2 =>
 				NS<=NB_WAIT3;
 			when NB_WAIT3 =>
-				if last_block_x_int='0' AND last_block_y_int='0' THEN
+				if last_block_x_int='0' THEN
 					NS<=NEXT_BLOCK;
 				elsif last_block_x_int='1' AND last_block_y_int='0' THEN
 					NS<=NEW_LINE;

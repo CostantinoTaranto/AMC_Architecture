@@ -46,6 +46,7 @@ architecture tb of tb_AME_Architecture is
 	
 	component output_checker is
 		port( cComp_EN, cDONE, eComp_EN, eDONE, sixPar, clk, END_SIM: in std_logic;
+			  constructed: in std_logic;
 			  MVP0, MVP1, MVP2: in motion_vector(1 downto 0);
 			  MV0_out, MV1_out, MV2_out: in motion_vector(1 downto 0);
 			  CurSAD: in std_logic_vector(17 downto 0);
@@ -65,7 +66,6 @@ architecture tb of tb_AME_Architecture is
 	signal MV0_out_t, MV1_out_t, MV2_out_t: motion_vector(1 downto 0);
 
 	type integer_array is array (natural range <>) of integer;
-	signal CU_w_r, CU_h_r, constructed_r, sixPar_r:integer;	-- "_r" stands for "read (from file VTM_inputs.txt)"
 	signal candidate_MV0_h, candidate_MV0_v: integer_array(0 to 2);
 	signal candidate_MV1_h, candidate_MV1_v: integer_array(0 to 1);
 	signal candidate_MV2_h, candidate_MV2_v: integer_array(0 to 1);
@@ -78,6 +78,7 @@ architecture tb of tb_AME_Architecture is
 	signal CurSAD_int: std_logic_vector(17 downto 0);
 	signal D_Cur_int: std_logic_vector(27 downto 0);
 	signal END_SIM: std_logic;
+	signal constructed_int: std_logic;
 
 	constant Tc: time := 2 ns;
 
@@ -93,7 +94,7 @@ begin
 		port map(clk, RST_t, MEM_RE_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, CurPel_int, RefPel_int);
 	
 	output_check: output_checker
-		port map( cComp_EN_int, cDONE_int, eComp_EN_int, eDONE_int, sixPar_t, clk, END_SIM, MVP0_int, MVP1_int, MVP2_int,
+		port map( cComp_EN_int, cDONE_int, eComp_EN_int, eDONE_int, sixPar_t, clk, END_SIM, constructed_int ,MVP0_int, MVP1_int, MVP2_int,
 			  MV0_out_t, MV1_out_t, MV2_out_t, CurSAD_int, D_Cur_int );
 
 	clock_gen: process
@@ -104,23 +105,27 @@ begin
 		wait for Tc/2;
 	end process;
 
-	VTM_inputs_loading: process
-		file fp_param: text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\memory_data\VTM_inputs.txt";
+	stimuli: process
+		file fp_param: text open read_mode is "C:\Users\costa\Desktop\5.2\Tesi\git\AME_Architecture\tb\VTM_inputs\VTM_inputs.txt";
 		variable row : line;
 		variable row_data_read : integer;
+		variable CU_w_r, CU_h_r, constructed_r, sixPar_r:integer;	-- "_r" stands for "read (from file VTM_inputs.txt)"
 	begin
+	------PARAMETER LOADING
 		--First row: CU_w CU_h
 		readline(fp_param,row);
 		read(row,row_data_read);
-		CU_w_r<=row_data_read;
+		CU_w_r:=row_data_read;
+		report "The value of 'CU_w_r' is " & integer'image(CU_w_r);
 		read(row,row_data_read);
-		CU_h_r<=row_data_read;
+		CU_h_r:=row_data_read;
 		--Second row: constructed sixPar
 		readline(fp_param,row);
 		read(row,row_data_read);
-		constructed_r<=row_data_read;
+		constructed_r:=row_data_read;
+		report "The value of 'constructed_r' is " & integer'image(constructed_r);
 		read(row,row_data_read);
-		sixPar_r<=row_data_read;
+		sixPar_r:=row_data_read;
 		--Third row: VTM candidate 0
 		readline(fp_param,row);
 		read(row,row_data_read);
@@ -180,19 +185,18 @@ begin
 				candidate_MV2_v(I)<=row_data_read;
 			end loop;
 		end if;
-	wait;
-	end process;
-	
-	
-	stimuli_whith_constructor: process
-	begin
 		wait for Tc;
+	------Input stimuli
 		END_SIM<='0';
+		if constructed_r=0 then
+			constructed_int<='0';
+		else
+			constructed_int<='1';
+		end if;
 		RST_t<='1';
 		wait for Tc;
 		RST_t<='0';
 		wait for Tc;
-		START_t<='1';
 		CU_w_t<=std_logic_vector(to_unsigned(CU_w_r,CU_w_t'length));
 		CU_h_t<=std_logic_vector(to_unsigned(CU_h_r,CU_h_t'length));
 		if sixPar_r=0 then
@@ -211,6 +215,7 @@ begin
 			eMV2_in_t(1)<=std_logic_vector(to_signed(eMV2_in_r(1),eMV2_in_t(1)'length));
 		end if;
 		if constructed_r=1 then --When the constructor needs to be used
+			START_t<='1';
 			for I in 0 to 2 loop		
 				cMV0_in_t(0)<=std_logic_vector(to_signed(candidate_MV0_h(I),cMV0_in_t(0)'length));
 				cMV0_in_t(1)<=std_logic_vector(to_signed(candidate_MV0_v(I),cMV0_in_t(1)'length));
@@ -229,6 +234,7 @@ begin
 			wait for Tc;
 			eIN_SEL_t<='1'; --Constructor input
 		else --when both candidates are from VTM
+			START_t<='0';
 			wait for Tc;
 			VALID_t<='0';
 			wait for Tc;
@@ -243,7 +249,9 @@ begin
 			end if;
 			wait for Tc;
 			VALID_t<='0';
-		wait for 100*Tc;
+		end if;
+		wait until rising_edge(eDONE_int);
+		wait for 2*Tc;
 		END_SIM<='1';
 		wait;
 	end process;

@@ -6,7 +6,7 @@ use std.textio.all;
 library work;
 use work.AMEpkg.all;
 
-entity DATA_MEMORY_ex28 is
+entity DATA_MEMORY is
 	port( clk, RST, RE: in std_logic;
 		  RADDR_CurCu_x, RADDR_CurCu_y: in std_logic_vector(5 downto 0);
 		  RADDR_RefCu_x, RADDR_RefCu_y: in std_logic_vector(12 downto 0);
@@ -14,19 +14,21 @@ entity DATA_MEMORY_ex28 is
 		  Refframe_OUT: out slv_8(3 downto 0));
 end entity;
 
-architecture beh of DATA_MEMORY_ex28 is
-
-	type integer_array is array (natural range <>) of integer;
-	type dm_array is array (0 to 99839) of std_logic_vector(7 downto 0);
-	
-	signal dm_cur, dm_ref: dm_array;
-	signal Curframe_OUT_int : slv_8(3 downto 0);
-	signal Refframe_OUT_int : slv_8(3 downto 0);
+architecture beh of DATA_MEMORY is
 
 	constant frame_w : integer := 416; --Frame Width, coincides with the number of columns in the text file
 	constant frame_h : integer := 240; --Frame Height, coincides with the number of rows in the text file
 	constant x0 : integer :=136;
 	constant y0 : integer :=168;
+
+	type integer_array is array (natural range <>) of integer;
+	type dm_array is array (0 to (frame_w*frame_h-1)) of std_logic_vector(7 downto 0);
+	
+	signal dm_cur, dm_ref: dm_array;
+	signal Curframe_OUT_int : slv_8(3 downto 0);
+	signal Refframe_OUT_int : slv_8(3 downto 0);
+
+
 	
 	--Address Calculation Curframe
 	signal DM_ADDR: std_logic_vector(31 downto 0);
@@ -63,7 +65,7 @@ begin
 		--load each value of the row in memory
 		for I in 0 to (frame_w-1) loop
 			read(row,row_data_read(I));
-			dm_cur(J*416+I)<=std_logic_vector(to_unsigned(row_data_read(I),dm_cur(0)'length));
+			dm_cur(J*frame_w+I)<=std_logic_vector(to_unsigned(row_data_read(I),dm_cur(0)'length));
 		end loop;
 	end loop;
 	wait;
@@ -89,7 +91,7 @@ begin
 			Curframe_OUT_int(2) <= dm_cur(2);
 			Curframe_OUT_int(3) <= dm_cur(3);
 		ELSIF(clk'EVENT AND clk = '1') AND (RE = '1') THEN
-			if unsigned(DM_ADDR)>=0 AND unsigned(DM_ADDR)<=99839 THEN
+			if unsigned(DM_ADDR)>=0 AND unsigned(DM_ADDR)<=(frame_w*frame_h-1) THEN
 			Curframe_OUT_int(0) <= dm_cur(to_integer(unsigned(DM_ADDR)));
 			Curframe_OUT_int(1) <= dm_cur(to_integer(unsigned(DM_ADDR)+1));
 			Curframe_OUT_int(2) <= dm_cur(to_integer(unsigned(DM_ADDR)+2));
@@ -128,7 +130,7 @@ begin
 		--load each value of the row in memory
 		for I in 0 to (frame_w-1) loop
 			read(row,row_data_read(I));
-			dm_ref(J*416+I)<=std_logic_vector(to_unsigned(row_data_read(I),dm_ref(0)'length));
+			dm_ref(J*frame_w+I)<=std_logic_vector(to_unsigned(row_data_read(I),dm_ref(0)'length));
 		end loop;
 	end loop;
 	wait;
@@ -154,7 +156,7 @@ begin
 			Refframe_OUT_int(2) <= dm_ref(2);
 			Refframe_OUT_int(3) <= dm_ref(3);
 		ELSIF(clk'EVENT AND clk = '1') AND (RE = '1') THEN
-			if unsigned(DM_ADDR_ref)>=0 AND unsigned(DM_ADDR_ref)<=99839 THEN
+			if unsigned(DM_ADDR_ref)>=0 AND unsigned(DM_ADDR_ref)<=(frame_w*frame_h-1) THEN
 			Refframe_OUT_int(0) <= dm_ref(to_integer(unsigned(DM_ADDR_ref)));
 			Refframe_OUT_int(1) <= dm_ref(to_integer(unsigned(DM_ADDR_ref)+1));
 			Refframe_OUT_int(2) <= dm_ref(to_integer(unsigned(DM_ADDR_ref)+2));
