@@ -37,8 +37,8 @@ architecture structural of extimator_PelRet is
 	signal sub1_pos_in, sub1_neg_in: motion_vector(3 downto 0);
 	signal sub1_out_tmp: slv_12(3 downto 0);
 	signal sub1_out_samp: slv_12(3 downto 0);
-	signal sub1_out_samp_tmp: slv_12(3 downto 0);
-	signal sub1_out_samp2_inv: std_logic_vector(11 downto 0);
+	signal R_SH2_out_tmp: slv_12(3 downto 0);
+	signal R_SH2_out2_inv: std_logic_vector(11 downto 0);
 	signal R_SH2_cmd, R_SH2_cmd_samp: slv_2(3 downto 0);
 	signal R_SH2_out, R_SH2_out_samp: slv_12(3 downto 0);
 	--Multiplication {a_(1,2);b_(1,2)}*{x0;y0}
@@ -120,24 +120,28 @@ begin
 			port map(sub1_pos_in(I),sub1_neg_in(I),sub1_out_tmp(I));
 		SUB_OUT_samp_x: REG_N
 			generic map(N=>12)
-			port map(D=>sub1_out_tmp(I),Q=>sub1_out_samp_tmp(I), clk=>clk,RST=>RST1);
+			port map(D=>sub1_out_tmp(I),Q=>sub1_out_samp(I), clk=>clk,RST=>RST1);
 		R_SH2_cmd_samp_x: REG_N
 			generic map(N=>2)
 			port map(D=>R_SH2_cmd(I),Q=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST1);
 	end generate;
 	
-	--In this intermediate passage, the inversion of b2 is done if sixPar='0'
-	sub1_out_samp(0)<=sub1_out_samp_tmp(0);
-	sub1_out_samp(1)<=sub1_out_samp_tmp(1);
-	sub1_out_samp(3)<=sub1_out_samp_tmp(3);
-	
-	sub1_out_samp2_inv<=std_logic_vector(signed(NOT sub1_out_samp_tmp(2))+1); --the negative of b2
-	sub1_out_samp(2)<= sub1_out_samp_tmp(2) WHEN sixPar_samp='1' ELSE sub1_out_samp2_inv;
-	
 	RSH2_GEN: for I in 0 to 3 generate
 		R_SH2_X: R_SH2
 			generic map(N=>12)
-			port map(SH_in=>sub1_out_samp(I),shift_amt=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST2,LE=>'1',SH_out=>R_SH2_out(I));
+			port map(SH_in=>sub1_out_samp(I),shift_amt=>R_SH2_cmd_samp(I),clk=>clk,RST=>RST2,LE=>'1',SH_out=>R_SH2_out_tmp(I));
+			--a2<=(0);a1<=(1);b2(2);b1<=(3);
+	end generate;
+
+	--In this intermediate passage, the inversion of b2 is done if sixPar='0'
+	R_SH2_out(0)<=R_SH2_out_tmp(0);
+	R_SH2_out(1)<=R_SH2_out_tmp(1);
+	R_SH2_out(3)<=R_SH2_out_tmp(3);
+	
+	R_SH2_out2_inv<=std_logic_vector(signed(NOT R_SH2_out_tmp(2))+1); --the negative of b2
+	R_SH2_out(2)<= R_SH2_out_tmp(2) WHEN sixPar_samp='1' ELSE R_SH2_out2_inv;
+	
+	a12b12_REG_GEN: for I in 0 to 3 generate
 		a12b12_REG: REG_N_LE
 			generic map(N=>12)
 			port map(D=>R_SH2_out(I),Q=>R_SH2_out_samp(I), RST=>RST2, clk=>clk, LE=>LE_ab);
