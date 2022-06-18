@@ -30,7 +30,7 @@ for exampleNum in $(seq $firstExample $lastExample) ; do
 
 	#Prepare files for the example
 	#text files
-	filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory_data/Curframe" "memory_data/Refframe")
+	filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory_data/Curframe" "memory_data/Refframe" "VTM_inputs/VTM_inputs")
 	for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
 		curFileName=$curfileToBeRenamed"_ex"$exampleNum".txt"
 		if [ -f "../tb/$curFileName" ] ; then
@@ -90,6 +90,7 @@ for exampleNum in $(seq $firstExample $lastExample) ; do
 			echo "Compilation completed succesfully. No Testbench has been provided."
 		fi		
 	fi
+	echo "Simulation of example $exampleNum terminated."
 	#close the compilation command file
 	exec 3>&-
 	#store the results filename with the correct name

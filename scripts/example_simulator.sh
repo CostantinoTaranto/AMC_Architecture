@@ -7,7 +7,31 @@ then
 fi
 exampleNum=$1
 
-#oper the compilation command file
+#Prepare files for the example
+#text files
+filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory_data/Curframe" "memory_data/Refframe" "VTM_inputs/VTM_inputs")
+for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
+	curFileName=$curfileToBeRenamed"_ex"$exampleNum".txt"
+	if [ -f "../tb/$curFileName" ] ; then
+		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.txt"
+	else
+		touch "../tb/$curfileToBeRenamed.txt"
+	fi
+done
+#vhd files
+filesToBeRenamed=("memory/DATA_MEMORY")
+for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
+	curFileName=$curfileToBeRenamed"_ex"$exampleNum".vhd"
+	if [ -f "../tb/$curFileName" ] ; then
+		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.vhd"
+	else
+		touch "../tb/$curfileToBeRenamed.txt" #I leave it as txt so that compiler will generate an error.
+		#This is made on purpose beacuse if the memory file is not present there actually IS a problem
+		#and the compiler needs to be stopped
+	fi
+done
+
+#open the compilation command file
 exec 3< ./modelsim_ex/tb_AME_Architecture.txt
 
 #Search and store the Log filename
@@ -32,31 +56,6 @@ then
 	rm -r work
 fi
 vlib work
-
-#Prepare files for the example
-#text files
-filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory_data/Curframe" "memory_data/Refframe")
-for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
-	curFileName=$curfileToBeRenamed"_ex"$exampleNum".txt"
-	if [ -f "../tb/$curFileName" ] ; then
-		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.txt"
-	else
-		touch "../tb/$curfileToBeRenamed.txt"
-	fi
-done
-#vhd files
-filesToBeRenamed=("memory/DATA_MEMORY")
-for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
-	curFileName=$curfileToBeRenamed"_ex"$exampleNum".vhd"
-	if [ -f "../tb/$curFileName" ] ; then
-		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.vhd"
-	else
-		touch "../tb/$curfileToBeRenamed.txt" #I leave it as txt so that compiler will generate an error.
-		#This is made on purpose beacuse if the memory file is not present there actually IS a problem
-		#and the compiler needs to be stopped
-	fi
-done
-
 
 
 #Compile the source files
@@ -89,7 +88,8 @@ else
 			echo "Please provide a Testbench unit name."
 		else
 			read LINE <&3
-			eval "vsim -do ../sim/batch_simulate.cmd work.$LINE"
+			#eval "vsim -do ../sim/batch_simulate.cmd work.$LINE"
+			eval "vsim work.$LINE"
 		fi
 	else
 		echo "Compilation completed succesfully. No Testbench has been provided."
