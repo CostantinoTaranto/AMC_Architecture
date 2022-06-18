@@ -16,11 +16,10 @@ end entity;
 
 architecture beh of DATA_MEMORY is
 
-	constant frame_w : integer := 416; --Frame Width, coincides with the number of columns in the text file
-	constant frame_h : integer := 240; --Frame Height, coincides with the number of rows in the text file
-	constant x0 : integer :=136;
-	constant y0 : integer :=168;
-
+	constant frame_w : integer := 416;
+	constant frame_h : integer := 240;
+	constant x0 : integer := 136;
+	constant y0 : integer := 168;
 	type integer_array is array (natural range <>) of integer;
 	type dm_array is array (0 to (frame_w*frame_h-1)) of std_logic_vector(7 downto 0);
 	

@@ -34,7 +34,8 @@ fi
 vlib work
 
 #Prepare files for the example
-filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory/DATA_MEMORY" "memory_data/Curframe" "memory_data/Refframe")
+#text files
+filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory_data/Curframe" "memory_data/Refframe")
 for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
 	curFileName=$curfileToBeRenamed"_ex"$exampleNum".txt"
 	if [ -f "../tb/$curFileName" ] ; then
@@ -43,6 +44,20 @@ for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
 		touch "../tb/$curfileToBeRenamed.txt"
 	fi
 done
+#vhd files
+filesToBeRenamed=("memory/DATA_MEMORY")
+for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
+	curFileName=$curfileToBeRenamed"_ex"$exampleNum".vhd"
+	if [ -f "../tb/$curFileName" ] ; then
+		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.vhd"
+	else
+		touch "../tb/$curfileToBeRenamed.txt" #I leave it as txt so that compiler will generate an error.
+		#This is made on purpose beacuse if the memory file is not present there actually IS a problem
+		#and the compiler needs to be stopped
+	fi
+done
+
+
 
 #Compile the source files
 while read LINE <&3 ; do
