@@ -1,16 +1,14 @@
 #!/bin/bash
-#This scripts takes as input argument a text file containing what to compile and/or
-#simulate and runs questasim if a testbench is provided. The compilation results
-#are stored in a log file whose name is specified by the input text file.
-
-#Check if the filename is present, store its name and open it
+#acquire the example number
 if [ $# -ne 1 ]
 then
-	echo "Usage: $0 filename"
+	echo "Usage: $0 example_number"
 	exit
 fi
-Filename=$1
-exec 3< ./modelsim_ex/$Filename
+exampleNum=$1
+
+#oper the compilation command file
+exec 3< ./modelsim_ex/tb_AME_Architecture.txt
 
 #Search and store the Log filename
 while read LINE <&3 ; do
@@ -34,6 +32,17 @@ then
 	rm -r work
 fi
 vlib work
+
+#Prepare files for the example
+filesToBeRenamed=("constructor_out/constructor_out" "extimator_out/extimator_out" "memory/DATA_MEMORY" "memory_data/Curframe" "memory_data/Refframe")
+for curfileToBeRenamed in ${filesToBeRenamed[@]} ; do
+	curFileName=$curfileToBeRenamed"_ex"$exampleNum".txt"
+	if [ -f "../tb/$curFileName" ] ; then
+		cp "../tb/$curFileName" "../tb/$curfileToBeRenamed.txt"
+	else
+		touch "../tb/$curfileToBeRenamed.txt"
+	fi
+done
 
 #Compile the source files
 while read LINE <&3 ; do
@@ -65,7 +74,7 @@ else
 			echo "Please provide a Testbench unit name."
 		else
 			read LINE <&3
-			eval "vsim work.$LINE"
+			eval "vsim -do ../sim/batch_simulate.cmd work.$LINE"
 		fi
 	else
 		echo "Compilation completed succesfully. No Testbench has been provided."

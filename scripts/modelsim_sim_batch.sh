@@ -65,7 +65,7 @@ else
 			echo "Please provide a Testbench unit name."
 		else
 			read LINE <&3
-			eval "vsim work.$LINE"
+			eval "vsim -do ../sim/batch_simulate.cmd work.$LINE"
 		fi
 	else
 		echo "Compilation completed succesfully. No Testbench has been provided."
