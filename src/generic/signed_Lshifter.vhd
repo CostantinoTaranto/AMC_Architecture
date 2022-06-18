@@ -12,15 +12,15 @@ end entity;
 architecture beh of signed_Lshifter is
 	signal SH_out_int: std_logic_vector(N_out-1 downto 0);
 begin
-	shifting: process(clk,SH_EN)
+	shifting: process(clk,RST)
 	begin
 		--Asynchronous reset
 		if (RST='1') then
-			SH_out<= (others => '0');
+			SH_out_int<= (others => '0');
 		elsif rising_edge(clk) then
 			if LE='1' AND SH_EN='1' then
-				SH_out_int(N_out-1 downto N_in+1)<= (others => SH_in(N_in-1));
-				SH_out_int(N_in downto 1)<=SH_in(N_in-1 downto 0);
+				SH_out_int(N_out-1 downto N_in)<= (others => SH_in(N_in-1));
+				SH_out_int(N_in-1 downto 1)<=SH_in(N_in-2 downto 0);
 				SH_out_int(0)<='0';
 			elsif LE='1'then
 				SH_out_int(N_in-1 downto 0)<=SH_in;
