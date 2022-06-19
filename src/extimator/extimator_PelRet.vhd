@@ -42,7 +42,6 @@ architecture structural of extimator_PelRet is
 	signal R_SH2_cmd, R_SH2_cmd_samp: slv_2(3 downto 0);
 	signal R_SH2_out, R_SH2_out_samp: slv_12(3 downto 0);
 	--Multiplication {a_(1,2);b_(1,2)}*{x0;y0}
-	signal x0_int_ext, y0_int_ext: std_logic_vector(7 downto 0);
 	signal coord_comp: slv_12(3 downto 0);
 	signal MULT1_out : slv_24(3 downto 0);
 	signal MULT1_out_0, MULT1_out_1, MULT1_out_2, MULT1_out_3 : std_logic_vector(23 downto 0);
@@ -154,17 +153,10 @@ begin
 	--ingresso pari. Non avrebbe senso scartare dell'informazione per ridurre il parallelismo e poi aggiungere un bit di padding!
 
 ----Multiplication {a_(1,2);b_(1,2)}*{x0;y0}
-
-	x0_int_extender: sign_extender
-		generic map(N_in=>6,N_out=>8)
-		port map(x0_int(4),x0_int_ext);
-	y0_int_extender: sign_extender
-		generic map(N_in=>6,N_out=>8)
-		port map(y0_int(4),y0_int_ext);
 	
-	coord_comp(0)<= "0000" & x0_int_ext;
+	coord_comp(0)<= "000000" & x0_int(4);
 	coord_comp(1)<= coord_comp(0);
-	coord_comp(2)<= "0000" & y0_int_ext;
+	coord_comp(2)<= "000000" & y0_int(4);
 	coord_comp(3)<= coord_comp(2);
 	
 	MULT1_GEN: for I in 0 to 3 generate

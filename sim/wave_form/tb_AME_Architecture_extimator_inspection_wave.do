@@ -30,6 +30,17 @@ add wave -noupdate -label (a1) -radix decimal /tb_ame_architecture/uut/extimatin
 add wave -noupdate -label (a2) -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(0)/MULT1_X/op1
 add wave -noupdate -label (b1) -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(3)/MULT1_X/op1
 add wave -noupdate -label (b2) -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(2)/MULT1_X/op1
+add wave -noupdate -label MULT1_0_(x0*a2)_op1_(a2) -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(0)/MULT1_X/op1
+add wave -noupdate -radix binary /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(0)/MULT1_X/op2
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MULT1_GEN(0)/MULT1_X/product
+add wave -noupdate -label v_op1_ADD3 -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_1/op1
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_1/op2
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_1/op3
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_1/sum
+add wave -noupdate -label h_op1_ADD3 -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_0/op1
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_0/op2
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_0/op3
+add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/ADD3_0/sum
 add wave -noupdate -label v_round_in -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MVr_ex_v_round/round_in
 add wave -noupdate -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MVr_ex_v_round/round_out
 add wave -noupdate -label h_round_in -radix decimal /tb_ame_architecture/uut/extimating_unit/Pixel_Retrieval_Unit/MVr_ex_h_round/round_in
@@ -47,10 +58,10 @@ add wave -noupdate -radix decimal /tb_ame_architecture/MV0_out_t
 add wave -noupdate -radix decimal /tb_ame_architecture/MV1_out_t
 add wave -noupdate -radix decimal /tb_ame_architecture/MV2_out_t
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {479 ns} 0}
+WaveRestoreCursors {{Cursor 1} {353 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 150
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 205
+configure wave -valuecolwidth 160
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
@@ -63,4 +74,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {448 ns} {488 ns}
+WaveRestoreZoom {337 ns} {356 ns}
