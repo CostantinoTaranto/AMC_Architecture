@@ -1,2 +1,2 @@
-run 500ns
+run 1000ns
 quit -f
