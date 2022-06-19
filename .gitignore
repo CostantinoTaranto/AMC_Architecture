@@ -27,3 +27,13 @@ vsim.dbg
 
 #ingore log files
 *log.txt
+sim/com_log.txt
+
+#ignore temporary simulation files
+tb/VTM_inputs/VTM_inputs.txt
+tb/constructor_out/constructor_out.txt
+tb/extimator_out/extimator_out.txt
+tb/memory/DATA_MEMORY.vhd
+tb/memory_data/Curframe.txt
+tb/memory_data/Refframe.txt
+
