@@ -76,17 +76,19 @@ begin
 			--Synchronous reset (Mandatory, otherwise the register would be reset for two clock
 			--cycles). Quando il clock batte il reset è ancora alto e quindi il registro resta resettato
 			--per due cicli di clock
-			if rising_edge(clk) AND product_int_rst='1' then
-				product_int<= ( others=>'0');
-			elsif rising_edge(clk) AND int_shEN='1' THEN
-				product_int(N/2-1 downto 0)<=product_int(N-1 downto N/2);
-				product_int(3*N/2+1 downto N/2)<=add_out(N+1 downto 0);
-				product_int(2*N+1 downto 3*N/2+2)<=(others =>add_out(N+1));
-			elsif rising_edge(clk) AND int_LE='1' THEN
-				product_int(N-1 downto 0)<=product_int(N-1 downto 0);
-				product_int(2*N+1 downto N)<=add_out(N+1 downto 0);
-			else
-				product_int<=product_int;
+			if rising_edge(clk) then
+				if product_int_rst='1' then
+					product_int<= ( others=>'0');
+				elsif int_shEN='1' then
+					product_int(N/2-1 downto 0)<=product_int(N-1 downto N/2);
+					product_int(3*N/2+1 downto N/2)<=add_out(N+1 downto 0);
+					product_int(2*N+1 downto 3*N/2+2)<=(others =>add_out(N+1));
+				elsif int_LE='1' then
+					product_int(N-1 downto 0)<=product_int(N-1 downto 0);
+					product_int(2*N+1 downto N)<=add_out(N+1 downto 0);
+				end if;
+			--else
+				--product_int<=product_int;
 			end if;
 	end process;
 	add2<=product_int(2*N+1 downto N);

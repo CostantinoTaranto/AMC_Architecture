@@ -16,10 +16,12 @@ begin
 
 	sampling: process(clk, sRST)
 	begin
-		if sRST='1' AND rising_edge(clk) then
-			Q_int<= (others => '0');
-		elsif rising_edge(clk) then
-			Q_int<= D;
+		if rising_edge(clk) then
+			if sRST='1' then
+				Q_int<= (others => '0');
+			else
+				Q_int<= D;
+			end if;		
 		--else
 			--Q_int<=Q_int;
 		end if;

@@ -3,7 +3,7 @@
 #Then it checks if all the simulation results are correct
 
 firstExample=3
-lastExample=6
+lastExample=32
 waitingTime=10 #time to wait for the simulations to terminate, in seconds
 errors=0 #indicates if there have been errors
 

@@ -16,12 +16,12 @@ begin
 
 	counting: process(clk,CE,RST)
 	begin
-		if rising_edge(clk) and RST='1'
-		then
-			count_tmp<=(others => '0');
-		elsif rising_edge(clk) and CE='1'
-		then
-			count_tmp<=std_logic_vector(unsigned(count_tmp)+1);
+		if rising_edge(clk) then
+			if RST='1' then
+				count_tmp<=(others => '0');
+			elsif CE='1' then
+				count_tmp<=std_logic_vector(unsigned(count_tmp)+1);
+			end if;
 		end if;
 	end process;
 
