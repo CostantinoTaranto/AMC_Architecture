@@ -85,6 +85,7 @@ done
 if grep -Fq "** Error" $SimPath/$LogFilename
 then
 	echo "Compliation error. See \"/sim/$LogFilename\" file for more."
+	return
 else 
 	if [[ $isTb -eq 1 ]] ; then
 		read LINE <&3
@@ -93,7 +94,7 @@ else
 		else
 			read TB_NAME <&3
 			#link to Modelsim the compiled library of the cells and the delay file
-			eval "vsim -L /software/dk/nangate45/verilog/msim6.2g -do ../sim/batch_simulate_netlist.cmd -sdftyp /tb_AME_Architecture/uut=../netlist/AME_Architecture.sdf work.$TB_NAME"
+			eval "vsim -L /software/dk/nangate45/verilog/msim6.2g -do ../sim/batch_simulate_netlist.cmd -sdftyp /tb_AME_Architecture_netlist/uut/AME_Architecture_netlist=../netlist/AME_Architecture.sdf work.$TB_NAME"
 			#eval "vsim work.$LINE"
 		fi
 	else
