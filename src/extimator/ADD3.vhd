@@ -27,8 +27,8 @@ begin
 			count<= '0';
 		elsif rising_edge(clk) and VALID='1' then
 			count<= NOT count;
-		else
-			count<=count;
+		--else
+			--count<=count;
 		end if;
 	end process;
 

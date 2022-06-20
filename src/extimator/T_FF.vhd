@@ -17,8 +17,8 @@ begin
 			tmp<= '0';
 		elsif rising_edge(clk) and T='1' then
 			tmp<= NOT tmp;
-		else
-			tmp<=tmp;
+		--else
+			--tmp<=tmp;
 		end if;
 	end process;
 

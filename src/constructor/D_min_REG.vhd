@@ -18,8 +18,8 @@ begin
 			Q_int(26 downto 0)<= (others => '0');
 		elsif rising_edge(clk) AND LE='1' then
 			Q_int<= D;
-		else
-			Q_int<=Q_int;
+		--else
+			--Q_int<=Q_int;
 		end if;
 	end process;
 

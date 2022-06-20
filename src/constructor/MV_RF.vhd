@@ -19,8 +19,8 @@ begin
 			MV_out_int<= "00000000000";
 		elsif rising_edge(clk) AND LE='1' then
 			MV_out_int<=MV_in;
-		else
-			MV_out_int<=MV_out_int;
+		--else
+			--MV_out_int<=MV_out_int;
 		end if;
 	end process;
 

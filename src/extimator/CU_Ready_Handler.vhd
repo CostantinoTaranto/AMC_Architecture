@@ -30,8 +30,8 @@ begin
 				PS<=ON_RESET;
 			elsif rising_edge(clk) then
 				PS<=NS;
-			else
-				PS<=PS;
+			--else
+				--PS<=PS;
 			end if;
 	end process;
 

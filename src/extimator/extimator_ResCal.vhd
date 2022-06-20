@@ -135,10 +135,10 @@ begin
 			MV0_in_int<=MV0_in;
 			MV1_in_int<=MV1_in;
 			MV2_in_int<=MV2_in;
-		else
-			MV0_in_int<=MV0_in_int;
-			MV1_in_int<=MV1_in_int;
-	        MV2_in_int<=MV2_in_int;
+		--else
+			--MV0_in_int<=MV0_in_int;
+			--MV1_in_int<=MV1_in_int;
+	        --MV2_in_int<=MV2_in_int;
 		end if;
 	end process;
 		

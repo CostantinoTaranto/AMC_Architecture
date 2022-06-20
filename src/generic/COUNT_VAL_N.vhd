@@ -22,8 +22,8 @@ begin
 			count_int<= (others=>'0');
 		elsif rising_edge(clk) and CE='1' then
 			count_int<=std_logic_vector(unsigned(count_int)+1);
-		else
-			count_int<=count_int;
+		--else
+			--count_int<=count_int;
 		end if;
 	end process;
 

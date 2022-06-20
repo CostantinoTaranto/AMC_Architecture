@@ -80,20 +80,20 @@ begin
 					MV2_h(1)<=MV2_h(1);
 					MV2_v(1)<=MV2_v(1);
 			end case;
-		else
+		--else
 			--Store all the positions
-					MV0_h(0)<=MV0_h(0);
-					MV0_v(0)<=MV0_v(0);
-					MV1_h(0)<=MV1_h(0);
-					MV1_v(0)<=MV1_v(0);
-					MV2_h(0)<=MV2_h(0);
-					MV2_v(0)<=MV2_v(0);
-					MV0_h(1)<=MV0_h(1);
-					MV0_v(1)<=MV0_v(1);
-					MV1_h(1)<=MV1_h(1);
-					MV1_v(1)<=MV1_v(1);
-					MV2_h(1)<=MV2_h(1);
-					MV2_v(1)<=MV2_v(1);
+					--MV0_h(0)<=MV0_h(0);
+					--MV0_v(0)<=MV0_v(0);
+					--MV1_h(0)<=MV1_h(0);
+					--MV1_v(0)<=MV1_v(0);
+					--MV2_h(0)<=MV2_h(0);
+					--MV2_v(0)<=MV2_v(0);
+					--MV0_h(1)<=MV0_h(1);
+					--MV0_v(1)<=MV0_v(1);
+					--MV1_h(1)<=MV1_h(1);
+					--MV1_v(1)<=MV1_v(1);
+					--MV2_h(1)<=MV2_h(1);
+					--MV2_v(1)<=MV2_v(1);
 		end if;		
 	end process;
 

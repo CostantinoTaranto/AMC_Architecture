@@ -16,8 +16,8 @@ begin
 			Q_int<= '0';
 		elsif rising_edge(clk) then
 			Q_int<= D;
-		else
-			Q_int<=Q_int;
+		--else
+			--Q_int<=Q_int;
 		end if;
 	end process;
 

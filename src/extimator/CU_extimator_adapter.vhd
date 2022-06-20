@@ -83,8 +83,8 @@ begin
 			else
 				INTER_DATA_VALID<=INTER_DATA_VALID;
 			end if;
-		else
-			INTER_DATA_VALID<=INTER_DATA_VALID;
+		--else
+			--INTER_DATA_VALID<=INTER_DATA_VALID;
 		end if;
 	end process;
 	

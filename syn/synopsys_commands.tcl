@@ -12,6 +12,9 @@ elaborate AME_Architecture -arch structural -lib WORK > ./synopsys_results/elabo
 #uniquify #optional command to addres to only 1 specific architecture
 link
 
+#MANUAL BREAK  FOR DEBHUG
+quit
+
 #*******  Applying constraints   ***************
 #create 100 Mhz clock (period in ns)
 create_clock -name MY_CLK -period 10.0 clk

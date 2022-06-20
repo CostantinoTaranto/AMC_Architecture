@@ -3,8 +3,8 @@
 #Then it checks if all the simulation results are correct
 
 firstExample=3
-lastExample=32
-waitingTime=20 #time to wait for the simulations to terminate, in seconds
+lastExample=6
+waitingTime=10 #time to wait for the simulations to terminate, in seconds
 errors=0 #indicates if there have been errors
 
 echo "Starting the simulations from example $firstExample to $lastExample"
