@@ -12,12 +12,9 @@ elaborate AME_Architecture -arch structural -lib WORK > ./synopsys_results/elabo
 #uniquify #optional command to addres to only 1 specific architecture
 link
 
-#MANUAL BREAK  FOR DEBHUG
-quit
-
 #*******  Applying constraints   ***************
-#create 100 Mhz clock (period in ns)
-create_clock -name MY_CLK -period 10.0 clk
+#create clock (period in ns)
+create_clock -name MY_CLK -period 3.01 clk
 #since the clock is a “special” signal in the design, we set the "don't touch" property  
 set_dont_touch_network MY_CLK
 
@@ -36,6 +33,23 @@ set_load $OLOAD [all_outputs]
 compile >  ./synopsys_results/compilation_results.txt
 
 #*********    Save the results      *************
-report_timing  >  ./analysis_results/timing_results.txt
-report_area    >  ./analysis_results/area_results.txt
+report_timing  >  ./synopsys_results/timing_results.txt
+report_area    >  ./synopsys_results/area_results.txt
+
+#Finally, we can save the data required to complete the design and to perform switchingactivity-based power estimation. 
+#First, we ungroup the cells to flatten the hierarchy as follows:
+ungroup -all -flatten
+#Then, we have to export the netlist in verilog. So that we impose verilog rules for the names of the internal signals. This is obtained with
+change_names -hierarchy -rules verilog
+#We also save a file describing the delay of the netlist:
+write_sdf ../netlist/AME_Architecture.sdf
+#We can now save the netlist in verilog:
+write -f verilog -hierarchy -output ../netlist/AME_Architecture.v
+#and the constraints to the input and output ports in a standard format:
+write_sdc ../netlist/AME_Architecture.sdc
+
+#******* close Design compiler    ****************
+quit
+
+
 

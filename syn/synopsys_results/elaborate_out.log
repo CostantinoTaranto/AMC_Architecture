@@ -375,16 +375,16 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'MULT1' instantiated from design 'extimator_PelRet' with
 	the parameters "N=12". (HDL-193)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:85: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:81: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:79: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:85: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:81: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:79: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:85: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:81: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd:79: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-*** Presto compilation terminated with 9 errors. ***
+
+Inferred memory devices in process
+	in routine MULT1_N12 line 74 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/MULT1.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   product_int_reg   | Flip-flop |  26   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
 Information: Building the design 'REG_N_LE' instantiated from design 'extimator_PelRet' with
 	the parameters "N=11". (HDL-193)
 
@@ -491,10 +491,16 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'REG_N_sRST' instantiated from design 'extimator_ResCal' with
 	the parameters "N=18". (HDL-193)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/generic/REG_N_sRST.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/generic/REG_N_sRST.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/generic/REG_N_sRST.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-*** Presto compilation terminated with 3 errors. ***
+
+Inferred memory devices in process
+	in routine REG_N_sRST_N18 line 17 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/generic/REG_N_sRST.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      Q_int_reg      | Flip-flop |  18   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
 Information: Building the design 'REG_N' instantiated from design 'extimator_ResCal' with
 	the parameters "N=18". (HDL-193)
 
@@ -608,6 +614,30 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'firstPelPos_comp'. (HDL-193)
 Presto compilation completed successfully.
+Information: Building the design 'COUNT_VAL_N' instantiated from design 'MULT1_N12' with
+	the parameters "N=2,TARGET=3". (HDL-193)
+
+Inferred memory devices in process
+	in routine COUNT_VAL_N_N2_TARGET3 line 19 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/generic/COUNT_VAL_N.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    count_int_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Information: Building the design 'REG_N_LE' instantiated from design 'MULT1_N12' with
+	the parameters "N=24". (HDL-193)
+
+Inferred memory devices in process
+	in routine REG_N_LE_N24 line 16 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/generic/REG_N_LE.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|      Q_int_reg      | Flip-flop |  24   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
 Information: Building the design 'adder' instantiated from design 'ADD3_N18' with
 	the parameters "N=20". (HDL-193)
 Presto compilation completed successfully.
@@ -648,11 +678,16 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'cnt_RSTs_CEs' instantiated from design 'firstPelPos_comp' with
 	the parameters "N=2". (HDL-193)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/cnt_RSTs_CEs.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/cnt_RSTs_CEs.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-Error:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/cnt_RSTs_CEs.vhd:19: An if statement containing a clock event has an illegal else branch and is not supported for synthesis. (ELAB-928)
-*** Presto compilation terminated with 3 errors. ***
+
+Inferred memory devices in process
+	in routine cnt_RSTs_CEs_N2 line 17 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/cnt_RSTs_CEs.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    count_tmp_reg    | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
 Information: Building the design 'enc2b'. (HDL-193)
 Presto compilation completed successfully.
-Warning: Design 'AME_Architecture' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
 1
