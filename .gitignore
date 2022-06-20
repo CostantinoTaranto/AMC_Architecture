@@ -37,3 +37,9 @@ tb/memory/DATA_MEMORY.vhd
 tb/memory_data/Curframe.txt
 tb/memory_data/Refframe.txt
 
+#ignore synopsys temporary files
+syn/work
+syn/work/*
+syn/command.log
+syn/default.svf
+syn/#*

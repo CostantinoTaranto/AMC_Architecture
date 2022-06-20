@@ -1,6 +1,7 @@
 #!/bin/bash
 #This script runs "example_simulator.sh" for the examples in the interval "firstExample to lastExample".
 #Then it checks if all the simulation results are correct
+
 firstExample=3
 lastExample=32
 waitingTime=20 #time to wait for the simulations to terminate, in seconds

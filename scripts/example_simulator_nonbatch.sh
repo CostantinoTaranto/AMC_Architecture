@@ -1,4 +1,8 @@
 #!/bin/bash
+#This script takes as input argument a single example number and starts the simulation
+#of that example, bringing you to the QuestaSim simulation environment (you have to give
+#all the commands manually). This is useful in the debugging step
+
 #acquire the example number
 if [ $# -ne 1 ]
 then
