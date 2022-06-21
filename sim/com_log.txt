@@ -1,5 +1,5 @@
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:15 on Jun 21,2022
+Start time: 19:11:43 on Jun 21,2022
 vcom -93 -work ./work ../src/generic/AMEpkg.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -7,10 +7,145 @@ vcom -93 -work ./work ../src/generic/AMEpkg.vhd
 -- Compiling package AMEpkg
 -- Compiling package body AMEpkg
 -- Loading package AMEpkg
-End time: 17:07:15 on Jun 21,2022, Elapsed time: 0:00:00
+End time: 19:11:43 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:15 on Jun 21,2022
+Start time: 19:11:43 on Jun 21,2022
+vcom -93 -work ./work ../src/generic/abs_unit.vhd ../src/generic/adder.vhd ../src/generic/AMEpkg.vhd ../src/generic/comparator.vhd ../src/generic/COUNT_N.vhd ../src/generic/COUNT_VAL_N.vhd ../src/generic/COUNT_VAL.vhd ../src/generic/FlFl_LE.vhd ../src/generic/FlFl_T.vhd ../src/generic/FlFl.vhd ../src/generic/multiplier.vhd ../src/generic/REG_N_LE.vhd ../src/generic/REG_N_sRST.vhd ../src/generic/REG_N.vhd ../src/generic/signed_Lshifter.vhd ../src/generic/signed_shifter.vhd ../src/generic/sign_extender.vhd ../src/generic/subtractor.vhd ../src/generic/unsigned_adder.vhd ../src/generic/unsigned_shifter.vhd ../src/generic/unsigned_subtractor.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity abs_unit
+-- Compiling architecture rtl of abs_unit
+-- Compiling entity adder
+-- Compiling architecture rtl of adder
+-- Compiling package AMEpkg
+-- Compiling package body AMEpkg
+-- Loading package AMEpkg
+-- Compiling entity comparator
+-- Compiling architecture rtl of comparator
+-- Compiling entity COUNT_N
+-- Compiling architecture beh of COUNT_N
+-- Compiling entity COUNT_VAL_N
+-- Compiling architecture beh of COUNT_VAL_N
+-- Compiling entity COUNT_VAL
+-- Compiling architecture beh of COUNT_VAL
+-- Compiling entity FlFl_LE
+-- Compiling architecture beh of FlFl_LE
+-- Compiling entity FlFl_T
+-- Compiling architecture beh of FlFl_T
+-- Compiling entity FlFl
+-- Compiling architecture beh of FlFl
+-- Compiling entity multiplier
+-- Compiling architecture rtl of multiplier
+-- Compiling entity REG_N_LE
+-- Compiling architecture beh of REG_N_LE
+-- Compiling entity REG_N_sRST
+-- Compiling architecture beh of REG_N_sRST
+-- Compiling entity REG_N
+-- Compiling architecture beh of REG_N
+-- Compiling entity signed_Lshifter
+-- Compiling architecture beh of signed_Lshifter
+-- Compiling entity signed_shifter
+-- Compiling architecture beh of signed_shifter
+-- Compiling entity sign_extender
+-- Compiling architecture rtl of sign_extender
+-- Compiling entity subtractor
+-- Compiling architecture rtl of subtractor
+-- Compiling entity unsigned_adder
+-- Compiling architecture rtl of unsigned_adder
+-- Compiling entity unsigned_shifter
+-- Compiling architecture beh of unsigned_shifter
+-- Compiling entity unsigned_subtractor
+-- Compiling architecture rtl of unsigned_subtractor
+End time: 19:11:43 on Jun 21,2022, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 19:11:43 on Jun 21,2022
+vcom -93 -work ./work ../src/constructor/constructor.vhd ../src/constructor/CU_constructor.vhd ../src/constructor/D_min_REG.vhd ../src/constructor/DP_constructor.vhd ../src/constructor/h_over_w.vhd ../src/constructor/if_UA.vhd ../src/constructor/LR_SH2.vhd ../src/constructor/MV_RF.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package AMEpkg
+-- Compiling entity constructor
+-- Compiling architecture structural of constructor
+-- Compiling entity CU_constructor
+-- Compiling architecture beh of CU_constructor
+-- Compiling entity D_min_REG
+-- Compiling architecture beh of D_min_REG
+-- Loading package NUMERIC_STD
+-- Compiling entity DP_constructor
+-- Compiling architecture structural of DP_constructor
+-- Compiling entity h_over_w
+-- Compiling architecture rtl of h_over_w
+-- Compiling entity if_UA
+-- Compiling architecture beh of if_UA
+-- Compiling entity LR_SH2
+-- Compiling architecture rtl of LR_SH2
+-- Compiling entity MV_RF
+-- Compiling architecture beh of MV_RF
+End time: 19:11:43 on Jun 21,2022, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 19:11:43 on Jun 21,2022
+vcom -93 -work ./work ../src/extimator/ADD3.vhd ../src/extimator/cnt_RSTs_CEs.vhd ../src/extimator/CU_extimator_adapter.vhd ../src/extimator/CU_extimator.vhd ../src/extimator/CU_Ready_Handler.vhd ../src/extimator/enc2b.vhd ../src/extimator/extimator_AddCalc.vhd ../src/extimator/extimator_PelRet.vhd ../src/extimator/extimator_ResCal.vhd ../src/extimator/extimator.vhd ../src/extimator/Ext_RF.vhd ../src/extimator/firstPelPos_comp.vhd ../src/extimator/firstPelPos.vhd ../src/extimator/MULT1.vhd ../src/extimator/Round.vhd ../src/extimator/R_SH2.vhd ../src/extimator/SAD_min_REG.vhd ../src/extimator/T_FF.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package AMEpkg
+-- Compiling entity ADD3
+-- Compiling architecture beh of ADD3
+-- Compiling entity cnt_RSTs_CEs
+-- Compiling architecture beh of cnt_RSTs_CEs
+-- Compiling entity CU_extimator_adapter
+-- Compiling architecture beh of CU_extimator_adapter
+-- Compiling entity CU_extimator
+-- Compiling architecture beh of CU_extimator
+-- Compiling entity CU_Ready_Handler
+-- Compiling architecture beh of CU_Ready_Handler
+-- Compiling entity enc2b
+-- Compiling architecture structural of enc2b
+-- Compiling entity extimator_AddCalc
+-- Compiling architecture structural of extimator_AddCalc
+-- Compiling entity extimator_PelRet
+-- Compiling architecture structural of extimator_PelRet
+-- Compiling entity extimator_ResCal
+-- Compiling architecture struct of extimator_ResCal
+-- Compiling entity extimator
+-- Compiling architecture structural of extimator
+-- Compiling entity Ext_RF
+-- Compiling architecture beh of Ext_RF
+-- Compiling entity firstPelPos_comp
+-- Compiling architecture struct of firstPelPos_comp
+-- Compiling entity firstPelPos
+-- Compiling architecture structural of firstPelPos
+-- Compiling entity MULT1
+-- Compiling architecture beh of MULT1
+-- Compiling entity Round
+-- Compiling architecture struct of Round
+-- Compiling entity R_SH2
+-- Compiling architecture struct of R_SH2
+-- Compiling entity SAD_min_REG
+-- Compiling architecture beh of SAD_min_REG
+-- Compiling entity T_FF
+-- Compiling architecture Behavioral of T_FF
+End time: 19:11:43 on Jun 21,2022, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 19:11:43 on Jun 21,2022
+vcom -93 -work ./work ../src/AME_Architecture/AME_Achitecture.vhd 
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package AMEpkg
+-- Compiling entity AME_Architecture
+-- Compiling architecture structural of AME_Architecture
+End time: 19:11:44 on Jun 21,2022, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0
+QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
+Start time: 19:11:44 on Jun 21,2022
 vcom -93 -work ./work ../tb/output_checker.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -19,10 +154,10 @@ vcom -93 -work ./work ../tb/output_checker.vhd
 -- Loading package AMEpkg
 -- Compiling entity output_checker
 -- Compiling architecture beh of output_checker
-End time: 17:07:15 on Jun 21,2022, Elapsed time: 0:00:00
+End time: 19:11:44 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:15 on Jun 21,2022
+Start time: 19:11:44 on Jun 21,2022
 vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -31,37 +166,17 @@ vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd
 -- Loading package AMEpkg
 -- Compiling entity DATA_MEMORY
 -- Compiling architecture beh of DATA_MEMORY
-End time: 17:07:15 on Jun 21,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:15 on Jun 21,2022
-vlog -work ./work ../netlist/AME_Architecture.v 
--- Compiling module AME_Architecture
-
-Top level modules:
-	AME_Architecture
-End time: 17:07:16 on Jun 21,2022, Elapsed time: 0:00:01
+End time: 19:11:44 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:16 on Jun 21,2022
-vcom -93 -work ./work ../netlist/AME_Architecture_netlist_wrapper.vhd 
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package AMEpkg
--- Compiling entity AME_Architecture_netlist_wrapper
--- Compiling architecture structural of AME_Architecture_netlist_wrapper
-End time: 17:07:16 on Jun 21,2022, Elapsed time: 0:00:00
-Errors: 0, Warnings: 0
-QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 17:07:16 on Jun 21,2022
-vcom -93 -work ./work ../tb/tb_AME_Architecture_netlist.vhd 
+Start time: 19:11:44 on Jun 21,2022
+vcom -93 -work ./work ../tb/tb_AME_Architecture.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package AMEpkg
--- Compiling entity tb_AME_Architecture_netlist
--- Compiling architecture tb of tb_AME_Architecture_netlist
-End time: 17:07:16 on Jun 21,2022, Elapsed time: 0:00:00
+-- Compiling entity tb_AME_Architecture
+-- Compiling architecture tb of tb_AME_Architecture
+End time: 19:11:44 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0

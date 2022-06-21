@@ -32,6 +32,8 @@ architecture beh of CU_extimator_adapter is
 	constant INTER_DATA_VALID_COMMAND_DELAY_DIFF : integer := 2; --This is the delay difference between the set and reset signal
 	signal INTER_DATA_VALID_RESET_int: std_logic_vector(INTER_DATA_VALID_COMMAND_DELAY_DIFF downto 0);
 	signal INTER_DATA_VALID: std_logic;
+	signal idv_sel: std_logic;	--inter_data_valid_selected (input)
+	signal idv_set_reset: std_logic_vector(1 downto 0); --Selection signal for the inter_data_valid_ff input
 	
 	constant MULT1_DELAY: integer :=2; --This is the delay w.r.to INTER_DATA_VALID
 	signal MULT1_VALID_int: std_logic_vector(MULT1_DELAY downto 0);
@@ -49,6 +51,8 @@ architecture beh of CU_extimator_adapter is
 	constant nSET_DELAY: integer := 9; --The number of clock cycles after which the signal is observed
 	signal ADD3_MVin_LE_nSET_int : std_logic_vector(nSET_DELAY downto 0);
 	signal ADD3_MVin_LE_int: std_logic;
+	signal A3MVin_set, A3MVin_LE_samp: std_logic;
+	signal A3MVin_set_reset : std_logic_vector(1 downto 0);
 
 ----LE_ab
 	constant LE_ab_DELAY: integer := 4;
@@ -71,22 +75,47 @@ begin
 			port map(D=>INTER_DATA_VALID_RESET_int(I-1),Q=>INTER_DATA_VALID_RESET_int(I),clk=>clk,RST=>RST);
 	end generate;
 
-	inter_data_valid_register: process(clk, RST)
+	--inter_data_valid register
+
+	idv_set_reset<= INTER_DATA_VALID_SET & INTER_DATA_VALID_RESET_int(INTER_DATA_VALID_COMMAND_DELAY_DIFF);
+
+	idv_sel_mux: process(idv_set_reset,INTER_DATA_VALID)
 	begin
-		if RST='1' then
-			INTER_DATA_VALID<='0';
-		elsif rising_edge(clk) then
-			if INTER_DATA_VALID_SET='1' then
-				INTER_DATA_VALID<='1';
-			elsif INTER_DATA_VALID_RESET_int(INTER_DATA_VALID_COMMAND_DELAY_DIFF)='1' then
-				INTER_DATA_VALID<='0';
-			else
-				INTER_DATA_VALID<=INTER_DATA_VALID;
-			end if;
-		--else
-			--INTER_DATA_VALID<=INTER_DATA_VALID;
-		end if;
+		case idv_set_reset is
+			when "10" => --SET 1 RESET 0
+				idv_sel<='1';
+			when "11" => --SET 1 RESET 1
+				idv_sel<='1';
+			when "01" => --SET 0 RESET 1
+				idv_sel<='0';
+			when "00" => --SET 0 RESET 0
+				idv_sel<=INTER_DATA_VALID;
+			when OTHERS =>
+				idv_sel<='0';
+		end case;
 	end process;
+
+
+	inter_data_valid_FlFl: FlFl
+		port map(D=>idv_sel,Q=>INTER_DATA_VALID,RST=>RST,clk=>clk);
+	
+	--OLD VERSION, A BIT MESSED UP
+	--inter_data_valid_register: process(clk, RST)
+	--begin
+	--	if RST='1' then
+	--		INTER_DATA_VALID<='0';
+	--	elsif rising_edge(clk) then
+	--		if INTER_DATA_VALID_SET='1' then
+	--			INTER_DATA_VALID<='1';
+	--		elsif INTER_DATA_VALID_RESET_int(INTER_DATA_VALID_COMMAND_DELAY_DIFF)='1' then
+	--			INTER_DATA_VALID<='0';
+	--		else
+	--			INTER_DATA_VALID<=INTER_DATA_VALID;
+	--		end if;
+	--	--else
+	--		--INTER_DATA_VALID<=INTER_DATA_VALID;
+	--	end if;
+	--end process;
 	
 	MULT1_VALID_int(0)<=INTER_DATA_VALID;
 	MULT1_VALID_gen: for I in 1 to MULT1_DELAY generate
@@ -123,16 +152,39 @@ begin
 			port map(D=>ADD3_MVin_LE_nSET_int(I-1),Q=>ADD3_MVin_LE_nSET_int(I),clk=>clk,RST=>RST);
 	end generate;
 
-	ADD3_MVin_LE_register: process(RST,ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET_int(nSET_DELAY), ADD3_MVin_LE_fRESET)
+	--ADD3_MVin_LE_register
+	A3MVin_set <= ADD3_MVin_LE_fSET OR ADD3_MVin_LE_nSET_int(nSET_DELAY);
+	A3MVin_set_reset<= A3MVin_set & ADD3_MVin_LE_fRESET;
+
+	ADD3_MVin_LE_register: FlFl
+		port map(D=>ADD3_MVin_LE_int,Q=>A3MVin_LE_samp,clk=>clk,RST=>ADD3_MVin_LE_fRESET);
+
+	ADD3_MVin_LE_int_mux: process(A3MVin_set_reset,A3MVin_LE_samp)
 	begin
-		if ADD3_MVin_LE_fRESET='1' then
-			ADD3_MVin_LE_int<='0';
-		elsif ADD3_MVin_LE_fSET='1' OR ADD3_MVin_LE_nSET_int(nSET_DELAY)='1'  then
-			ADD3_MVin_LE_int<='1';
-		else
-			ADD3_MVin_LE_int<=ADD3_MVin_LE_int;
-		end if;
+		case A3MVin_set_reset is
+			when "10" => --SET 1 RESET 0
+				ADD3_MVin_LE_int<='1';
+			when "11" => --SET 1 RESET 1
+				ADD3_MVin_LE_int<='0';
+			when "01" => --SET 0 RESET 1
+				ADD3_MVin_LE_int<='0';
+			when "00" => --SET 0 RESET 0
+				ADD3_MVin_LE_int<=A3MVin_LE_samp;
+			when OTHERS =>
+				ADD3_MVin_LE_int<='0';
+		end case;
 	end process;
+
+	--ADD3_MVin_LE_register: process(RST,ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET_int(nSET_DELAY), ADD3_MVin_LE_fRESET)
+	--begin
+	--	if ADD3_MVin_LE_fRESET='1' then
+	--		ADD3_MVin_LE_int<='0';
+	--	elsif ADD3_MVin_LE_fSET='1' OR ADD3_MVin_LE_nSET_int(nSET_DELAY)='1'  then
+	--		ADD3_MVin_LE_int<='1';
+	--	else
+	--		ADD3_MVin_LE_int<=ADD3_MVin_LE_int;
+	--	end if;
+	--end process;
 	ADD3_MVin_LE<=ADD3_MVin_LE_int;
 
 ----RF_Addr
