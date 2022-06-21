@@ -29,8 +29,8 @@ entity extimator_expanded is
 		  ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET: out std_logic;
 		  LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
 		  BestCand: out std_logic;
-		  MULT1_VALID, ADD3_VALID, incrY, MEM_RE: out std_logic;
-		  ADD3_MVin_LE: out std_logic;
+		  MULT1_VALID, ADD3_VALID, incrY: out std_logic;
+		  ADD3_MVin_LE: out std_logic
 	);
 end entity;
 
@@ -176,14 +176,28 @@ begin
 	--For the output checker		 
 	eComp_EN<=Comp_EN_DP_int;
 
-	--Expanded part
-	last_block_x, last_block_y: out std_logic;
-	last_cand, Second_ready, CountTerm_OUT: out std_logic;
-	INTER_DATA_VALID_SET, INTER_DATA_VALID_RESET: out std_logic;
-	ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET: out std_logic;
-	LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
-	BestCand: out std_logic;
-	MULT1_VALID, ADD3_VALID, incrY, MEM_RE: out std_logic;
-	ADD3_MVin_LE: out std_logic;	
+	--Expanded part         
+	last_block_x            <=  last_block_x_int            ;
+	last_block_y            <=  last_block_y_int            ;
+	last_cand               <=  last_cand_int               ;
+	Second_ready            <=  Second_ready_int            ;
+	CountTerm_OUT           <=  CountTerm_OUT_int           ;
+	INTER_DATA_VALID_SET    <=  INTER_DATA_VALID_SET_int    ;
+	INTER_DATA_VALID_RESET  <=  INTER_DATA_VALID_RESET_int  ;
+	ADD3_MVin_LE_fSET       <=  ADD3_MVin_LE_fSET_int       ;
+	ADD3_MVin_LE_nSET       <=  ADD3_MVin_LE_nSET_int       ;
+	ADD3_MVin_LE_fRESET     <=  ADD3_MVin_LE_fRESET_int     ;
+	LE_ab                   <=  LE_ab_DP_int                ; 
+	SAD_tmp_RST             <=  SAD_tmp_RST_DP_int          ; 
+	Comp_EN                 <=  Comp_EN_DP_int              ; 
+	OUT_LE                  <=  OUT_LE_int                  ;
+	CountTerm_EN            <=  CountTerm_EN_int            ;
+	CandCount_CE            <=  CandCount_CE_int            ;
+	RF_in_RE                <=  RF_in_RE_int                ;
+	BestCand                <=  BestCand_int                ;
+	MULT1_VALID             <=  MULT1_VALID_int             ;
+	ADD3_VALID              <=  ADD3_VALID_int              ;
+	incrY                   <=  incrY_int                   ;
+	ADD3_MVin_LE            <=  ADD3_MVin_LE_int            ;
 
 end architecture structural;
