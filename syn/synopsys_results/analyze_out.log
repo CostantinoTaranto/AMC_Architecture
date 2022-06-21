@@ -192,4 +192,8 @@ Running PRESTO HDLC
 Compiling Entity Declaration AME_ARCHITECTURE
 Compiling Architecture STRUCTURAL of AME_ARCHITECTURE
 Presto compilation completed successfully.
+Running PRESTO HDLC
+Compiling Entity Declaration CU_CONSTRUCTOR_NETLIST
+Compiling Architecture BEH of CU_CONSTRUCTOR_NETLIST
+Presto compilation completed successfully.
 1

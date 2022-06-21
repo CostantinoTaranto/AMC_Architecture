@@ -14,7 +14,7 @@ cp ./synopsys_setup_file/.synopsys_dc.setup ./.synopsys_dc.setup
 #run initialization script
 source /software/scripts/init_synopsys_64
 #run synopsys in shell mode and execute the command file
-dc_shell -f synopsys_commands.tcl
+dc_shell -f synopsys_commands_custom.tcl
 
 
 

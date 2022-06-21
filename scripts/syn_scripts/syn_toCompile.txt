@@ -46,3 +46,4 @@ analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/s
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/SAD_min_REG.vhd
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/T_FF.vhd
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/AME_Architecture/AME_Achitecture.vhd
+analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_constructor_netlist.vhd

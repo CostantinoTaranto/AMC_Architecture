@@ -47,9 +47,12 @@ begin
 		wait for 3*Tc;
 		CU_RST_t<='1';
 		wait for Tc;
-		CU_RST_t<='0';		
-		wait for 5*Tc;
 		START_t<='1';
+		CNT_compEN_OUT_t<='0';
+		CNT_STOPcompEN_OUT_t<='0';
+		GOT_t<='0';
+		wait for 5*Tc;
+		CU_RST_t<='0';		
 		wait for Tc;
 		START_t<='0';
 		wait for 5*Tc;

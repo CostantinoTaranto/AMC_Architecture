@@ -4,9 +4,9 @@
 #are stored in a log file whose name is specified by the input text file.
 
 #Check if the filename is present, store its name and open it
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-	echo "Usage: $0 filename"
+	echo "Usage: $0 filename test_netlist"
 	exit
 fi
 Filename=$1
@@ -64,8 +64,16 @@ else
 		if [ "$LINE" != "--TB_NAME" ] ; then
 			echo "Please provide a Testbench unit name."
 		else
-			read LINE <&3
-			eval "vsim work.$LINE"
+			read TB_NAME <&3
+			if [ "$2" == "0" ] ; then
+				echo "Logic simulation"
+				eval "vsim work.$TB_NAME"
+			else
+				read LINE <&3
+				read LINE <&3
+				echo "Neltlist simulation"
+				eval "vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /$TB_NAME/uut=../netlist/$LINE.sdf work.$TB_NAME"
+			fi
 		fi
 	else
 		echo "Compilation completed succesfully. No Testbench has been provided."
