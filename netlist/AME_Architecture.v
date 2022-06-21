@@ -9108,13 +9108,19 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
          extimating_unit_Ready_Handler_n6, extimating_unit_Ready_Handler_n5,
          extimating_unit_Ready_Handler_PS_0_,
          extimating_unit_Ready_Handler_PS_1_,
-         extimating_unit_Ready_Handler_PS_2_, extimating_unit_CU_adapter_n7,
-         extimating_unit_CU_adapter_n6, extimating_unit_CU_adapter_n5,
-         extimating_unit_CU_adapter_n4, extimating_unit_CU_adapter_n3,
-         extimating_unit_CU_adapter_n1, extimating_unit_CU_adapter_n2,
-         extimating_unit_CU_adapter_N14, extimating_unit_CU_adapter_N11,
+         extimating_unit_Ready_Handler_PS_2_, extimating_unit_CU_adapter_n11,
+         extimating_unit_CU_adapter_n10, extimating_unit_CU_adapter_n9,
+         extimating_unit_CU_adapter_n8, extimating_unit_CU_adapter_n7,
+         extimating_unit_CU_adapter_n6, extimating_unit_CU_adapter_n4,
+         extimating_unit_CU_adapter_n3, extimating_unit_CU_adapter_n2,
+         extimating_unit_CU_adapter_n1, extimating_unit_CU_adapter_n5,
+         extimating_unit_CU_adapter_A3MVin_LE_samp,
+         extimating_unit_CU_adapter_MULT1_VALID_int_0_,
+         extimating_unit_CU_adapter_MULT1_VALID_int_1_,
+         extimating_unit_CU_adapter_idv_sel,
          extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_delay_1_n1,
          extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_delay_2_n1,
+         extimating_unit_CU_adapter_inter_data_valid_FlFl_n1,
          extimating_unit_CU_adapter_MULT1_VALID_delay_1_n1,
          extimating_unit_CU_adapter_MULT1_VALID_delay_2_n1,
          extimating_unit_CU_adapter_ADD3_VALID_delay_1_n1,
@@ -9135,6 +9141,7 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
          extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_n1,
          extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_n1,
          extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_n1,
+         extimating_unit_CU_adapter_ADD3_MVin_LE_register_n1,
          extimating_unit_CU_adapter_LE_ab_delay_1_n1,
          extimating_unit_CU_adapter_LE_ab_delay_2_n1,
          extimating_unit_CU_adapter_LE_ab_delay_3_n1,
@@ -9898,7 +9905,6 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
   wire   [9:1] extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int;
   wire   [2:1] extimating_unit_CU_adapter_incrY_int;
   wire   [4:1] extimating_unit_CU_adapter_ADD3_VALID_int;
-  wire   [1:0] extimating_unit_CU_adapter_MULT1_VALID_int;
   wire   [2:1] extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_int;
   wire   [17:0] extimating_unit_Results_calculator_SAD_min;
   wire   [17:0] extimating_unit_Results_calculator_SAD_tmp;
@@ -45666,120 +45672,114 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_Pixel_Retrieval_Unit_MULT1_X_3_mult_47_n2), .CO(
         extimating_unit_Pixel_Retrieval_Unit_MULT1_X_3_mult_47_n1), .S(
         extimating_unit_Pixel_Retrieval_Unit_MULT1_X_3_mult_int[12]) );
-  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U26 ( .A(
-        extimating_unit_ADD3_MVin_LE_int), .Z(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35) );
-  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U25 ( .A(
-        extimating_unit_ADD3_MVin_LE_int), .Z(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U24 ( 
-        .A1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
-        .A2(extimating_unit_MV0_out_int[0]), .ZN(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n1) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U23 ( 
-        .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n12), 
-        .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
-        .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n1), .ZN(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n23) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U22 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U26 ( 
         .A1(extimating_unit_MV0_out_int[10]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n11) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U21 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U25 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n22), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n11), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n34) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U20 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U24 ( 
         .A1(extimating_unit_MV0_out_int[9]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n10) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U19 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U23 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n21), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n10), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n32) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U18 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U22 ( 
         .A1(extimating_unit_MV0_out_int[8]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n9) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U17 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U21 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n20), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n9), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n31) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U16 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U20 ( 
         .A1(extimating_unit_MV0_out_int[7]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n8) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U15 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U19 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n19), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n8), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n30) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U14 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U18 ( 
         .A1(extimating_unit_MV0_out_int[6]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n7) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U13 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U17 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n18), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n7), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n29) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U12 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U16 ( 
         .A1(extimating_unit_MV0_out_int[5]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n6) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U11 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U15 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n17), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n6), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n28) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U10 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U14 ( 
         .A1(extimating_unit_MV0_out_int[4]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n5) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U9 ( .B1(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n16), .B2(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n5), .ZN(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U13 ( 
+        .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n16), 
+        .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
+        .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n5), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n27) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U8 ( .A1(
-        extimating_unit_MV0_out_int[3]), .A2(
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U12 ( 
+        .A1(extimating_unit_MV0_out_int[3]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n4) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U7 ( .B1(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n15), .B2(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n4), .ZN(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U11 ( 
+        .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n15), 
+        .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), 
+        .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n4), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n26) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U6 ( .A1(
-        extimating_unit_MV0_out_int[2]), .A2(
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U10 ( 
+        .A1(extimating_unit_MV0_out_int[2]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n3) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U5 ( .B1(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U9 ( .B1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n14), .B2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n3), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n25) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U4 ( .A1(
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U8 ( .A1(
         extimating_unit_MV0_out_int[1]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n2) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U3 ( .B1(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U7 ( .B1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n13), .B2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n2), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n24) );
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U6 ( .A1(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A2(
+        extimating_unit_MV0_out_int[0]), .ZN(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n1) );
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U5 ( .B1(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n12), .B2(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35), .A(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n1), .ZN(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n23) );
+  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U4 ( .A(
+        extimating_unit_ADD3_MVin_LE_int), .Z(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n33) );
+  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U3 ( .A(
+        extimating_unit_ADD3_MVin_LE_int), .Z(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n35) );
   INV_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_U2 ( .A(
         extimating_unit_RST1_int), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n36) );
-  DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_Q_int_reg_0_ ( 
-        .D(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n23), 
-        .CK(clk), .RN(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n36), .Q(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_in_ADD3_ext[0]), .QN(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n12) );
   DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_Q_int_reg_9_ ( 
         .D(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n32), 
         .CK(clk), .RN(
@@ -45840,111 +45840,117 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n36), .Q(
         extimating_unit_Pixel_Retrieval_Unit_MV0_in_ADD3_ext[8]), .QN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n20) );
-  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U26 ( .A(
-        extimating_unit_ADD3_MVin_LE_int), .Z(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33) );
-  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U25 ( .A(
-        extimating_unit_ADD3_MVin_LE_int), .Z(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U24 ( 
+  DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_Q_int_reg_0_ ( 
+        .D(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n23), 
+        .CK(clk), .RN(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n36), .Q(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_in_ADD3_ext[0]), .QN(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_0_n12) );
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U26 ( 
         .A1(extimating_unit_MV0_out_int[21]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n59) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U23 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U25 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n48), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n59), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n37) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U22 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U24 ( 
         .A1(extimating_unit_MV0_out_int[20]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n60) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U21 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U23 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n49), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n60), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n38) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U20 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U22 ( 
         .A1(extimating_unit_MV0_out_int[19]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n61) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U19 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U21 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n50), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n61), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n39) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U18 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U20 ( 
         .A1(extimating_unit_MV0_out_int[18]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n62) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U17 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U19 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n51), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n62), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n40) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U16 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U18 ( 
         .A1(extimating_unit_MV0_out_int[17]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n63) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U15 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U17 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n52), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n63), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n41) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U14 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U16 ( 
         .A1(extimating_unit_MV0_out_int[16]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n64) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U13 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U15 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n53), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n64), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n42) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U12 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U14 ( 
         .A1(extimating_unit_MV0_out_int[15]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n65) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U11 ( 
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U13 ( 
         .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n54), 
         .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
         .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n65), 
         .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n43) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U10 ( 
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U12 ( 
         .A1(extimating_unit_MV0_out_int[14]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n66) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U9 ( .B1(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n55), .B2(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), .A(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n66), .ZN(
-        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n44) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U8 ( .A1(
-        extimating_unit_MV0_out_int[13]), .A2(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U11 ( 
+        .B1(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n55), 
+        .B2(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), 
+        .A(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n66), 
+        .ZN(extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n44) );
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U10 ( 
+        .A1(extimating_unit_MV0_out_int[13]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n67) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U7 ( .B1(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U9 ( .B1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n56), .B2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), .A(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n67), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n45) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U6 ( .A1(
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U8 ( .A1(
         extimating_unit_MV0_out_int[12]), .A2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n68) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U5 ( .B1(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U7 ( .B1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n57), .B2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), .A(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n68), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n46) );
-  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U4 ( .A1(
+  NAND2_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U6 ( .A1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), .A2(
         extimating_unit_MV0_out_int[11]), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n69) );
-  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U3 ( .B1(
+  OAI21_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U5 ( .B1(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n58), .B2(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35), .A(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n69), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n47) );
+  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U4 ( .A(
+        extimating_unit_ADD3_MVin_LE_int), .Z(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n33) );
+  BUF_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U3 ( .A(
+        extimating_unit_ADD3_MVin_LE_int), .Z(
+        extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n35) );
   INV_X1 extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_U2 ( .A(
         extimating_unit_RST1_int), .ZN(
         extimating_unit_Pixel_Retrieval_Unit_MV0_hv_in_ADD3_reg_1_n36) );
@@ -46811,6 +46817,12 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
   BUF_X1 extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_U2 ( .A(
         extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n60), .Z(
         extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n63) );
+  DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_Q_int_reg_16_ ( 
+        .D(extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n57), 
+        .CK(clk), .RN(
+        extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n67), .Q(
+        extimating_unit_Pixel_Retrieval_Unit_MVr_ex_v[16]), .QN(
+        extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n37) );
   DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_Q_int_reg_15_ ( 
         .D(extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n56), 
         .CK(clk), .RN(
@@ -46907,12 +46919,6 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n67), .Q(
         extimating_unit_Pixel_Retrieval_Unit_MVr_ex_v[0]), .QN(
         extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n21) );
-  DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_Q_int_reg_16_ ( 
-        .D(extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n57), 
-        .CK(clk), .RN(
-        extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n67), .Q(
-        extimating_unit_Pixel_Retrieval_Unit_MVr_ex_v[16]), .QN(
-        extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n37) );
   DFFR_X1 extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_Q_int_reg_17_ ( 
         .D(extimating_unit_Pixel_Retrieval_Unit_ADD3_1_output_register_n58), 
         .CK(clk), .RN(
@@ -48722,39 +48728,39 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_extimator_CU_PS_4_), .A3(
         extimating_unit_extimator_CU_n75), .ZN(
         extimating_unit_extimator_CU_n66) );
-  NAND2_X1 extimating_unit_extimator_CU_U48 ( .A1(
-        extimating_unit_extimator_CU_n90), .A2(
-        extimating_unit_extimator_CU_n38), .ZN(
-        extimating_unit_ADD3_MVin_LE_fRESET_int) );
-  INV_X1 extimating_unit_extimator_CU_U47 ( .A(
+  INV_X1 extimating_unit_extimator_CU_U48 ( .A(
         extimating_unit_extimator_CU_n31), .ZN(extimating_unit_OUT_LE_int) );
-  OR3_X1 extimating_unit_extimator_CU_U46 ( .A1(
+  OR3_X1 extimating_unit_extimator_CU_U47 ( .A1(
         extimating_unit_extimator_CU_n80), .A2(
         extimating_unit_extimator_CU_n42), .A3(
         extimating_unit_extimator_CU_n60), .ZN(
         extimating_unit_extimator_CU_n79) );
-  AOI211_X1 extimating_unit_extimator_CU_U45 ( .C1(
+  AOI211_X1 extimating_unit_extimator_CU_U46 ( .C1(
         extimating_unit_extimator_CU_n5), .C2(extimating_unit_extimator_CU_n20), .A(extimating_unit_extimator_CU_n78), .B(extimating_unit_extimator_CU_n79), 
         .ZN(extimating_unit_extimator_CU_n64) );
-  INV_X1 extimating_unit_extimator_CU_U44 ( .A(
+  INV_X1 extimating_unit_extimator_CU_U45 ( .A(
         extimating_unit_extimator_CU_n44), .ZN(
         extimating_unit_extimator_CU_n22) );
-  NAND2_X1 extimating_unit_extimator_CU_U43 ( .A1(
+  NAND2_X1 extimating_unit_extimator_CU_U44 ( .A1(
         extimating_unit_extimator_CU_n37), .A2(
         extimating_unit_extimator_CU_n36), .ZN(extimating_unit_RST_BLKx_int)
          );
-  AND2_X1 extimating_unit_extimator_CU_U42 ( .A1(
+  AND2_X1 extimating_unit_extimator_CU_U43 ( .A1(
         extimating_unit_extimator_CU_n43), .A2(
         extimating_unit_extimator_CU_n87), .ZN(
         extimating_unit_extimator_CU_n57) );
-  NOR3_X1 extimating_unit_extimator_CU_U41 ( .A1(
+  NOR3_X1 extimating_unit_extimator_CU_U42 ( .A1(
         extimating_unit_extimator_CU_n53), .A2(
         extimating_unit_extimator_CU_n54), .A3(
         extimating_unit_extimator_CU_n20), .ZN(
         extimating_unit_extimator_CU_n52) );
-  INV_X1 extimating_unit_extimator_CU_U40 ( .A(
+  INV_X1 extimating_unit_extimator_CU_U41 ( .A(
         extimating_unit_extimator_CU_n32), .ZN(
         extimating_unit_ADD3_MVin_LE_nSET_int) );
+  NAND2_X1 extimating_unit_extimator_CU_U40 ( .A1(
+        extimating_unit_extimator_CU_n90), .A2(
+        extimating_unit_extimator_CU_n38), .ZN(
+        extimating_unit_ADD3_MVin_LE_fRESET_int) );
   INV_X1 extimating_unit_extimator_CU_U39 ( .A(
         extimating_unit_extimator_CU_n66), .ZN(
         extimating_unit_extimator_CU_n18) );
@@ -49092,41 +49098,44 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_Ready_Handler_n1), .Q(
         extimating_unit_Ready_Handler_PS_0_), .QN(
         extimating_unit_Ready_Handler_n6) );
-  INV_X1 extimating_unit_CU_adapter_U11 ( .A(extimating_unit_CU_adapter_n3), 
-        .ZN(extimating_unit_CU_adapter_n1) );
-  OR3_X1 extimating_unit_CU_adapter_U10 ( .A1(
-        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[9]), .A2(
-        extimating_unit_ADD3_MVin_LE_fSET_int), .A3(
-        extimating_unit_ADD3_MVin_LE_fRESET_int), .ZN(
-        extimating_unit_CU_adapter_N14) );
-  INV_X1 extimating_unit_CU_adapter_U9 ( .A(RST), .ZN(
-        extimating_unit_CU_adapter_n3) );
-  INV_X1 extimating_unit_CU_adapter_U8 ( .A(
-        extimating_unit_INTER_DATA_VALID_SET_int), .ZN(
-        extimating_unit_CU_adapter_n6) );
-  OAI21_X1 extimating_unit_CU_adapter_U7 ( .B1(
-        extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_int[2]), .B2(
-        extimating_unit_CU_adapter_n2), .A(extimating_unit_CU_adapter_n6), 
-        .ZN(extimating_unit_CU_adapter_N11) );
-  INV_X1 extimating_unit_CU_adapter_U6 ( .A(extimating_unit_RF_Addr_CU_int[0]), 
-        .ZN(extimating_unit_CU_adapter_n5) );
-  INV_X1 extimating_unit_CU_adapter_U5 ( .A(extimating_unit_BestCand_int), 
-        .ZN(extimating_unit_CU_adapter_n4) );
-  AOI21_X1 extimating_unit_CU_adapter_U4 ( .B1(
-        extimating_unit_RF_Addr_CU_int[1]), .B2(extimating_unit_CU_adapter_n4), 
-        .A(extimating_unit_CU_adapter_n5), .ZN(extimating_unit_RF_Addr_DP_int)
-         );
-  INV_X1 extimating_unit_CU_adapter_U3 ( .A(
-        extimating_unit_ADD3_MVin_LE_fRESET_int), .ZN(
+  CLKBUF_X1 extimating_unit_CU_adapter_U16 ( .A(RST), .Z(
         extimating_unit_CU_adapter_n7) );
-  DFFR_X1 extimating_unit_CU_adapter_INTER_DATA_VALID_reg ( .D(
-        extimating_unit_CU_adapter_N11), .CK(clk), .RN(
-        extimating_unit_CU_adapter_n3), .Q(
-        extimating_unit_CU_adapter_MULT1_VALID_int[0]), .QN(
+  BUF_X1 extimating_unit_CU_adapter_U15 ( .A(RST), .Z(
+        extimating_unit_CU_adapter_n6) );
+  BUF_X1 extimating_unit_CU_adapter_U14 ( .A(RST), .Z(
+        extimating_unit_CU_adapter_n4) );
+  BUF_X1 extimating_unit_CU_adapter_U13 ( .A(RST), .Z(
+        extimating_unit_CU_adapter_n3) );
+  BUF_X1 extimating_unit_CU_adapter_U12 ( .A(RST), .Z(
         extimating_unit_CU_adapter_n2) );
-  DLH_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_int_reg ( .G(
-        extimating_unit_CU_adapter_N14), .D(extimating_unit_CU_adapter_n7), 
-        .Q(extimating_unit_ADD3_MVin_LE_int) );
+  BUF_X1 extimating_unit_CU_adapter_U11 ( .A(RST), .Z(
+        extimating_unit_CU_adapter_n1) );
+  INV_X1 extimating_unit_CU_adapter_U10 ( .A(
+        extimating_unit_INTER_DATA_VALID_SET_int), .ZN(
+        extimating_unit_CU_adapter_n11) );
+  INV_X1 extimating_unit_CU_adapter_U9 ( .A(
+        extimating_unit_CU_adapter_MULT1_VALID_int_0_), .ZN(
+        extimating_unit_CU_adapter_n8) );
+  OAI21_X1 extimating_unit_CU_adapter_U8 ( .B1(
+        extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_int[2]), .B2(
+        extimating_unit_CU_adapter_n8), .A(extimating_unit_CU_adapter_n11), 
+        .ZN(extimating_unit_CU_adapter_idv_sel) );
+  NOR3_X1 extimating_unit_CU_adapter_U7 ( .A1(
+        extimating_unit_ADD3_MVin_LE_fSET_int), .A2(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[9]), .A3(
+        extimating_unit_CU_adapter_A3MVin_LE_samp), .ZN(
+        extimating_unit_CU_adapter_n5) );
+  NOR2_X1 extimating_unit_CU_adapter_U6 ( .A1(
+        extimating_unit_ADD3_MVin_LE_fRESET_int), .A2(
+        extimating_unit_CU_adapter_n5), .ZN(extimating_unit_ADD3_MVin_LE_int)
+         );
+  INV_X1 extimating_unit_CU_adapter_U5 ( .A(extimating_unit_RF_Addr_CU_int[0]), 
+        .ZN(extimating_unit_CU_adapter_n10) );
+  INV_X1 extimating_unit_CU_adapter_U4 ( .A(extimating_unit_BestCand_int), 
+        .ZN(extimating_unit_CU_adapter_n9) );
+  AOI21_X1 extimating_unit_CU_adapter_U3 ( .B1(
+        extimating_unit_RF_Addr_CU_int[1]), .B2(extimating_unit_CU_adapter_n9), 
+        .A(extimating_unit_CU_adapter_n10), .ZN(extimating_unit_RF_Addr_DP_int) );
   INV_X1 extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_delay_1_U3 ( .A(
         extimating_unit_CU_adapter_n1), .ZN(
         extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_delay_1_n1) );
@@ -49141,18 +49150,25 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         .D(extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_int[1]), .CK(clk), 
         .RN(extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_delay_2_n1), .Q(
         extimating_unit_CU_adapter_INTER_DATA_VALID_RESET_int[2]) );
+  INV_X1 extimating_unit_CU_adapter_inter_data_valid_FlFl_U3 ( .A(
+        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_inter_data_valid_FlFl_n1) );
+  DFFR_X1 extimating_unit_CU_adapter_inter_data_valid_FlFl_Q_int_reg ( .D(
+        extimating_unit_CU_adapter_idv_sel), .CK(clk), .RN(
+        extimating_unit_CU_adapter_inter_data_valid_FlFl_n1), .Q(
+        extimating_unit_CU_adapter_MULT1_VALID_int_0_) );
   INV_X1 extimating_unit_CU_adapter_MULT1_VALID_delay_1_U3 ( .A(
         extimating_unit_CU_adapter_n1), .ZN(
         extimating_unit_CU_adapter_MULT1_VALID_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_MULT1_VALID_delay_1_Q_int_reg ( .D(
-        extimating_unit_CU_adapter_MULT1_VALID_int[0]), .CK(clk), .RN(
+        extimating_unit_CU_adapter_MULT1_VALID_int_0_), .CK(clk), .RN(
         extimating_unit_CU_adapter_MULT1_VALID_delay_1_n1), .Q(
-        extimating_unit_CU_adapter_MULT1_VALID_int[1]) );
+        extimating_unit_CU_adapter_MULT1_VALID_int_1_) );
   INV_X1 extimating_unit_CU_adapter_MULT1_VALID_delay_2_U3 ( .A(
         extimating_unit_CU_adapter_n1), .ZN(
         extimating_unit_CU_adapter_MULT1_VALID_delay_2_n1) );
   DFFR_X1 extimating_unit_CU_adapter_MULT1_VALID_delay_2_Q_int_reg ( .D(
-        extimating_unit_CU_adapter_MULT1_VALID_int[1]), .CK(clk), .RN(
+        extimating_unit_CU_adapter_MULT1_VALID_int_1_), .CK(clk), .RN(
         extimating_unit_CU_adapter_MULT1_VALID_delay_2_n1), .Q(
         extimating_unit_MULT1_VALID_int) );
   INV_X1 extimating_unit_CU_adapter_ADD3_VALID_delay_1_U3 ( .A(
@@ -49205,319 +49221,363 @@ module AME_Architecture ( cMV0_in, cMV1_in, cMV2_in, START, CU_h, CU_w, clk,
         extimating_unit_CU_adapter_incrY_delay_2_n1), .Q(
         extimating_unit_CU_adapter_incrY_int[2]) );
   INV_X1 extimating_unit_CU_adapter_incrY_delay_3_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n2), .ZN(
         extimating_unit_CU_adapter_incrY_delay_3_n1) );
   DFFR_X1 extimating_unit_CU_adapter_incrY_delay_3_Q_int_reg ( .D(
         extimating_unit_CU_adapter_incrY_int[2]), .CK(clk), .RN(
         extimating_unit_CU_adapter_incrY_delay_3_n1), .Q(
         extimating_unit_incrY_int) );
-  INV_X1 extimating_unit_CU_adapter_MEM_RE_delay_1_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_MEM_RE_delay_1_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
         extimating_unit_CU_adapter_MEM_RE_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_MEM_RE_delay_1_Q_int_reg ( .D(
         extimating_unit_incrY_int), .CK(clk), .RN(
         extimating_unit_CU_adapter_MEM_RE_delay_1_n1), .Q(MEM_RE) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_Q_int_reg ( .D(
         extimating_unit_ADD3_MVin_LE_nSET_int), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_1_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[1]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[1]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_2_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[2]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[2]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_3_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[3]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[3]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_4_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[4]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[4]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_5_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[5]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[5]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_6_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[6]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[6]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_7_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[7]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[7]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_8_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[8]) );
-  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_U3 ( .A(RST), 
-        .ZN(extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_n1) );
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_n1) );
   DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_Q_int_reg ( .D(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[8]), .CK(clk), .RN(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_delay_9_n1), .Q(
         extimating_unit_CU_adapter_ADD3_MVin_LE_nSET_int[9]) );
-  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_1_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_register_U3 ( .A(
+        extimating_unit_ADD3_MVin_LE_fRESET_int), .ZN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_register_n1) );
+  DFFR_X1 extimating_unit_CU_adapter_ADD3_MVin_LE_register_Q_int_reg ( .D(
+        extimating_unit_ADD3_MVin_LE_int), .CK(clk), .RN(
+        extimating_unit_CU_adapter_ADD3_MVin_LE_register_n1), .Q(
+        extimating_unit_CU_adapter_A3MVin_LE_samp) );
+  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_1_U3 ( .A(
+        extimating_unit_CU_adapter_n2), .ZN(
         extimating_unit_CU_adapter_LE_ab_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_LE_ab_delay_1_Q_int_reg ( .D(
         extimating_unit_LE_ab_CU_int), .CK(clk), .RN(
         extimating_unit_CU_adapter_LE_ab_delay_1_n1), .Q(
         extimating_unit_CU_adapter_LE_ab_int[1]) );
-  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_2_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_2_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_LE_ab_delay_2_n1) );
   DFFR_X1 extimating_unit_CU_adapter_LE_ab_delay_2_Q_int_reg ( .D(
         extimating_unit_CU_adapter_LE_ab_int[1]), .CK(clk), .RN(
         extimating_unit_CU_adapter_LE_ab_delay_2_n1), .Q(
         extimating_unit_CU_adapter_LE_ab_int[2]) );
-  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_3_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_3_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_LE_ab_delay_3_n1) );
   DFFR_X1 extimating_unit_CU_adapter_LE_ab_delay_3_Q_int_reg ( .D(
         extimating_unit_CU_adapter_LE_ab_int[2]), .CK(clk), .RN(
         extimating_unit_CU_adapter_LE_ab_delay_3_n1), .Q(
         extimating_unit_CU_adapter_LE_ab_int[3]) );
-  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_4_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_LE_ab_delay_4_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_LE_ab_delay_4_n1) );
   DFFR_X1 extimating_unit_CU_adapter_LE_ab_delay_4_Q_int_reg ( .D(
         extimating_unit_CU_adapter_LE_ab_int[3]), .CK(clk), .RN(
         extimating_unit_CU_adapter_LE_ab_delay_4_n1), .Q(
         extimating_unit_LE_ab_DP_int) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_1_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_1_Q_int_reg ( .D(
         extimating_unit_SAD_tmp_RST_CU_int), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_1_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[1]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_2_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_2_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_2_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_2_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[1]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_2_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[2]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_3_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_3_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_3_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_3_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[2]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_3_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[3]) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_4_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_4_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_4_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[3]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_4_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[4]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_5_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_5_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_5_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_5_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[4]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_5_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[5]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_6_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_6_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_6_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_6_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[5]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_6_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[6]) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_7_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_7_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_7_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[6]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_7_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[7]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_8_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_8_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_8_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_8_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[7]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_8_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[8]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_9_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_9_U3 ( .A(
+        extimating_unit_CU_adapter_n3), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_9_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_9_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[8]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_9_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[9]) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_10_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_10_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_10_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[9]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_10_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[10]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_11_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_11_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_11_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_11_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[10]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_11_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[11]) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_12_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_12_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_12_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[11]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_12_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[12]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_13_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_13_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_13_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_13_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[12]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_13_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[13]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_14_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_14_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_14_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_14_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[13]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_14_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[14]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_15_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_15_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_15_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_15_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[14]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_15_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[15]) );
   INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_16_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_16_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_16_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[15]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_16_n1), .Q(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[16]) );
-  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_17_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_17_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_17_n1) );
   DFFR_X1 extimating_unit_CU_adapter_SAD_tmp_RST_delay_17_Q_int_reg ( .D(
         extimating_unit_CU_adapter_SAD_tmp_RST_int[16]), .CK(clk), .RN(
         extimating_unit_CU_adapter_SAD_tmp_RST_delay_17_n1), .Q(
         extimating_unit_SAD_tmp_RST_DP_int) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_1_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_1_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_1_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_1_Q_int_reg ( .D(
         extimating_unit_INTER_DATA_VALID_RESET_int), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_1_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[1]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_2_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_2_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_2_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_2_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[1]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_2_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[2]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_3_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_3_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_3_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[2]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_3_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[3]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_4_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_4_U3 ( .A(
+        extimating_unit_CU_adapter_n4), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_4_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_4_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[3]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_4_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[4]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_5_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_5_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_5_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[4]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_5_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[5]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_6_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_6_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_6_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[5]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_6_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[6]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_7_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_7_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_7_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_7_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[6]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_7_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[7]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_8_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_8_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_8_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_8_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[7]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_8_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[8]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_9_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_9_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_9_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[8]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_9_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[9]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_10_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_10_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_10_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[9]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_10_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[10]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_11_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_11_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_11_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_11_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[10]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_11_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[11]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_12_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_12_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_12_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_12_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[11]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_12_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[12]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_13_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_13_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_13_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_13_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[12]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_13_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[13]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_14_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_14_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_14_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[13]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_14_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[14]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_15_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_15_U3 ( .A(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_15_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_15_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[14]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_15_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[15]) );
   INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_16_U3 ( .A(
-        extimating_unit_CU_adapter_n1), .ZN(
+        extimating_unit_CU_adapter_n6), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_16_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_16_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[15]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_16_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[16]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_17_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_17_U3 ( .A(
+        extimating_unit_CU_adapter_n7), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_17_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_17_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[16]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_17_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[17]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_18_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_18_U3 ( .A(
+        extimating_unit_CU_adapter_n7), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_18_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_18_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[17]), .CK(clk), .RN(
         extimating_unit_CU_adapter_Comp_EN_delay_18_n1), .Q(
         extimating_unit_CU_adapter_Comp_EN_int[18]) );
-  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_19_U3 ( .A(RST), .ZN(
+  INV_X1 extimating_unit_CU_adapter_Comp_EN_delay_19_U3 ( .A(
+        extimating_unit_CU_adapter_n7), .ZN(
         extimating_unit_CU_adapter_Comp_EN_delay_19_n1) );
   DFFR_X1 extimating_unit_CU_adapter_Comp_EN_delay_19_Q_int_reg ( .D(
         extimating_unit_CU_adapter_Comp_EN_int[18]), .CK(clk), .RN(

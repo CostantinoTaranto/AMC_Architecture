@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : AME_Architecture
 Version: F-2011.09-SP3
-Date   : Tue Jun 21 15:43:53 2022
+Date   : Tue Jun 21 19:15:48 2022
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
