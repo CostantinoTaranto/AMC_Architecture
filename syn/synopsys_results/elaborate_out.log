@@ -11,8 +11,6 @@ Presto compilation completed successfully.
 Information: Building the design 'extimator'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'CU_constructor'. (HDL-193)
-Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd:48: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd:89: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
 Statistics for case statements in always block at line 46 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd'
