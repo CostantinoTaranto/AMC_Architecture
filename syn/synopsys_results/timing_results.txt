@@ -1,14 +1,14 @@
 Information: Updating design information... (UID-85)
-Warning: Design 'AME_Architecture' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'AME_Architecture_expanded' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
  
 ****************************************
 Report : timing
         -path full
         -delay max
         -max_paths 1
-Design : AME_Architecture
+Design : AME_Architecture_expanded
 Version: F-2011.09-SP3
-Date   : Tue Jun 21 19:15:48 2022
+Date   : Tue Jun 21 22:18:44 2022
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -25,7 +25,8 @@ Wire Load Model Mode: top
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  AME_Architecture   5K_hvratio_1_1        NangateOpenCellLibrary
+  AME_Architecture_expanded
+                     5K_hvratio_1_1        NangateOpenCellLibrary
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------

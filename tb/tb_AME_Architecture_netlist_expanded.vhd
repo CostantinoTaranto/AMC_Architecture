@@ -6,10 +6,10 @@ use std.textio.all;
 library work;
 use work.AMEpkg.all;
 
-entity tb_AME_Architecture_netlist is
+entity tb_AME_Architecture_netlist_expanded is
 end entity;
 
-architecture tb of tb_AME_Architecture_netlist is
+architecture tb of tb_AME_Architecture_expanded is
 
 	component AME_Architecture_expanded_netlist_wrapper is
 		port ( cMV0_in, cMV1_in, cMV2_in: in motion_vector(1 downto 0);--Constructor motion vectors (0:h, 1:v)

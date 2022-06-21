@@ -8,7 +8,7 @@ set power_preserve_rtl_hier_names true
 #-------ELABORATION PHASE
 #Launch elaborate command to load the components
 #elaborate <top entity name> -arch <architecture name> -lib WORK > log_fileName
-elaborate CU_constructor_netlist -arch beh -lib WORK > ./synopsys_results/elaborate_out.log
+elaborate AME_Architecture_expanded -arch structural -lib WORK > ./synopsys_results/elaborate_out.log
 #uniquify #optional command to addres to only 1 specific architecture
 link
 
@@ -42,11 +42,11 @@ ungroup -all -flatten
 #Then, we have to export the netlist in verilog. So that we impose verilog rules for the names of the internal signals. This is obtained with
 change_names -hierarchy -rules verilog
 #We also save a file describing the delay of the netlist:
-write_sdf ../netlist/CU_constructor_netlist.sdf
+write_sdf ../netlist/AME_Architecture_expanded.sdf
 #We can now save the netlist in verilog:
-write -f verilog -hierarchy -output ../netlist/CU_constructor_netlist.v
+write -f verilog -hierarchy -output ../netlist/AME_Architecture_expanded.v
 #and the constraints to the input and output ports in a standard format:
-write_sdc ../netlist/CU_constructor_netlist.sdc
+write_sdc ../netlist/AME_Architecture_expanded.sdc
 
 #******* close Design compiler    ****************
 quit

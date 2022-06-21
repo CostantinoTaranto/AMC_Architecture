@@ -5,10 +5,10 @@ Loading db file '/software/synopsys/syn_current_64/libraries/syn/standard.sldb'
 Running PRESTO HDLC
 Presto compilation completed successfully.
 Elaborated 1 design.
-Current design is now 'AME_Architecture'.
+Current design is now 'AME_Architecture_expanded'.
 Information: Building the design 'constructor'. (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'extimator'. (HDL-193)
+Information: Building the design 'extimator_expanded'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'CU_constructor'. (HDL-193)
 Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd:48: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)

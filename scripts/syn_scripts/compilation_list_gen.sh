@@ -17,4 +17,8 @@ for curfile in /home/thesis/costantino.taranto/git/AME_Architecture/src/AME_Arch
 	echo "analyze -f vhdl -lib WORK $curfile" >> syn_toCompile.txt
 done
 
+for curfile in /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/* ; do
+	echo "analyze -f vhdl -lib WORK $curfile" >> syn_toCompile.txt
+done
+
 echo "syn_toCompile.txt generated"
