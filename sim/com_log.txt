@@ -1,5 +1,5 @@
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
+Start time: 22:55:21 on Jun 21,2022
 vcom -93 -work ./work ../src/generic/AMEpkg.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -7,10 +7,10 @@ vcom -93 -work ./work ../src/generic/AMEpkg.vhd
 -- Compiling package AMEpkg
 -- Compiling package body AMEpkg
 -- Loading package AMEpkg
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+End time: 22:55:21 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
+Start time: 22:55:21 on Jun 21,2022
 vcom -93 -work ./work ../tb/output_checker.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -19,10 +19,10 @@ vcom -93 -work ./work ../tb/output_checker.vhd
 -- Loading package AMEpkg
 -- Compiling entity output_checker
 -- Compiling architecture beh of output_checker
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+End time: 22:55:21 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
+Start time: 22:55:21 on Jun 21,2022
 vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -31,37 +31,37 @@ vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd
 -- Loading package AMEpkg
 -- Compiling entity DATA_MEMORY
 -- Compiling architecture beh of DATA_MEMORY
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+End time: 22:55:21 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
-vlog -work ./work ../netlist/AME_Architecture.v 
--- Compiling module AME_Architecture
+Start time: 22:55:21 on Jun 21,2022
+vlog -work ./work ../netlist/AME_Architecture_expanded.v 
+-- Compiling module AME_Architecture_expanded
 
 Top level modules:
-	AME_Architecture
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+	AME_Architecture_expanded
+End time: 22:55:22 on Jun 21,2022, Elapsed time: 0:00:01
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
-vcom -93 -work ./work ../netlist/AME_Architecture_netlist_wrapper.vhd 
+Start time: 22:55:22 on Jun 21,2022
+vcom -93 -work ./work ../netlist/AME_Architecture_expanded_netlist_wrapper.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package AMEpkg
--- Compiling entity AME_Architecture_netlist_wrapper
--- Compiling architecture structural of AME_Architecture_netlist_wrapper
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+-- Compiling entity AME_Architecture_expanded_netlist_wrapper
+-- Compiling architecture structural of AME_Architecture_expanded_netlist_wrapper
+End time: 22:55:22 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
 QuestaSim-64 vcom 2020.4 Compiler 2020.10 Oct 13 2020
-Start time: 19:17:45 on Jun 21,2022
-vcom -93 -work ./work ../tb/tb_AME_Architecture_netlist.vhd 
+Start time: 22:55:22 on Jun 21,2022
+vcom -93 -work ./work ../tb/tb_AME_Architecture_netlist_expanded.vhd 
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package AMEpkg
--- Compiling entity tb_AME_Architecture_netlist
--- Compiling architecture tb of tb_AME_Architecture_netlist
-End time: 19:17:45 on Jun 21,2022, Elapsed time: 0:00:00
+-- Compiling entity tb_AME_Architecture_netlist_expanded
+-- Compiling architecture tb of tb_AME_Architecture_netlist_expanded
+End time: 22:55:22 on Jun 21,2022, Elapsed time: 0:00:00
 Errors: 0, Warnings: 0
