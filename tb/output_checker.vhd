@@ -177,7 +177,7 @@ begin
 							read(eline, evalue);
 							write(line_out, evalue);
 							write(line_out, string'(","));
-							write(line_out, to_integer(signed(MV1_out(I))));
+							write(line_out, to_integer(signed(MV2_out(I))));
 							write(line_out, string'(","));
 							if to_integer(signed(MV2_out(I)))=evalue then
 								write(line_out,string'("OK"));

@@ -183,14 +183,23 @@ begin
 				candidate_MV2_v(I)<=row_data_read;
 			end loop;
 		end if;
-		wait for Tc;
+		
 	------Input stimuli
+		--Alba dei tempi
 		END_SIM<='0';
 		if constructed_r=0 then
 			constructed_int<='0';
 		else
 			constructed_int<='1';
 		end if;
+		CU_w_t<=std_logic_vector(to_unsigned(0,CU_w_t'length));
+		CU_h_t<=std_logic_vector(to_unsigned(0,CU_h_t'length));
+		RST_t<='0';
+		START_t<='0';
+		VALID_t<='0';
+		eIN_SEL_t<='0';--VTM input
+		wait for Tc;
+		--Primo maledetto colpo
 		RST_t<='1';
 		wait for Tc;
 		RST_t<='0';

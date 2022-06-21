@@ -1,2 +1,225 @@
-Error: Current design is not defined. (UID-4)
-0
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | F-2011.09-DWBB_201109.3 |     *     |
+| Licensed DW Building Blocks        | F-2011.09-DWBB_201109.3 |     *     |
+============================================================================
+
+
+Information: There are 302 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'FlFl_T_0'
+  Processing 'COUNT_N_N5_TARGET18'
+  Processing 'FlFl_LE_0'
+  Processing 'SAD_min_REG'
+  Processing 'comparator_N18'
+  Processing 'REG_N_N18'
+  Processing 'REG_N_sRST_N18'
+  Processing 'REG_N_N10'
+  Processing 'unsigned_adder_N9'
+  Processing 'REG_N_N9_0'
+  Processing 'unsigned_adder_N8_0'
+  Processing 'REG_N_N8_0'
+  Processing 'abs_unit_N9_0'
+  Processing 'unsigned_subtractor_N8_0'
+  Processing 'extimator_ResCal'
+  Processing 'FlFl_0'
+  Processing 'CU_extimator_adapter'
+  Processing 'CU_Ready_Handler'
+  Processing 'CU_extimator'
+  Processing 'REG_N_N13_0'
+  Processing 'REG_N_N6_0'
+  Processing 'adder_N12_0'
+  Processing 'COUNT_VAL_N2'
+  Processing 'REG_N_N12_0'
+  Processing 'Round_0'
+  Processing 'REG_N_LE_N20_0'
+  Processing 'REG_N_N20_0'
+  Processing 'adder_N20_0'
+  Processing 'ADD3_N18_0'
+  Processing 'sign_extender_N_in15_N_out18_0'
+  Processing 'REG_N_LE_N11_0'
+  Processing 'REG_N_LE_N24_0'
+  Processing 'adder_N14_0'
+  Processing 'REG_N_N14_0'
+  Processing 'COUNT_VAL_N_N2_TARGET3_0'
+  Processing 'MULT1_N12_0'
+  Processing 'REG_N_LE_N12_0'
+  Processing 'signed_shifter_N12_0'
+  Processing 'R_SH2_N12_0'
+  Processing 'REG_N_N2_0'
+  Processing 'subtractor_N11_0'
+  Processing 'enc2b_0'
+  Processing 'cnt_RSTs_CEs_N2_0'
+  Processing 'T_FF_0'
+  Processing 'firstPelPos_comp_0'
+Information: Added key list 'DesignWare' to design 'firstPelPos_comp_0'. (DDB-72)
+  Processing 'firstPelPos'
+  Processing 'Ext_RF'
+  Processing 'extimator_PelRet'
+  Processing 'extimator'
+  Processing 'MV_RF_0'
+  Processing 'COUNT_N_N4_TARGET10'
+  Processing 'COUNT_N_N3_TARGET6'
+  Processing 'comparator_N28'
+  Processing 'D_min_REG'
+  Processing 'REG_N_N28_0'
+  Processing 'adder_N27'
+  Processing 'REG_N_N27_0'
+  Processing 'if_UA_0'
+  Processing 'multiplier_N15_0'
+  Processing 'REG_N_N15_0'
+  Processing 'subtractor_N15_0'
+  Processing 'sign_extender_N_in11_N_out15_0'
+  Processing 'sign_extender_N_in11_N_out14_0'
+  Processing 'signed_Lshifter_N_in13_N_out14_0'
+  Processing 'signed_Lshifter_N_in12_N_out13_0'
+  Processing 'sign_extender_N_in12_N_out14_0'
+  Processing 'LR_SH2_0'
+  Processing 'subtractor_N14'
+  Processing 'unsigned_shifter_N2_0'
+  Processing 'h_over_w'
+Information: Added key list 'DesignWare' to design 'h_over_w'. (DDB-72)
+  Processing 'DP_constructor'
+  Processing 'CU_constructor'
+  Processing 'constructor'
+  Processing 'AME_Architecture'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'extimator_ResCal_DW01_add_0'
+  Processing 'COUNT_N_N5_TARGET18_DW01_inc_0'
+  Mapping 'comparator_N18_DW_cmp_0'
+  Processing 'unsigned_adder_N9_DW01_add_0'
+  Processing 'unsigned_adder_N8_1_DW01_add_0'
+  Processing 'unsigned_adder_N8_0_DW01_add_0'
+  Processing 'abs_unit_N9_1_DW01_sub_0'
+  Processing 'unsigned_subtractor_N8_1_DW01_sub_0'
+  Processing 'abs_unit_N9_2_DW01_sub_0'
+  Processing 'unsigned_subtractor_N8_2_DW01_sub_0'
+  Processing 'abs_unit_N9_3_DW01_sub_0'
+  Processing 'unsigned_subtractor_N8_3_DW01_sub_0'
+  Processing 'abs_unit_N9_0_DW01_sub_0'
+  Processing 'unsigned_subtractor_N8_0_DW01_sub_0'
+  Processing 'extimator_PelRet_DW01_add_0'
+  Processing 'extimator_PelRet_DW01_inc_0'
+  Processing 'adder_N12_1_DW01_add_0'
+  Processing 'adder_N12_0_DW01_add_0'
+  Processing 'Round_1_DW01_add_0'
+  Processing 'Round_0_DW01_add_0'
+  Processing 'adder_N20_1_DW01_add_0'
+  Processing 'adder_N20_0_DW01_add_0'
+  Processing 'adder_N14_1_DW01_add_0'
+  Processing 'adder_N14_2_DW01_add_0'
+  Processing 'adder_N14_3_DW01_add_0'
+  Processing 'adder_N14_4_DW01_add_0'
+  Processing 'subtractor_N11_1_DW01_sub_0'
+  Processing 'subtractor_N11_2_DW01_sub_0'
+  Processing 'subtractor_N11_3_DW01_sub_0'
+  Processing 'subtractor_N11_4_DW01_sub_0'
+  Mapping 'comparator_N28_DW_cmp_0'
+  Processing 'adder_N27_DW01_add_0'
+  Processing 'subtractor_N15_1_DW01_sub_0'
+  Processing 'adder_N14_0_DW01_add_0'
+  Processing 'subtractor_N11_5_DW01_sub_0'
+  Processing 'subtractor_N15_0_DW01_sub_0'
+  Processing 'subtractor_N14_DW01_sub_0'
+  Processing 'subtractor_N11_0_DW01_sub_0'
+  Mapping 'multiplier_N15_1_DW_mult_tc_0'
+  Mapping 'multiplier_N15_0_DW_mult_tc_0'
+  Mapping 'MULT1_N12_1_DW_mult_tc_0'
+  Mapping 'MULT1_N12_2_DW_mult_tc_0'
+  Mapping 'MULT1_N12_3_DW_mult_tc_0'
+  Mapping 'MULT1_N12_0_DW_mult_tc_0'
+  Mapping 'DW_mult_uns'
+Information: Added key list 'DesignWare' to design 'dp_cluster_0_1'. (DDB-72)
+  Mapping 'DW_mult_uns'
+Information: Added key list 'DesignWare' to design 'Round_0'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:07   26949.5      0.89       2.2    4802.9                          
+    0:00:07   26949.5      0.89       2.2    4802.9                          
+    0:00:09   27456.8      0.00       0.0       0.0                          
+    0:00:09   27456.8      0.00       0.0       0.0                          
+    0:00:09   27456.8      0.00       0.0       0.0                          
+    0:00:09   27456.8      0.00       0.0       0.0                          
+    0:00:09   27456.8      0.00       0.0       0.0                          
+    0:00:12   23815.0      0.00       0.0       0.0                          
+    0:00:12   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:13   23814.7      0.00       0.0       0.0                          
+    0:00:14   23775.3      0.00       0.0     420.9                          
+
+
+  Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
+  ----------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:14   23775.3      0.00       0.0     420.9                          
+    0:00:14   23778.8      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:14   23778.8      0.00       0.0       0.0                          
+    0:00:14   23778.8      0.00       0.0       0.0                          
+    0:00:15   23739.7      0.00       0.0       0.0                          
+    0:00:15   23726.4      0.00       0.0       0.0                          
+    0:00:15   23720.3      0.00       0.0       0.0                          
+    0:00:15   23717.6      0.00       0.0       0.0                          
+    0:00:15   23715.5      0.00       0.0       0.0                          
+    0:00:15   23715.5      0.00       0.0       0.0                          
+    0:00:15   23715.5      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+    0:00:15   23715.0      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'AME_Architecture' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'constructing_unit/Datapath/FaS_registers0_v_2/LE': 1716 load(s), 1 driver(s)
+     Net 'extimating_unit/Pixel_Retrieval_Unit/firstPelPos_calc/firstPelPos_y/CurBlock/clk': 2695 load(s), 1 driver(s)
+1

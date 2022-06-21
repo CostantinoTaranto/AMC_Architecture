@@ -23,9 +23,9 @@ add wave -noupdate -radix unsigned /tb_ame_architecture_netlist/RADDR_CurCu_x_in
 add wave -noupdate -radix unsigned /tb_ame_architecture_netlist/RADDR_CurCu_y_int
 add wave -noupdate /tb_ame_architecture_netlist/MEM_RE_int
 add wave -noupdate /tb_ame_architecture_netlist/eREADY_t
-add wave -noupdate /tb_ame_architecture_netlist/MV0_out_t
-add wave -noupdate /tb_ame_architecture_netlist/MV1_out_t
-add wave -noupdate /tb_ame_architecture_netlist/MV2_out_t
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MV0_out_t
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MV1_out_t
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MV2_out_t
 add wave -noupdate /tb_ame_architecture_netlist/candidate_MV0_h
 add wave -noupdate /tb_ame_architecture_netlist/candidate_MV0_v
 add wave -noupdate /tb_ame_architecture_netlist/candidate_MV1_h
@@ -40,23 +40,23 @@ add wave -noupdate /tb_ame_architecture_netlist/eMV1_in_r2
 add wave -noupdate /tb_ame_architecture_netlist/eMV2_in_r2
 add wave -noupdate /tb_ame_architecture_netlist/cComp_EN_int
 add wave -noupdate /tb_ame_architecture_netlist/cDONE_int
-add wave -noupdate /tb_ame_architecture_netlist/eComp_EN_int
 add wave -noupdate /tb_ame_architecture_netlist/eDONE_int
-add wave -noupdate /tb_ame_architecture_netlist/MVP0_int
-add wave -noupdate /tb_ame_architecture_netlist/MVP1_int
-add wave -noupdate /tb_ame_architecture_netlist/MVP2_int
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MVP0_int
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MVP1_int
+add wave -noupdate -radix decimal /tb_ame_architecture_netlist/MVP2_int
+add wave -noupdate /tb_ame_architecture_netlist/eComp_EN_int
 add wave -noupdate -radix unsigned /tb_ame_architecture_netlist/CurSAD_int
 add wave -noupdate /tb_ame_architecture_netlist/D_Cur_int
 add wave -noupdate /tb_ame_architecture_netlist/END_SIM
 add wave -noupdate /tb_ame_architecture_netlist/constructed_int
 add wave -noupdate /tb_ame_architecture_netlist/output_check/cComp_EN
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {45 ns} 0}
+WaveRestoreCursors {{Cursor 1} {50 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 357
 configure wave -valuecolwidth 152
 configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -67,4 +67,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {144 ns}
+WaveRestoreZoom {0 ns} {189 ns}
