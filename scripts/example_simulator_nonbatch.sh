@@ -93,7 +93,7 @@ else
 		else
 			read LINE <&3
 			#eval "vsim -do ../sim/batch_simulate.cmd work.$LINE"
-			eval "vsim work.$LINE"
+			eval "vsim -voptargs=+acc work.$LINE"
 		fi
 	else
 		echo "Compilation completed succesfully. No Testbench has been provided."

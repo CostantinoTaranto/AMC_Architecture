@@ -85,7 +85,7 @@ done
 if grep -Fq "** Error" $SimPath/$LogFilename
 then
 	echo "Compliation error. See \"/sim/$LogFilename\" file for more."
-	return
+	exit
 else 
 	if [[ $isTb -eq 1 ]] ; then
 		read LINE <&3

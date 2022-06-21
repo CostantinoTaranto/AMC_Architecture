@@ -5,7 +5,7 @@ vcom -93 -work ./work ../src/generic/AMEpkg.vhd
 vcom -93 -work ./work ../tb/output_checker.vhd
 vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd
 vlog -work ./work ../netlist/AME_Architecture.v
-vcom -93 -work ./work ../netlist/memory/AME_Architecture_wrapper.vhd
+vcom -93 -work ./work ../netlist/AME_Architecture_netlist_wrapper.vhd
 --TESTBENCH
 vcom -93 -work ./work ../tb/tb_AME_Architecture_netlist.vhd	
 --TB_NAME

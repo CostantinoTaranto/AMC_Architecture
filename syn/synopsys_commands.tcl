@@ -33,23 +33,23 @@ set_load $OLOAD [all_outputs]
 compile >  ./synopsys_results/compilation_results.txt
 
 #*********    Save the results      *************
-report_timing  >  ./synopsys_results/timing_results.txt
-report_area    >  ./synopsys_results/area_results.txt
+####report_timing  >  ./synopsys_results/timing_results.txt
+####report_area    >  ./synopsys_results/area_results.txt
 
 #Finally, we can save the data required to complete the design and to perform switchingactivity-based power estimation. 
 #First, we ungroup the cells to flatten the hierarchy as follows:
-ungroup -all -flatten
+####ungroup -all -flatten
 #Then, we have to export the netlist in verilog. So that we impose verilog rules for the names of the internal signals. This is obtained with
-change_names -hierarchy -rules verilog
+####change_names -hierarchy -rules verilog
 #We also save a file describing the delay of the netlist:
-write_sdf ../netlist/AME_Architecture.sdf
+####write_sdf ../netlist/AME_Architecture.sdf
 #We can now save the netlist in verilog:
-write -f verilog -hierarchy -output ../netlist/AME_Architecture.v
+####write -f verilog -hierarchy -output ../netlist/AME_Architecture.v
 #and the constraints to the input and output ports in a standard format:
-write_sdc ../netlist/AME_Architecture.sdc
+####write_sdc ../netlist/AME_Architecture.sdc
 
 #******* close Design compiler    ****************
-quit
+####quit
 
 
 

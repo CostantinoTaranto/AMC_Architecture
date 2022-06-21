@@ -80,7 +80,7 @@ architecture tb of tb_AME_Architecture_netlist is
 	signal END_SIM: std_logic;
 	signal constructed_int: std_logic;
 
-	constant Tc: time := 2 ns;
+	constant Tc: time := 12 ns; --4*Tc
 
 begin
 
