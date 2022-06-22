@@ -116,6 +116,8 @@ begin
 					else
 						NS<="10110";
 					end if;
+				else
+						NS<="01111";
 				end if;
 			when "10000" =>
 				NS<="10011";

@@ -235,6 +235,18 @@ begin
 		START_t<='0';
 		VALID_t<='0';
 		eIN_SEL_t<='0';--VTM input
+		eMV0_in_t(0)<=std_logic_vector(to_signed(0,eMV0_in_t(0)'length));
+		eMV0_in_t(1)<=std_logic_vector(to_signed(0,eMV0_in_t(1)'length));
+		eMV1_in_t(0)<=std_logic_vector(to_signed(0,eMV1_in_t(0)'length));
+		eMV1_in_t(1)<=std_logic_vector(to_signed(0,eMV1_in_t(1)'length));
+		eMV2_in_t(0)<=std_logic_vector(to_signed(0,eMV2_in_t(0)'length));
+		eMV2_in_t(1)<=std_logic_vector(to_signed(0,eMV2_in_t(1)'length));
+		cMV0_in_t(0)<=std_logic_vector(to_signed(0,cMV0_in_t(0)'length));
+		cMV0_in_t(1)<=std_logic_vector(to_signed(0,cMV0_in_t(1)'length));
+		cMV1_in_t(0)<=std_logic_vector(to_signed(0,cMV1_in_t(0)'length));
+		cMV1_in_t(1)<=std_logic_vector(to_signed(0,cMV1_in_t(1)'length));
+		cMV2_in_t(0)<=std_logic_vector(to_signed(0,cMV2_in_t(0)'length));
+		cMV2_in_t(1)<=std_logic_vector(to_signed(0,cMV2_in_t(1)'length));
 		wait for Tc;
 		--Primo maledetto colpo
 		RST_t<='1';
@@ -270,10 +282,10 @@ begin
 						cMV2_in_t(0)<=std_logic_vector(to_signed(candidate_MV2_h(K),cMV2_in_t(0)'length));
 						cMV2_in_t(1)<=std_logic_vector(to_signed(candidate_MV2_v(K),cMV2_in_t(1)'length));
 						wait for Tc;
+						START_t<='0';
+						VALID_t<='0';
 					end loop;
 				end loop;
-				START_t<='0';
-				VALID_t<='0';
 			end loop;
 			wait for Tc;
 			eIN_SEL_t<='1'; --Constructor input

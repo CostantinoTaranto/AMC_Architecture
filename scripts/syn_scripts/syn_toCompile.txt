@@ -50,3 +50,4 @@ analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/s
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_constructor_netlist.vhd
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd
 analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/extimator_expanded.vhd
+analyze -f vhdl -lib WORK /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/extimator_PelRet_expanded.vhd

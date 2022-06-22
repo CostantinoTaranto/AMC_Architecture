@@ -157,16 +157,8 @@ begin
 	A3MVin_set <= ADD3_MVin_LE_fSET OR ADD3_MVin_LE_nSET_int(nSET_DELAY);
 	A3MVin_set_reset<= A3MVin_set & ADD3_MVin_LE_fRESET;
 
-	--trying to increase the duration of the ADD3_MVin_LE
-	half_delay_for_ADD3_MVin_LE_fRESET: process(clk)
-	begin
-		if falling_edge(clk) then
-			ADD3_MVin_LE_fRESET_half_delayed<= ADD3_MVin_LE_fRESET;
-		end if;
-	end process;
-
 	ADD3_MVin_LE_register: FlFl
-		port map(D=>ADD3_MVin_LE_int,Q=>A3MVin_LE_samp,clk=>clk,RST=>ADD3_MVin_LE_fRESET_half_delayed);
+		port map(D=>ADD3_MVin_LE_int,Q=>A3MVin_LE_samp,clk=>clk,RST=>ADD3_MVin_LE_fRESET);
 
 	ADD3_MVin_LE_int_mux: process(A3MVin_set_reset,A3MVin_LE_samp)
 	begin
@@ -174,9 +166,9 @@ begin
 			when "10" => --SET 1 RESET 0
 				ADD3_MVin_LE_int<='1';
 			when "11" => --SET 1 RESET 1
-				ADD3_MVin_LE_int<=A3MVin_LE_samp;
+				ADD3_MVin_LE_int<='0';
 			when "01" => --SET 0 RESET 1
-				ADD3_MVin_LE_int<=A3MVin_LE_samp;
+				ADD3_MVin_LE_int<='0';
 			when "00" => --SET 0 RESET 0
 				ADD3_MVin_LE_int<=A3MVin_LE_samp;
 			when OTHERS =>
@@ -194,7 +186,7 @@ begin
 	--		ADD3_MVin_LE_int<=ADD3_MVin_LE_int;
 	--	end if;
 	--end process;
-	ADD3_MVin_LE<=ADD3_MVin_LE_int;
+	--ADD3_MVin_LE<=ADD3_MVin_LE_int;
 
 ----RF_Addr
 	RF_Addr_decoding: process(RF_Addr_CU,BestCand)

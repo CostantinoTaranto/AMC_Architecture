@@ -9,15 +9,6 @@ Current design is now 'AME_Architecture_expanded'.
 Information: Building the design 'constructor'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'extimator_expanded'. (HDL-193)
-
-Inferred memory devices in process
-	in routine extimator_expanded line 147 in file
-		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/extimator_expanded.vhd'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|  RF_in_WE_int_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
-===============================================================================
 Presto compilation completed successfully.
 Information: Building the design 'CU_constructor'. (HDL-193)
 Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd:48: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
@@ -50,7 +41,7 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'DP_constructor'. (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'extimator_PelRet'. (HDL-193)
+Information: Building the design 'extimator_PelRet_expanded'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'CU_extimator_expanded'. (HDL-193)
 
@@ -62,12 +53,12 @@ Statistics for case statements in always block at line 71 in file
 |            73            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 160 in file
+Statistics for case statements in always block at line 162 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           162            |    auto/auto     |
+|           164            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
@@ -78,15 +69,6 @@ Inferred memory devices in process
 ===============================================================================
 |       PS_reg        | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
-
-Inferred memory devices in process
-	in routine CU_extimator_expanded line 71 in file
-		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'.
-===========================================================================
-|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
-===========================================================================
-|       NS_reg        | Latch |   5   |  Y  | N  | N  | N  | -  | -  | -  |
-===========================================================================
 Presto compilation completed successfully.
 Information: Building the design 'CU_Ready_Handler'. (HDL-193)
 
@@ -117,7 +99,7 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'CU_extimator_adapter'. (HDL-193)
 Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:85: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:173: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:165: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
 Statistics for case statements in always block at line 83 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
@@ -127,30 +109,21 @@ Statistics for case statements in always block at line 83 in file
 |            85            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 171 in file
+Statistics for case statements in always block at line 163 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           173            |    auto/auto     |
+|           165            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 200 in file
+Statistics for case statements in always block at line 192 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           202            |    auto/auto     |
+|           194            |    auto/auto     |
 ===============================================
-
-Inferred memory devices in process
-	in routine CU_extimator_adapter line 161 in file
-		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'.
-================================================================================================
-|            Register Name             |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-================================================================================================
-| ADD3_MVin_LE_fRESET_half_delayed_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
-================================================================================================
 Presto compilation completed successfully.
 Information: Building the design 'extimator_ResCal'. (HDL-193)
 
@@ -364,7 +337,7 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'firstPelPos'. (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'REG_N' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'REG_N' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=6". (HDL-193)
 
 Inferred memory devices in process
@@ -376,10 +349,10 @@ Inferred memory devices in process
 |      Q_int_reg      | Flip-flop |   6   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'R_SH2' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'R_SH2' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=12". (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'REG_N_LE' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'REG_N_LE' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=12". (HDL-193)
 
 Inferred memory devices in process
@@ -391,7 +364,7 @@ Inferred memory devices in process
 |      Q_int_reg      | Flip-flop |  12   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'MULT1' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'MULT1' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=12". (HDL-193)
 
 Inferred memory devices in process
@@ -403,7 +376,7 @@ Inferred memory devices in process
 |   product_int_reg   | Flip-flop |  26   |  Y  | N  | N  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'REG_N_LE' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'REG_N_LE' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=11". (HDL-193)
 
 Inferred memory devices in process
@@ -415,10 +388,10 @@ Inferred memory devices in process
 |      Q_int_reg      | Flip-flop |  11   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'sign_extender' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'sign_extender' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N_in=15,N_out=18". (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'ADD3' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'ADD3' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=18". (HDL-193)
 
 Inferred memory devices in process
@@ -432,10 +405,10 @@ Inferred memory devices in process
 Presto compilation completed successfully.
 Information: Building the design 'Round'. (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'adder' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'adder' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=12". (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'COUNT_VAL' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'COUNT_VAL' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=2". (HDL-193)
 
 Inferred memory devices in process
@@ -447,7 +420,7 @@ Inferred memory devices in process
 |    count_int_reg    | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
-Information: Building the design 'REG_N' instantiated from design 'extimator_PelRet' with
+Information: Building the design 'REG_N' instantiated from design 'extimator_PelRet_expanded' with
 	the parameters "N=13". (HDL-193)
 
 Inferred memory devices in process

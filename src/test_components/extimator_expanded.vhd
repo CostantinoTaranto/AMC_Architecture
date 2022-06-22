@@ -157,12 +157,12 @@ begin
 	
 	RF_in_WE_int_tmp<=VALID_int AND READY_int;
 
-	RF_in_WE_half_delay: process(clk)
-	begin
-		if falling_edge(clk) then
+	--RF_in_WE_half_delay: process(clk)
+	--begin
+		--if falling_edge(clk) then
 			RF_in_WE_int<=RF_in_WE_int_tmp;
-		end if;
-	end process;
+		--end if;
+	--end process;
 	
 	extimator_CU: CU_extimator_expanded
 		port map( VALID=>VALID_int, last_block_x=>last_block_x_int, last_block_y=>last_block_y_int,
