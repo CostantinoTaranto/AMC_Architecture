@@ -68,13 +68,13 @@ begin
 	end process;
 
 ----NEXT STATE CALCULATION
-	next_state_calc: process(PS,VALID,last_block_x,last_block_y,last_cand,Second_ready,CountTerm_OUT)
+	next_state_calc: process(PS,VALID_int,last_block_x_int,last_block_y_int,last_cand_int,Second_ready_int,CountTerm_OUT_int)
 	begin
 		case PS is
 			when "00000" =>
 				NS<="00001";
 			when "00001" =>
-				if VALID='1' then
+				if VALID_int='1' then
 					NS<="00010";
 				else
 					NS<="00001";
@@ -106,12 +106,12 @@ begin
 			when "01110" =>
 				NS<="01111";
 			when "01111" =>
-				if last_block_x='0' THEN
+				if last_block_x_int='0' THEN
 					NS<="10001";
-				elsif last_block_x='1' AND last_block_y='0' THEN
+				elsif last_block_x_int='1' AND last_block_y_int='0' THEN
 					NS<="10000";
-				elsif last_block_x='1' AND last_block_y='1' THEN
-					if last_cand='0' then
+				elsif last_block_x_int='1' AND last_block_y_int='1' THEN
+					if last_cand_int='0' then
 						NS<="10010";
 					else
 						NS<="10110";
@@ -124,7 +124,7 @@ begin
 			when "10001" =>
 				NS<="10011";
 			when "10010" =>
-				if Second_ready='1' OR VALID='1' THEN
+				if Second_ready_int='1' OR VALID_int='1' THEN
 					NS<="10100";
 				else
 					NS<="10101";
@@ -142,7 +142,7 @@ begin
 			when "10110" =>
 				NS<="10111";
 			when "10111"=>
-				if CountTerm_OUT='1' then
+				if CountTerm_OUT_int='1' then
 					NS<="11000";
 				else
 					NS<="10111";
@@ -700,8 +700,6 @@ begin
 
 	--Attempt to understand the glitch problem
 	RF_in_RE<='1';
-
-	--Moving the register from in to out
 	
 
 end architecture;
