@@ -43,27 +43,27 @@ Information: Building the design 'DP_constructor'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'extimator_PelRet'. (HDL-193)
 Presto compilation completed successfully.
-Information: Building the design 'CU_extimator'. (HDL-193)
+Information: Building the design 'CU_extimator_expanded'. (HDL-193)
 
-Statistics for case statements in always block at line 61 in file
-	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator.vhd'
+Statistics for case statements in always block at line 71 in file
+	'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            63            |    auto/auto     |
+|            73            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 150 in file
-	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator.vhd'
+Statistics for case statements in always block at line 160 in file
+	'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           152            |    auto/auto     |
+|           162            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
-	in routine CU_extimator line 49 in file
-		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator.vhd'.
+	in routine CU_extimator_expanded line 59 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
@@ -71,8 +71,8 @@ Inferred memory devices in process
 ===============================================================================
 
 Inferred memory devices in process
-	in routine CU_extimator line 61 in file
-		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator.vhd'.
+	in routine CU_extimator_expanded line 71 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'.
 ===========================================================================
 |    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================
@@ -107,32 +107,41 @@ Inferred memory devices in process
 ===============================================================================
 Presto compilation completed successfully.
 Information: Building the design 'CU_extimator_adapter'. (HDL-193)
-Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:84: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
-Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:164: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:85: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
+Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd:173: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)
 
-Statistics for case statements in always block at line 82 in file
+Statistics for case statements in always block at line 83 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            84            |    auto/auto     |
+|            85            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 162 in file
+Statistics for case statements in always block at line 171 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           164            |    auto/auto     |
+|           173            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 191 in file
+Statistics for case statements in always block at line 200 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           193            |    auto/auto     |
+|           202            |    auto/auto     |
 ===============================================
+
+Inferred memory devices in process
+	in routine CU_extimator_adapter line 161 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/extimator/CU_extimator_adapter.vhd'.
+================================================================================================
+|            Register Name             |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================================
+| ADD3_MVin_LE_fRESET_half_delayed_reg | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+================================================================================================
 Presto compilation completed successfully.
 Information: Building the design 'extimator_ResCal'. (HDL-193)
 

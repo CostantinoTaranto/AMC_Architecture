@@ -201,6 +201,10 @@ Compiling Entity Declaration CU_CONSTRUCTOR_NETLIST
 Compiling Architecture BEH of CU_CONSTRUCTOR_NETLIST
 Presto compilation completed successfully.
 Running PRESTO HDLC
+Compiling Entity Declaration CU_EXTIMATOR_EXPANDED
+Compiling Architecture BEH of CU_EXTIMATOR_EXPANDED
+Presto compilation completed successfully.
+Running PRESTO HDLC
 Compiling Entity Declaration EXTIMATOR_EXPANDED
 Compiling Architecture STRUCTURAL of EXTIMATOR_EXPANDED
 Presto compilation completed successfully.

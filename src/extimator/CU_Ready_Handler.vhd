@@ -95,7 +95,7 @@ begin
 			when WAIT_RST =>
 				READY<='0';
 				Second_Ready<='1';
-				GOT<='0';
+				GOT<='1';
 			when OTHERS =>
 				READY<='0';
 				Second_Ready<='0';

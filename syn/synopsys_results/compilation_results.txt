@@ -9,7 +9,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 303 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 305 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -33,7 +33,7 @@ Information: There are 303 potential problems in your design. Please run 'check_
   Processing 'FlFl_0'
   Processing 'CU_extimator_adapter'
   Processing 'CU_Ready_Handler'
-  Processing 'CU_extimator'
+  Processing 'CU_extimator_expanded'
   Processing 'REG_N_N13_0'
   Processing 'REG_N_N6_0'
   Processing 'adder_N12_0'
@@ -153,22 +153,22 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:07   26976.1      0.89       2.2    4020.6                          
-    0:00:07   26976.1      0.89       2.2    4020.6                          
-    0:00:09   27467.4      0.00       0.0       0.0                          
-    0:00:09   27467.4      0.00       0.0       0.0                          
-    0:00:09   27467.4      0.00       0.0       0.0                          
-    0:00:09   27467.4      0.00       0.0       0.0                          
-    0:00:09   27467.4      0.00       0.0       0.0                          
-    0:00:12   23820.3      0.00       0.0       0.0                          
-    0:00:12   23820.0      0.00       0.0       0.0                          
-    0:00:12   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
+    0:00:07   26981.2      0.89       2.2    4020.6                          
+    0:00:07   26981.2      0.89       2.2    4020.6                          
+    0:00:09   27471.4      0.00       0.0       0.0                          
+    0:00:10   27471.4      0.00       0.0       0.0                          
+    0:00:10   27471.4      0.00       0.0       0.0                          
+    0:00:10   27471.4      0.00       0.0       0.0                          
+    0:00:10   27471.4      0.00       0.0       0.0                          
+    0:00:12   23827.5      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
 
 
 
@@ -178,9 +178,9 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:13   23820.0      0.00       0.0       0.0                          
-    0:00:14   23780.7      0.00       0.0     420.9                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:13   23827.2      0.00       0.0       0.0                          
+    0:00:15   23787.8      0.00       0.0     420.9                          
 
 
   Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
@@ -189,8 +189,8 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:14   23780.7      0.00       0.0     420.9                          
-    0:00:14   23784.1      0.00       0.0       0.0                          
+    0:00:15   23787.8      0.00       0.0     420.9                          
+    0:00:15   23791.6      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -199,27 +199,27 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:14   23784.1      0.00       0.0       0.0                          
-    0:00:14   23784.1      0.00       0.0       0.0                          
-    0:00:14   23745.6      0.00       0.0       0.0                          
-    0:00:15   23732.8      0.00       0.0       0.0                          
-    0:00:15   23727.2      0.00       0.0       0.0                          
-    0:00:15   23725.1      0.00       0.0       0.0                          
-    0:00:15   23723.5      0.00       0.0       0.0                          
-    0:00:15   23723.5      0.00       0.0       0.0                          
-    0:00:15   23723.5      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
-    0:00:15   23722.9      0.00       0.0       0.0                          
+    0:00:15   23791.6      0.00       0.0       0.0                          
+    0:00:15   23791.6      0.00       0.0       0.0                          
+    0:00:15   23752.5      0.00       0.0       0.0                          
+    0:00:15   23740.0      0.00       0.0       0.0                          
+    0:00:15   23734.4      0.00       0.0       0.0                          
+    0:00:15   23732.3      0.00       0.0       0.0                          
+    0:00:15   23730.7      0.00       0.0       0.0                          
+    0:00:15   23730.7      0.00       0.0       0.0                          
+    0:00:15   23730.7      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:15   23730.1      0.00       0.0       0.0                          
+    0:00:16   23730.1      0.00       0.0       0.0                          
 Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
 
   Optimization Complete
   ---------------------
 Warning: Design 'AME_Architecture_expanded' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
      Net 'constructing_unit/Datapath/FaS_registers0_v_2/LE': 1716 load(s), 1 driver(s)
-     Net 'extimating_unit/Pixel_Retrieval_Unit/firstPelPos_calc/firstPelPos_y/CurBlock/clk': 2696 load(s), 1 driver(s)
+     Net 'extimating_unit/Pixel_Retrieval_Unit/firstPelPos_calc/firstPelPos_y/CurBlock/clk': 2697 load(s), 1 driver(s)
 1

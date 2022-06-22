@@ -36,6 +36,7 @@ architecture beh of CU_extimator_expanded is
 
 	signal PS, NS: std_logic_vector(4 downto 0);
 	signal VALID_int, last_block_x_int, last_block_y_int, last_cand_int, Second_ready_int, CountTerm_OUT_int: std_logic;
+	signal RF_in_RE_dummy : std_logic;
 
 begin
 
@@ -176,7 +177,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='0';
+				RF_in_RE_dummy<='0';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -200,7 +201,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';----
+				RF_in_RE_dummy<='1';----
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='1';----
@@ -224,7 +225,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='1';----
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -248,7 +249,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';----
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -272,7 +273,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -296,7 +297,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -321,7 +322,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -345,7 +346,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -369,7 +370,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -393,7 +394,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -417,7 +418,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -441,7 +442,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -465,7 +466,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='1';----
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='1';----
 				ADD3_MVin_LE_fSET<='0';
@@ -489,7 +490,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';----
 				ADD3_MVin_LE_fSET<='0';
@@ -513,7 +514,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';----
 				ADD3_MVin_LE_fSET<='0';
@@ -537,7 +538,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';----
 				ADD3_MVin_LE_fSET<='0';
@@ -561,7 +562,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='1';----
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='1';----
 				ADD3_MVin_LE_fSET<='0';
@@ -585,7 +586,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='1';----
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -609,7 +610,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';----
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -633,7 +634,7 @@ begin
 				OUT_LE<='1';----
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -657,7 +658,7 @@ begin
 				OUT_LE<='0';----
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='1';
+				RF_in_RE_dummy<='1';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -681,7 +682,7 @@ begin
 				OUT_LE<='0';
 				CountTerm_EN<='0';
 				CandCount_CE<='0';
-				RF_in_RE<='0';
+				RF_in_RE_dummy<='0';
 				INTER_DATA_VALID_SET<='0';
 				INTER_DATA_VALID_RESET<='0';
 				ADD3_MVin_LE_fSET<='0';
@@ -694,5 +695,9 @@ begin
 	--Expanded part
 	PS_out<=PS;
 	NS_out<=NS;
+
+	--Attempt to understand the glitch problem
+	RF_in_RE<='1';
+	
 
 end architecture;

@@ -1,6 +1,6 @@
 ###################################################################
 
-# Created by write_sdc on Tue Jun 21 22:18:45 2022
+# Created by write_sdc on Wed Jun 22 09:44:20 2022
 
 ###################################################################
 set sdc_version 1.9
@@ -251,6 +251,16 @@ set_load -pin_load 3.40189 [get_ports MULT1_VALID]
 set_load -pin_load 3.40189 [get_ports ADD3_VALID]
 set_load -pin_load 3.40189 [get_ports incrY]
 set_load -pin_load 3.40189 [get_ports ADD3_MVin_LE]
+set_load -pin_load 3.40189 [get_ports {eCU_PS[4]}]
+set_load -pin_load 3.40189 [get_ports {eCU_PS[3]}]
+set_load -pin_load 3.40189 [get_ports {eCU_PS[2]}]
+set_load -pin_load 3.40189 [get_ports {eCU_PS[1]}]
+set_load -pin_load 3.40189 [get_ports {eCU_PS[0]}]
+set_load -pin_load 3.40189 [get_ports {eCU_NS[4]}]
+set_load -pin_load 3.40189 [get_ports {eCU_NS[3]}]
+set_load -pin_load 3.40189 [get_ports {eCU_NS[2]}]
+set_load -pin_load 3.40189 [get_ports {eCU_NS[1]}]
+set_load -pin_load 3.40189 [get_ports {eCU_NS[0]}]
 create_clock [get_ports clk]  -name MY_CLK  -period 3.01  -waveform {0 1.505}
 set_clock_uncertainty 0.07  [get_clocks MY_CLK]
 set_input_delay -clock MY_CLK  -max 0.5  [get_ports clk]
@@ -714,3 +724,13 @@ set_output_delay -clock MY_CLK  -max 0.5  [get_ports MULT1_VALID]
 set_output_delay -clock MY_CLK  -max 0.5  [get_ports ADD3_VALID]
 set_output_delay -clock MY_CLK  -max 0.5  [get_ports incrY]
 set_output_delay -clock MY_CLK  -max 0.5  [get_ports ADD3_MVin_LE]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_PS[4]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_PS[3]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_PS[2]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_PS[1]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_PS[0]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_NS[4]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_NS[3]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_NS[2]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_NS[1]}]
+set_output_delay -clock MY_CLK  -max 0.5  [get_ports {eCU_NS[0]}]
