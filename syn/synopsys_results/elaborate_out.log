@@ -9,6 +9,15 @@ Current design is now 'AME_Architecture_expanded'.
 Information: Building the design 'constructor'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'extimator_expanded'. (HDL-193)
+
+Inferred memory devices in process
+	in routine extimator_expanded line 147 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/extimator_expanded.vhd'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  RF_in_WE_int_reg   | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
 Presto compilation completed successfully.
 Information: Building the design 'CU_constructor'. (HDL-193)
 Warning:  /home/thesis/costantino.taranto/git/AME_Architecture/src/constructor/CU_constructor.vhd:48: DEFAULT branch of CASE statement cannot be reached. (ELAB-311)

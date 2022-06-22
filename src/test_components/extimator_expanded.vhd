@@ -111,6 +111,7 @@ architecture structural of extimator_expanded is
 
 	--extimator PelRet
 	signal RF_Addr_DP_int, RF_in_WE_int, RF_in_RE_int, MULT1_VALID_int, ADD3_MVin_LE_int, ADD3_VALID_int, incrY_int : std_logic;
+	signal RF_in_WE_int_tmp : std_logic;
 	signal CE_REPx_int, CE_BLKx_int, RST_BLKx_int, CE_REPy_int, CE_BLKy_int, RST_BLKy_int, last_block_x_int, last_block_y_int: std_logic;
 	signal RST1_int, RST2_int, LE_ab_DP_int: std_logic;
 	signal MV0_out_int, MV1_out_int, MV2_out_int: motion_vector(1 downto 0);
@@ -141,7 +142,14 @@ begin
 		   RADDR_CurCu_x=>RADDR_CurCu_x, RADDR_CurCu_y=>RADDR_CurCu_y,
 		   MV0_out=>MV0_out_int, MV1_out=>MV1_out_int, MV2_out=>MV2_out_int);
 	
-	RF_in_WE_int<=VALID_int AND READY_int;
+	RF_in_WE_int_tmp<=VALID_int AND READY_int;
+
+	RF_in_WE_half_delay: process(clk)
+	begin
+		if falling_edge(clk) then
+			RF_in_WE_int<=RF_in_WE_int_tmp;
+		end if;
+	end process;
 	
 	extimator_CU: CU_extimator_expanded
 		port map( VALID=>VALID_int, last_block_x=>last_block_x_int, last_block_y=>last_block_y_int,
