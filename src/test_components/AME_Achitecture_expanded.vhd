@@ -35,7 +35,13 @@ entity AME_Architecture_expanded is
 		   BestCand: out std_logic;
 		   MULT1_VALID, ADD3_VALID, incrY: out std_logic;
 		   ADD3_MVin_LE: out std_logic;
-		   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
+		   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0);
+		   ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : out std_logic_vector(17 downto 0);
+		   ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : out std_logic_vector(17 downto 0);
+		   ADD3_0_out, ADD3_1_out : out std_logic_vector(19 downto 0);
+		   ExtRF_out0_h, ExtRF_out0_v : out std_logic_vector(10 downto 0);
+		   ExtRF_out1_h, ExtRF_out1_v : out std_logic_vector(10 downto 0);
+		   ExtRF_out2_h, ExtRF_out2_v : out std_logic_vector(10 downto 0)
 		);
 end entity;
 
@@ -78,7 +84,13 @@ architecture structural of AME_Architecture_expanded is
 			  BestCand: out std_logic;
 			  MULT1_VALID, ADD3_VALID, incrY: out std_logic;
 			  ADD3_MVin_LE: out std_logic;
-			  eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
+			  eCU_PS, eCU_NS: out std_logic_vector(4 downto 0);
+			  ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : out std_logic_vector(17 downto 0);
+			  ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : out std_logic_vector(17 downto 0);
+			  ADD3_0_out, ADD3_1_out : out std_logic_vector(19 downto 0);
+			  ExtRF_out0_h, ExtRF_out0_v : out std_logic_vector(10 downto 0);
+			  ExtRF_out1_h, ExtRF_out1_v : out std_logic_vector(10 downto 0);
+			  ExtRF_out2_h, ExtRF_out2_v : out std_logic_vector(10 downto 0)
 		);
 	end component;
 
@@ -95,7 +107,9 @@ begin
 		port map ( VALID, VALID_CONST_int, eMV0_in_int, eMV1_in_int, eMV2_in_int, CU_h, CU_w, sixPar, clk, RST, RefPel, CurPel, RADDR_RefCu_x, RADDR_RefCu_y,
 				   RADDR_CurCu_x, RADDR_CurCu_y, MEM_RE, eREADY, GOT_int, MV0_out, MV1_out, MV2_out, eDONE, eComp_EN, CurSAD, last_block_x, last_block_y, last_cand,
 				   Second_ready, CountTerm_OUT, INTER_DATA_VALID_SET, INTER_DATA_VALID_RESET, ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET, LE_ab, SAD_tmp_RST,
-				   Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE, BestCand, MULT1_VALID, ADD3_VALID, incrY, ADD3_MVin_LE, eCU_PS, eCU_NS );
+				   Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE, BestCand, MULT1_VALID, ADD3_VALID, incrY, ADD3_MVin_LE, eCU_PS, eCU_NS,  ADD3_0_in0, ADD3_0_in1, ADD3_0_in2,
+				   ADD3_1_in0, ADD3_1_in1, ADD3_1_in2,  ADD3_0_out, ADD3_1_out, ExtRF_out0_h, ExtRF_out0_v, ExtRF_out1_h, ExtRF_out1_v,
+			       ExtRF_out2_h, ExtRF_out2_v );
 	
 	eMV0_in_int<= eMV0_in when eIN_SEL='0' else cMVP0;
 	eMV1_in_int<= eMV1_in when eIN_SEL='0' else cMVP1;

@@ -42,7 +42,13 @@ architecture tb of tb_AME_Architecture_netlist_expanded is
 			   BestCand: out std_logic;
 			   MULT1_VALID, ADD3_VALID, incrY: out std_logic;
 			   ADD3_MVin_LE: out std_logic;
-			   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
+			   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0);
+			   ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : out std_logic_vector(17 downto 0);
+			   ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : out std_logic_vector(17 downto 0);
+			   ADD3_0_out, ADD3_1_out : out std_logic_vector(19 downto 0);
+			   ExtRF_out0_h, ExtRF_out0_v : out std_logic_vector(10 downto 0);
+			   ExtRF_out1_h, ExtRF_out1_v : out std_logic_vector(10 downto 0);
+			   ExtRF_out2_h, ExtRF_out2_v : out std_logic_vector(10 downto 0)
 			);
 	end component;
 
@@ -100,6 +106,13 @@ architecture tb of tb_AME_Architecture_netlist_expanded is
 	signal MULT1_VALID, ADD3_VALID, incrY: std_logic;
 	signal ADD3_MVin_LE: std_logic;
 	signal eCU_PS, eCU_NS: std_logic_vector(4 downto 0);
+	signal ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : std_logic_vector(17 downto 0);
+	signal ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : std_logic_vector(17 downto 0);
+	signal ADD3_0_out, ADD3_1_out : std_logic_vector(19 downto 0);
+	signal ExtRF_out0_h, ExtRF_out0_v : std_logic_vector(10 downto 0);
+	signal ExtRF_out1_h, ExtRF_out1_v : std_logic_vector(10 downto 0);
+	signal ExtRF_out2_h, ExtRF_out2_v : std_logic_vector(10 downto 0);
+	
 
 	constant Tc: time := 12 ns; --4*Tc
 
@@ -110,7 +123,8 @@ begin
 				  RefPel_int, CurPel_int, RADDR_RefCu_x_int, RADDR_RefCu_y_int, RADDR_CurCu_x_int, RADDR_CurCu_y_int, MEM_RE_int, eREADY_t, eDONE_int , MV0_out_t, MV1_out_t, MV2_out_t, cComp_EN_int, cDONE_int, eComp_EN_int,
 			      MVP0_int, MVP1_int, MVP2_int, CurSAD_int, D_Cur_int, last_block_x, last_block_y, last_cand, Second_ready, CountTerm_OUT, INTER_DATA_VALID_SET, INTER_DATA_VALID_RESET,
 				  ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET, LE_ab, SAD_tmp_RST,
-				  Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE, BestCand, MULT1_VALID, ADD3_VALID, incrY, ADD3_MVin_LE, eCU_PS, eCU_NS );
+				  Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE, BestCand, MULT1_VALID, ADD3_VALID, incrY, ADD3_MVin_LE, eCU_PS, eCU_NS, ADD3_0_in0, ADD3_0_in1, ADD3_0_in2, ADD3_1_in0, ADD3_1_in1, ADD3_1_in2,
+				  ADD3_0_out, ADD3_1_out, ExtRF_out0_h, ExtRF_out0_v, ExtRF_out1_h, ExtRF_out1_v, ExtRF_out2_h, ExtRF_out2_v);
 
 	
 	uut_mem: DATA_MEMORY

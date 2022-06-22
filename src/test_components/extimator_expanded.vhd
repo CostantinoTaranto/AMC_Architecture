@@ -31,13 +31,19 @@ entity extimator_expanded is
 		  BestCand: out std_logic;
 		  MULT1_VALID, ADD3_VALID, incrY: out std_logic;
 		  ADD3_MVin_LE: out std_logic;
-		  eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
+		  eCU_PS, eCU_NS: out std_logic_vector(4 downto 0);
+		  ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : out std_logic_vector(17 downto 0);
+		  ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : out std_logic_vector(17 downto 0);
+		  ADD3_0_out, ADD3_1_out : out std_logic_vector(19 downto 0);
+		  ExtRF_out0_h, ExtRF_out0_v : out std_logic_vector(10 downto 0);
+		  ExtRF_out1_h, ExtRF_out1_v : out std_logic_vector(10 downto 0);
+		  ExtRF_out2_h, ExtRF_out2_v : out std_logic_vector(10 downto 0)
 	);
 end entity;
 
 architecture structural of extimator_expanded is
 
-	component extimator_PelRet is
+	component extimator_PelRet_expanded is
 	port ( MV0_in, MV1_in, MV2_in: in motion_vector(1 downto 0);--0:h, 1:v
 		   RF_Addr, clk, RF_in_WE, RF_in_RE, MULT1_VALID, ADD3_MVin_LE, ADD3_VALID, incrY: in std_logic;
 		   --firstPelPos
@@ -47,7 +53,11 @@ architecture structural of extimator_expanded is
 		   sixPar,RST1, RST2, LE_ab: in std_logic; --The RST1 is for the first two registers, RST2 is for the remaining ones
 		   RADDR_RefCu_x, RADDR_RefCu_y: out std_logic_vector(12 downto 0);
 		   RADDR_CurCu_x, RADDR_CurCu_y: out std_logic_vector(5 downto 0);
-		   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0)--0:h, 1:v
+		   MV0_out, MV1_out, MV2_out: out motion_vector(1 downto 0);--0:h, 1:v
+		   --Expanded part
+		   ADD3_0_in0, ADD3_0_in1, ADD3_0_in2 : out std_logic_vector(17 downto 0);
+		   ADD3_1_in0, ADD3_1_in1, ADD3_1_in2 : out std_logic_vector(17 downto 0);
+		   ADD3_0_out, ADD3_1_out : out std_logic_vector(19 downto 0)
 		); 
 	end component;
 
@@ -131,7 +141,7 @@ begin
 
 	VALID_int<=VALID_VTM OR VALID_CONST;
 
-	Pixel_Retrieval_Unit: extimator_PelRet
+	Pixel_Retrieval_Unit: extimator_PelRet_expanded
 		port map( MV0_in=>MV0_in, MV1_in=>MV1_in, MV2_in=>MV2_in,
 		   RF_Addr=>RF_Addr_DP_int, clk=>clk, RF_in_WE=>RF_in_WE_int, RF_in_RE=>RF_in_RE_int, MULT1_VALID=>MULT1_VALID_int, ADD3_MVin_LE=>ADD3_MVin_LE_int, ADD3_VALID=>ADD3_VALID_int, incrY=>incrY_int,
 		   CE_REPx=>CE_REPx_int, CE_BLKx=>CE_BLKx_int, RST_BLKx=>RST_BLKx_int, CE_REPy=>CE_REPy_int, CE_BLKy=>CE_BLKy_int, RST_BLKy=>RST_BLKy_int,
@@ -140,7 +150,10 @@ begin
 		   sixPar=>sixPar,RST1=>RST1_int, RST2=>RST2_int, LE_ab=>LE_ab_DP_int,
 		   RADDR_RefCu_x=>RADDR_RefCu_x, RADDR_RefCu_y=>RADDR_RefCu_y,
 		   RADDR_CurCu_x=>RADDR_CurCu_x, RADDR_CurCu_y=>RADDR_CurCu_y,
-		   MV0_out=>MV0_out_int, MV1_out=>MV1_out_int, MV2_out=>MV2_out_int);
+		   MV0_out=>MV0_out_int, MV1_out=>MV1_out_int, MV2_out=>MV2_out_int, 
+		   ADD3_0_in0=>ADD3_0_in0, ADD3_0_in1=>ADD3_0_in1, ADD3_0_in2=>ADD3_0_in2 ,
+		   ADD3_1_in0=>ADD3_1_in0, ADD3_1_in1=>ADD3_1_in1, ADD3_1_in2=>ADD3_1_in2 ,
+		   ADD3_0_out=>ADD3_0_out, ADD3_1_out=>ADD3_1_out );
 	
 	RF_in_WE_int_tmp<=VALID_int AND READY_int;
 
@@ -210,5 +223,13 @@ begin
 	ADD3_VALID              <=  ADD3_VALID_int              ;
 	incrY                   <=  incrY_int                   ;
 	ADD3_MVin_LE            <=  ADD3_MVin_LE_int            ;
+	
+	--Extimator RF outputs
+	ExtRF_out0_h <= MV0_out_int(0);
+	ExtRF_out0_v <= MV0_out_int(1);
+	ExtRF_out1_h <= MV1_out_int(0);
+	ExtRF_out1_v <= MV1_out_int(1);
+	ExtRF_out2_h <= MV2_out_int(0);
+	ExtRF_out2_v <= MV2_out_int(1);
 
 end architecture structural;
