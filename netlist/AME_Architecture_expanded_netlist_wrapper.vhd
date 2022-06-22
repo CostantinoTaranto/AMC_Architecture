@@ -34,7 +34,8 @@ entity AME_Architecture_expanded_netlist_wrapper is
 		   LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
 		   BestCand: out std_logic;
 		   MULT1_VALID, ADD3_VALID, incrY: out std_logic;
-		   ADD3_MVin_LE: out std_logic
+		   ADD3_MVin_LE: out std_logic;
+		   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
 		);
 end entity;
 
@@ -70,7 +71,8 @@ architecture structural of AME_Architecture_expanded_netlist_wrapper is
 			   LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
 			   BestCand: out std_logic;
 			   MULT1_VALID, ADD3_VALID, incrY: out std_logic;
-			   ADD3_MVin_LE: out std_logic
+			   ADD3_MVin_LE: out std_logic;
+			   eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
 			);
 	end component;
 
@@ -155,7 +157,7 @@ begin
 		   LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE,
 		   BestCand,
 		   MULT1_VALID, ADD3_VALID, incrY,
-		   ADD3_MVin_LE
+		   ADD3_MVin_LE, eCU_PS, eCU_NS
 		);
 
 

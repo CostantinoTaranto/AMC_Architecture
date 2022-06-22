@@ -30,7 +30,8 @@ entity extimator_expanded is
 		  LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
 		  BestCand: out std_logic;
 		  MULT1_VALID, ADD3_VALID, incrY: out std_logic;
-		  ADD3_MVin_LE: out std_logic
+		  ADD3_MVin_LE: out std_logic;
+		  eCU_PS, eCU_NS: out std_logic_vector(4 downto 0)
 	);
 end entity;
 
@@ -50,7 +51,7 @@ architecture structural of extimator_expanded is
 		); 
 	end component;
 
-	component CU_extimator is
+	component CU_extimator_expanded is
 		port( VALID, last_block_x, last_block_y: in std_logic;
 			  last_cand, Second_ready, CountTerm_OUT: in std_logic;
 			  clk, CU_RST: in std_logic;
@@ -65,7 +66,9 @@ architecture structural of extimator_expanded is
 			  RF_Addr: out std_logic_vector(1 downto 0);
 			  --RF_Addr selects the input for the RF_Addr, which is '0' when "00", '1' when "01" and 'Best_Cand' when "11"
 			  LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
-			  DONE: out std_logic		  
+			  DONE: out std_logic;
+			  --Expanded part
+			  PS_out, NS_out: out std_logic_vector(4 downto 0)			  
 		);
 	end component;
 
@@ -140,14 +143,14 @@ begin
 	
 	RF_in_WE_int<=VALID_int AND READY_int;
 	
-	extimator_CU: CU_extimator
+	extimator_CU: CU_extimator_expanded
 		port map( VALID=>VALID_int, last_block_x=>last_block_x_int, last_block_y=>last_block_y_int,
 			  last_cand=>last_cand_int, Second_ready=>Second_ready_int, CountTerm_OUT=>CountTerm_OUT_int,
 			  clk=>clk, CU_RST=>CU_RST,	INTER_DATA_VALID_SET=>INTER_DATA_VALID_SET_int, INTER_DATA_VALID_RESET=>INTER_DATA_VALID_RESET_int,
 			  ADD3_MVin_LE_fSET=>ADD3_MVin_LE_fSET_int, ADD3_MVin_LE_nSET=>ADD3_MVin_LE_nSET_int, ADD3_MVin_LE_fRESET=>ADD3_MVin_LE_fRESET_int,
 			  READY_RST=>READY_RST_int, RST1=>RST1_int, RST2=>RST2_int, CE_REPx=>CE_REPx_int, CE_BLKx=>CE_BLKx_int, RST_BLKx=>RST_BLKx_int, CE_REPy=>CE_REPy_int, CE_BLKy=>CE_BLKy_int, RST_BLKy=>RST_BLKy_int,
 			  RF_Addr=>RF_Addr_CU_int, LE_ab=>LE_ab_CU_int, SAD_tmp_RST=>SAD_tmp_RST_CU_int, Comp_EN=>Comp_EN_CU_int, OUT_LE=>OUT_LE_int, CountTerm_EN=>CountTerm_EN_int, CandCount_CE=>CandCount_CE_int,
-			  RF_in_RE=>RF_in_RE_int, DONE=>DONE_int);
+			  RF_in_RE=>RF_in_RE_int, DONE=>DONE_int, PS_out=>eCU_PS, NS_out=>eCU_NS);
 
 	Ready_Handler: CU_Ready_Handler 
 		port map( VALID=>VALID_int, Ready_RST=>Ready_RST_int, clk=>clk, RST=>CU_RST, READY=>READY_int, Second_Ready=>Second_Ready_int, GOT=>GOT);
