@@ -45,30 +45,60 @@ Information: Building the design 'extimator_PelRet_expanded'. (HDL-193)
 Presto compilation completed successfully.
 Information: Building the design 'CU_extimator_expanded'. (HDL-193)
 
-Statistics for case statements in always block at line 71 in file
+Statistics for case statements in always block at line 97 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            73            |    auto/auto     |
+|            99            |    auto/auto     |
 ===============================================
 
-Statistics for case statements in always block at line 162 in file
+Statistics for case statements in always block at line 188 in file
 	'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|           164            |    auto/auto     |
+|           190            |    auto/auto     |
 ===============================================
 
 Inferred memory devices in process
-	in routine CU_extimator_expanded line 59 in file
+	in routine CU_extimator_expanded line 85 in file
 		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
 |       PS_reg        | Flip-flop |   5   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
+
+Inferred memory devices in process
+	in routine CU_extimator_expanded line 731 in file
+		'/home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/CU_extimator_expanded.vhd'.
+======================================================================================
+|       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+======================================================================================
+|          DONE_reg          | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       READY_RST_reg        | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|          RST1_reg          | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|          RST2_reg          | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|        CE_REPx_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        CE_BLKx_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        RST_BLKx_reg        | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|        CE_REPy_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        CE_BLKy_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        RST_BLKy_reg        | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|        RF_Addr_reg         | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|         LE_ab_reg          | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      SAD_tmp_RST_reg       | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+|        Comp_EN_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|         OUT_LE_reg         | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      CountTerm_EN_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      CandCount_CE_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  INTER_DATA_VALID_SET_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| INTER_DATA_VALID_RESET_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   ADD3_MVin_LE_fSET_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   ADD3_MVin_LE_nSET_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  ADD3_MVin_LE_fRESET_reg   | Flip-flop |   1   |  N  | N  | N  | Y  | N  | N  | N  |
+======================================================================================
 Presto compilation completed successfully.
 Information: Building the design 'CU_Ready_Handler'. (HDL-193)
 
