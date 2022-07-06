@@ -209,7 +209,6 @@ Compiling Entity Declaration EXTIMATOR_EXPANDED
 Compiling Architecture STRUCTURAL of EXTIMATOR_EXPANDED
 Presto compilation completed successfully.
 Running PRESTO HDLC
-Compiling Entity Declaration EXTIMATOR_PELRET_EXPANDED
-Compiling Architecture STRUCTURAL of EXTIMATOR_PELRET_EXPANDED
-Presto compilation completed successfully.
-1
+[Error] Can't open input file /home/thesis/costantino.taranto/git/AME_Architecture/src/test_components/extimator_PelRet_expanded.vh
+*** Presto compilation was unsuccessful. ***
+0

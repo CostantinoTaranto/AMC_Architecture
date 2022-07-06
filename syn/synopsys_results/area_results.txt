@@ -1,30 +1,30 @@
  
 ****************************************
 Report : area
-Design : AME_Architecture_expanded
+Design : extimator_expanded
 Version: R-2020.09-SP2
-Date   : Tue Jul  5 11:16:08 2022
+Date   : Wed Jul  6 21:44:13 2022
 ****************************************
 
 Library(s) Used:
 
     NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
 
-Number of ports:                        11755
-Number of nets:                         23491
-Number of cells:                        10828
-Number of combinational cells:           7598
-Number of sequential cells:              2719
+Number of ports:                         5702
+Number of nets:                         10922
+Number of cells:                         5042
+Number of combinational cells:           3495
+Number of sequential cells:              1247
 Number of macros/black boxes:               0
-Number of buf/inv:                       1812
-Number of references:                       5
+Number of buf/inv:                       1150
+Number of references:                       8
 
-Combinational area:               9516.948023
-Buf/Inv area:                     1042.454002
-Noncombinational area:           14372.512424
+Combinational area:               4474.120023
+Buf/Inv area:                      662.872001
+Noncombinational area:            6522.054171
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                 23889.460447
+Total cell area:                 10996.174195
 Total area:                 undefined
 1

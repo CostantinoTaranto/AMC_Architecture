@@ -1,0 +1,126 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'AME_Architecture' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : AME_Architecture
+Version: F-2011.09-SP3
+Date   : Mon Jun 20 12:11:56 2022
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: constructing_unit/Datapath/D_h_sample/Q_int_reg[1]
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: constructing_unit/Datapath/D_h_sq_sample/Q_int_reg[26]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  AME_Architecture   5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  constructing_unit/Datapath/D_h_sample/Q_int_reg[1]/CK (DFFR_X1)
+                                                          0.00 #     0.00 r
+  constructing_unit/Datapath/D_h_sample/Q_int_reg[1]/Q (DFFR_X1)
+                                                          0.15       0.15 r
+  constructing_unit/Datapath/D_h_sample/Q[1] (REG_N_N15_4)
+                                                          0.00       0.15 r
+  constructing_unit/Datapath/L_squarer/op1[1] (multiplier_N15_0)
+                                                          0.00       0.15 r
+  constructing_unit/Datapath/L_squarer/mult_13/a[1] (multiplier_N15_0_DW_mult_tc_0)
+                                                          0.00       0.15 r
+  constructing_unit/Datapath/L_squarer/mult_13/U531/ZN (INV_X1)
+                                                          0.05       0.20 f
+  constructing_unit/Datapath/L_squarer/mult_13/U541/Z (XOR2_X2)
+                                                          0.17       0.37 r
+  constructing_unit/Datapath/L_squarer/mult_13/U814/ZN (NAND2_X1)
+                                                          0.15       0.52 f
+  constructing_unit/Datapath/L_squarer/mult_13/U589/ZN (OAI22_X1)
+                                                          0.09       0.61 r
+  constructing_unit/Datapath/L_squarer/mult_13/U163/S (HA_X1)
+                                                          0.05       0.66 f
+  constructing_unit/Datapath/L_squarer/mult_13/U62/CO (FA_X1)
+                                                          0.10       0.76 f
+  constructing_unit/Datapath/L_squarer/mult_13/U61/CO (FA_X1)
+                                                          0.09       0.85 f
+  constructing_unit/Datapath/L_squarer/mult_13/U60/CO (FA_X1)
+                                                          0.09       0.94 f
+  constructing_unit/Datapath/L_squarer/mult_13/U59/CO (FA_X1)
+                                                          0.09       1.04 f
+  constructing_unit/Datapath/L_squarer/mult_13/U58/CO (FA_X1)
+                                                          0.09       1.13 f
+  constructing_unit/Datapath/L_squarer/mult_13/U57/CO (FA_X1)
+                                                          0.09       1.22 f
+  constructing_unit/Datapath/L_squarer/mult_13/U56/CO (FA_X1)
+                                                          0.09       1.31 f
+  constructing_unit/Datapath/L_squarer/mult_13/U55/CO (FA_X1)
+                                                          0.09       1.40 f
+  constructing_unit/Datapath/L_squarer/mult_13/U54/CO (FA_X1)
+                                                          0.09       1.49 f
+  constructing_unit/Datapath/L_squarer/mult_13/U53/CO (FA_X1)
+                                                          0.09       1.59 f
+  constructing_unit/Datapath/L_squarer/mult_13/U52/CO (FA_X1)
+                                                          0.09       1.68 f
+  constructing_unit/Datapath/L_squarer/mult_13/U51/CO (FA_X1)
+                                                          0.09       1.77 f
+  constructing_unit/Datapath/L_squarer/mult_13/U50/CO (FA_X1)
+                                                          0.09       1.86 f
+  constructing_unit/Datapath/L_squarer/mult_13/U49/CO (FA_X1)
+                                                          0.09       1.95 f
+  constructing_unit/Datapath/L_squarer/mult_13/U48/CO (FA_X1)
+                                                          0.09       2.04 f
+  constructing_unit/Datapath/L_squarer/mult_13/U47/CO (FA_X1)
+                                                          0.09       2.14 f
+  constructing_unit/Datapath/L_squarer/mult_13/U46/CO (FA_X1)
+                                                          0.09       2.23 f
+  constructing_unit/Datapath/L_squarer/mult_13/U45/CO (FA_X1)
+                                                          0.09       2.32 f
+  constructing_unit/Datapath/L_squarer/mult_13/U44/CO (FA_X1)
+                                                          0.09       2.41 f
+  constructing_unit/Datapath/L_squarer/mult_13/U43/CO (FA_X1)
+                                                          0.09       2.50 f
+  constructing_unit/Datapath/L_squarer/mult_13/U42/CO (FA_X1)
+                                                          0.09       2.59 f
+  constructing_unit/Datapath/L_squarer/mult_13/U41/CO (FA_X1)
+                                                          0.09       2.68 f
+  constructing_unit/Datapath/L_squarer/mult_13/U40/CO (FA_X1)
+                                                          0.09       2.78 f
+  constructing_unit/Datapath/L_squarer/mult_13/U39/S (FA_X1)
+                                                          0.13       2.91 r
+  constructing_unit/Datapath/L_squarer/mult_13/product[26] (multiplier_N15_0_DW_mult_tc_0)
+                                                          0.00       2.91 r
+  constructing_unit/Datapath/L_squarer/product[26] (multiplier_N15_0)
+                                                          0.00       2.91 r
+  constructing_unit/Datapath/D_h_sq_sample/D[26] (REG_N_N27_0)
+                                                          0.00       2.91 r
+  constructing_unit/Datapath/D_h_sq_sample/Q_int_reg[26]/D (DFFR_X1)
+                                                          0.01       2.92 r
+  data arrival time                                                  2.92
+
+  clock MY_CLK (rise edge)                               10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.07       9.93
+  constructing_unit/Datapath/D_h_sq_sample/Q_int_reg[26]/CK (DFFR_X1)
+                                                          0.00       9.93 r
+  library setup time                                     -0.03       9.90
+  data required time                                                 9.90
+  --------------------------------------------------------------------------
+  data required time                                                 9.90
+  data arrival time                                                 -2.92
+  --------------------------------------------------------------------------
+  slack (MET)                                                        6.98
+
+
+1

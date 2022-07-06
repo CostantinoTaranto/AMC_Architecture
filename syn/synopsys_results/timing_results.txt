@@ -1,14 +1,14 @@
 Information: Updating design information... (UID-85)
-Warning: Design 'AME_Architecture_expanded' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'extimator_expanded' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
  
 ****************************************
 Report : timing
         -path full
         -delay max
         -max_paths 1
-Design : AME_Architecture_expanded
+Design : extimator_expanded
 Version: R-2020.09-SP2
-Date   : Tue Jul  5 11:16:08 2022
+Date   : Wed Jul  6 21:44:13 2022
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,134 +16,92 @@ Date   : Tue Jul  5 11:16:08 2022
 Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: constructing_unit/Datapath/D_v_sample/Q_int_reg[1]
+  Startpoint: Pixel_Retrieval_Unit/ADD3_1/count_reg
               (rising edge-triggered flip-flop clocked by MY_CLK)
-  Endpoint: constructing_unit/Datapath/D_v_sq_sample/Q_int_reg[26]
+  Endpoint: Pixel_Retrieval_Unit/ADD3_1/output_register/Q_int_reg[19]
             (rising edge-triggered flip-flop clocked by MY_CLK)
   Path Group: MY_CLK
   Path Type: max
 
   Des/Clust/Port     Wire Load Model       Library
   ------------------------------------------------
-  AME_Architecture_expanded
-                     5K_hvratio_1_1        NangateOpenCellLibrary
+  extimator_expanded 5K_hvratio_1_1        NangateOpenCellLibrary
 
   Point                                                   Incr       Path
   --------------------------------------------------------------------------
   clock MY_CLK (rise edge)                                0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  constructing_unit/Datapath/D_v_sample/Q_int_reg[1]/CK (DFFR_X1)
-                                                          0.00 #     0.00 r
-  constructing_unit/Datapath/D_v_sample/Q_int_reg[1]/Q (DFFR_X1)
-                                                          0.10       0.10 r
-  constructing_unit/Datapath/D_v_sample/Q[1] (REG_N_N15_1)
-                                                          0.00       0.10 r
-  constructing_unit/Datapath/U120/Z (BUF_X2)              0.06       0.16 r
-  constructing_unit/Datapath/R_squarer/op1[1] (multiplier_N15_1)
-                                                          0.00       0.16 r
-  constructing_unit/Datapath/R_squarer/U1/Z (BUF_X1)      0.15       0.31 r
-  constructing_unit/Datapath/R_squarer/mult_13/a[1] (multiplier_N15_1_DW_mult_tc_0)
-                                                          0.00       0.31 r
-  constructing_unit/Datapath/R_squarer/mult_13/U567/ZN (INV_X1)
-                                                          0.05       0.36 f
-  constructing_unit/Datapath/R_squarer/mult_13/U537/ZN (XNOR2_X1)
-                                                          0.08       0.44 f
-  constructing_unit/Datapath/R_squarer/mult_13/U587/ZN (INV_X2)
-                                                          0.09       0.53 r
-  constructing_unit/Datapath/R_squarer/mult_13/U682/ZN (NOR2_X1)
-                                                          0.04       0.57 f
-  constructing_unit/Datapath/R_squarer/mult_13/U63/CO (FA_X1)
-                                                          0.11       0.68 f
-  constructing_unit/Datapath/R_squarer/mult_13/U62/CO (FA_X1)
-                                                          0.10       0.78 f
-  constructing_unit/Datapath/R_squarer/mult_13/U61/CO (FA_X1)
-                                                          0.10       0.88 f
-  constructing_unit/Datapath/R_squarer/mult_13/U571/ZN (NAND2_X1)
-                                                          0.03       0.92 r
-  constructing_unit/Datapath/R_squarer/mult_13/U573/ZN (NAND3_X1)
-                                                          0.04       0.95 f
-  constructing_unit/Datapath/R_squarer/mult_13/U59/CO (FA_X1)
-                                                          0.10       1.05 f
-  constructing_unit/Datapath/R_squarer/mult_13/U585/ZN (NAND2_X1)
-                                                          0.03       1.09 r
-  constructing_unit/Datapath/R_squarer/mult_13/U586/ZN (NAND3_X1)
-                                                          0.05       1.13 f
-  constructing_unit/Datapath/R_squarer/mult_13/U608/ZN (NAND2_X1)
-                                                          0.04       1.17 r
-  constructing_unit/Datapath/R_squarer/mult_13/U609/ZN (NAND3_X1)
-                                                          0.04       1.21 f
-  constructing_unit/Datapath/R_squarer/mult_13/U56/CO (FA_X1)
-                                                          0.10       1.30 f
-  constructing_unit/Datapath/R_squarer/mult_13/U555/ZN (NAND2_X1)
-                                                          0.03       1.34 r
-  constructing_unit/Datapath/R_squarer/mult_13/U556/ZN (NAND3_X1)
-                                                          0.04       1.38 f
-  constructing_unit/Datapath/R_squarer/mult_13/U54/CO (FA_X1)
-                                                          0.10       1.48 f
-  constructing_unit/Datapath/R_squarer/mult_13/U578/ZN (NAND2_X1)
-                                                          0.03       1.51 r
-  constructing_unit/Datapath/R_squarer/mult_13/U580/ZN (NAND3_X1)
-                                                          0.04       1.55 f
-  constructing_unit/Datapath/R_squarer/mult_13/U52/CO (FA_X1)
-                                                          0.09       1.64 f
-  constructing_unit/Datapath/R_squarer/mult_13/U51/CO (FA_X1)
-                                                          0.09       1.73 f
-  constructing_unit/Datapath/R_squarer/mult_13/U50/CO (FA_X1)
-                                                          0.10       1.83 f
-  constructing_unit/Datapath/R_squarer/mult_13/U630/ZN (NAND2_X1)
-                                                          0.04       1.86 r
-  constructing_unit/Datapath/R_squarer/mult_13/U631/ZN (NAND3_X1)
-                                                          0.05       1.91 f
-  constructing_unit/Datapath/R_squarer/mult_13/U635/ZN (NAND2_X1)
-                                                          0.04       1.95 r
-  constructing_unit/Datapath/R_squarer/mult_13/U637/ZN (NAND3_X1)
-                                                          0.04       1.99 f
-  constructing_unit/Datapath/R_squarer/mult_13/U47/CO (FA_X1)
-                                                          0.09       2.08 f
-  constructing_unit/Datapath/R_squarer/mult_13/U46/CO (FA_X1)
-                                                          0.09       2.17 f
-  constructing_unit/Datapath/R_squarer/mult_13/U45/CO (FA_X1)
-                                                          0.10       2.27 f
-  constructing_unit/Datapath/R_squarer/mult_13/U592/ZN (NAND2_X1)
-                                                          0.04       2.30 r
-  constructing_unit/Datapath/R_squarer/mult_13/U593/ZN (NAND3_X1)
-                                                          0.05       2.35 f
-  constructing_unit/Datapath/R_squarer/mult_13/U598/ZN (NAND2_X1)
-                                                          0.04       2.39 r
-  constructing_unit/Datapath/R_squarer/mult_13/U599/ZN (NAND3_X1)
-                                                          0.04       2.43 f
-  constructing_unit/Datapath/R_squarer/mult_13/U42/CO (FA_X1)
-                                                          0.10       2.53 f
-  constructing_unit/Datapath/R_squarer/mult_13/U618/ZN (NAND2_X1)
-                                                          0.04       2.56 r
-  constructing_unit/Datapath/R_squarer/mult_13/U619/ZN (NAND3_X1)
-                                                          0.05       2.61 f
-  constructing_unit/Datapath/R_squarer/mult_13/U623/ZN (NAND2_X1)
-                                                          0.04       2.65 r
-  constructing_unit/Datapath/R_squarer/mult_13/U625/ZN (NAND3_X1)
-                                                          0.04       2.69 f
-  constructing_unit/Datapath/R_squarer/mult_13/U39/S (FA_X1)
-                                                          0.13       2.82 r
-  constructing_unit/Datapath/R_squarer/mult_13/product[26] (multiplier_N15_1_DW_mult_tc_0)
-                                                          0.00       2.82 r
-  constructing_unit/Datapath/R_squarer/product[26] (multiplier_N15_1)
-                                                          0.00       2.82 r
-  constructing_unit/Datapath/D_v_sq_sample/D[26] (REG_N_N27_1)
-                                                          0.00       2.82 r
-  constructing_unit/Datapath/D_v_sq_sample/Q_int_reg[26]/D (DFFR_X1)
-                                                          0.01       2.82 r
-  data arrival time                                                  2.82
+  Pixel_Retrieval_Unit/ADD3_1/count_reg/CK (DFFR_X1)      0.00 #     0.00 r
+  Pixel_Retrieval_Unit/ADD3_1/count_reg/QN (DFFR_X1)      0.08       0.08 f
+  Pixel_Retrieval_Unit/ADD3_1/U2/Z (BUF_X1)               0.05       0.13 f
+  Pixel_Retrieval_Unit/ADD3_1/U58/ZN (AOI22_X1)           0.06       0.19 r
+  Pixel_Retrieval_Unit/ADD3_1/U6/ZN (INV_X1)              0.03       0.22 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/op1[1] (adder_N20_0)
+                                                          0.00       0.22 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/A[1] (adder_N20_0_DW01_add_0_DW01_add_10)
+                                                          0.00       0.22 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_1/CO (FA_X1)
+                                                          0.10       0.32 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_2/CO (FA_X1)
+                                                          0.09       0.41 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_3/CO (FA_X1)
+                                                          0.09       0.50 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_4/CO (FA_X1)
+                                                          0.09       0.59 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_5/CO (FA_X1)
+                                                          0.09       0.68 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_6/CO (FA_X1)
+                                                          0.09       0.77 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_7/CO (FA_X1)
+                                                          0.09       0.86 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_8/CO (FA_X1)
+                                                          0.09       0.95 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_9/CO (FA_X1)
+                                                          0.09       1.04 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_10/CO (FA_X1)
+                                                          0.09       1.13 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_11/CO (FA_X1)
+                                                          0.09       1.22 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_12/CO (FA_X1)
+                                                          0.09       1.32 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_13/CO (FA_X1)
+                                                          0.09       1.41 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_14/CO (FA_X1)
+                                                          0.09       1.50 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_15/CO (FA_X1)
+                                                          0.09       1.59 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_16/CO (FA_X1)
+                                                          0.09       1.68 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_17/CO (FA_X1)
+                                                          0.09       1.77 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_18/CO (FA_X1)
+                                                          0.09       1.86 f
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/U1_19/S (FA_X1)
+                                                          0.13       1.99 r
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/add_19/SUM[19] (adder_N20_0_DW01_add_0_DW01_add_10)
+                                                          0.00       1.99 r
+  Pixel_Retrieval_Unit/ADD3_1/partial_adder/sum[19] (adder_N20_0)
+                                                          0.00       1.99 r
+  Pixel_Retrieval_Unit/ADD3_1/output_register/D[19] (REG_N_LE_N20_0)
+                                                          0.00       1.99 r
+  Pixel_Retrieval_Unit/ADD3_1/output_register/U49/ZN (NAND2_X1)
+                                                          0.03       2.02 f
+  Pixel_Retrieval_Unit/ADD3_1/output_register/U48/ZN (OAI21_X1)
+                                                          0.03       2.06 r
+  Pixel_Retrieval_Unit/ADD3_1/output_register/Q_int_reg[19]/D (DFFR_X2)
+                                                          0.01       2.06 r
+  data arrival time                                                  2.06
 
-  clock MY_CLK (rise edge)                                2.93       2.93
-  clock network delay (ideal)                             0.00       2.93
-  clock uncertainty                                      -0.07       2.86
-  constructing_unit/Datapath/D_v_sq_sample/Q_int_reg[26]/CK (DFFR_X1)
-                                                          0.00       2.86 r
-  library setup time                                     -0.03       2.83
-  data required time                                                 2.83
+  clock MY_CLK (rise edge)                                2.17       2.17
+  clock network delay (ideal)                             0.00       2.17
+  clock uncertainty                                      -0.07       2.10
+  Pixel_Retrieval_Unit/ADD3_1/output_register/Q_int_reg[19]/CK (DFFR_X2)
+                                                          0.00       2.10 r
+  library setup time                                     -0.03       2.07
+  data required time                                                 2.07
   --------------------------------------------------------------------------
-  data required time                                                 2.83
-  data arrival time                                                 -2.82
+  data required time                                                 2.07
+  data arrival time                                                 -2.06
   --------------------------------------------------------------------------
   slack (MET)                                                        0.00
 

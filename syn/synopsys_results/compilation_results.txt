@@ -9,7 +9,7 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 
 
-Information: There are 318 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 100 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
@@ -63,34 +63,8 @@ Information: There are 318 potential problems in your design. Please run 'check_
 Information: Added key list 'DesignWare' to design 'firstPelPos_comp_0'. (DDB-72)
   Processing 'firstPelPos'
   Processing 'Ext_RF'
-  Processing 'extimator_PelRet_expanded'
+  Processing 'extimator_PelRet'
   Processing 'extimator_expanded'
-  Processing 'MV_RF_0'
-  Processing 'COUNT_N_N4_TARGET10'
-  Processing 'COUNT_N_N3_TARGET6'
-  Processing 'comparator_N28'
-  Processing 'D_min_REG'
-  Processing 'REG_N_N28_0'
-  Processing 'adder_N27'
-  Processing 'REG_N_N27_0'
-  Processing 'if_UA_0'
-  Processing 'multiplier_N15_0'
-  Processing 'REG_N_N15_0'
-  Processing 'subtractor_N15_0'
-  Processing 'sign_extender_N_in11_N_out15_0'
-  Processing 'sign_extender_N_in11_N_out14_0'
-  Processing 'signed_Lshifter_N_in13_N_out14_0'
-  Processing 'signed_Lshifter_N_in12_N_out13_0'
-  Processing 'sign_extender_N_in12_N_out14_0'
-  Processing 'LR_SH2_0'
-  Processing 'subtractor_N14'
-  Processing 'unsigned_shifter_N2_0'
-  Processing 'h_over_w'
-Information: Added key list 'DesignWare' to design 'h_over_w'. (DDB-72)
-  Processing 'DP_constructor'
-  Processing 'CU_constructor'
-  Processing 'constructor'
-  Processing 'AME_Architecture_expanded'
 
   Updating timing information
 Information: Updating design information... (UID-85)
@@ -98,7 +72,7 @@ Information: Updating design information... (UID-85)
   Beginning Implementation Selection
   ----------------------------------
   Processing 'extimator_ResCal_DW01_add_0'
-  Processing 'COUNT_N_N5_TARGET18_DW01_inc_0_DW01_inc_5'
+  Processing 'COUNT_N_N5_TARGET18_DW01_inc_0_DW01_inc_3'
   Mapping 'comparator_N18_DW_cmp_0'
   Processing 'unsigned_adder_N9_DW01_add_0_DW01_add_1'
   Processing 'unsigned_adder_N8_1_DW01_add_0_DW01_add_2'
@@ -107,8 +81,8 @@ Information: Updating design information... (UID-85)
   Processing 'unsigned_subtractor_N8_2_DW01_sub_0_DW01_sub_1'
   Processing 'unsigned_subtractor_N8_3_DW01_sub_0_DW01_sub_2'
   Processing 'unsigned_subtractor_N8_0_DW01_sub_0_DW01_sub_3'
-  Processing 'extimator_PelRet_expanded_DW01_add_0_DW01_add_4'
-  Processing 'extimator_PelRet_expanded_DW01_inc_0_DW01_inc_6'
+  Processing 'extimator_PelRet_DW01_add_0_DW01_add_4'
+  Processing 'extimator_PelRet_DW01_inc_0_DW01_inc_4'
   Processing 'adder_N12_1_DW01_add_0_DW01_add_5'
   Processing 'adder_N12_0_DW01_add_0_DW01_add_6'
   Processing 'Round_1_DW01_add_0_DW01_add_7'
@@ -118,35 +92,25 @@ Information: Updating design information... (UID-85)
   Processing 'adder_N14_1_DW01_add_0_DW01_add_11'
   Processing 'adder_N14_2_DW01_add_0_DW01_add_12'
   Processing 'adder_N14_3_DW01_add_0_DW01_add_13'
-  Processing 'adder_N14_4_DW01_add_0_DW01_add_14'
+  Processing 'adder_N14_0_DW01_add_0_DW01_add_14'
   Processing 'subtractor_N11_1_DW01_sub_0_DW01_sub_4'
   Processing 'subtractor_N11_2_DW01_sub_0_DW01_sub_5'
   Processing 'subtractor_N11_3_DW01_sub_0_DW01_sub_6'
-  Processing 'subtractor_N11_4_DW01_sub_0_DW01_sub_7'
-  Mapping 'comparator_N28_DW_cmp_0'
-  Processing 'adder_N27_DW01_add_0_DW01_add_15'
-  Processing 'subtractor_N15_1_DW01_sub_0_DW01_sub_8'
-  Processing 'adder_N14_0_DW01_add_0_DW01_add_16'
-  Processing 'subtractor_N11_5_DW01_sub_0_DW01_sub_9'
-  Processing 'subtractor_N15_0_DW01_sub_0_DW01_sub_10'
-  Processing 'subtractor_N14_DW01_sub_0_DW01_sub_11'
-  Processing 'subtractor_N11_0_DW01_sub_0_DW01_sub_12'
+  Processing 'subtractor_N11_0_DW01_sub_0_DW01_sub_7'
   Building model 'DW01_NAND2'
   Processing 'DW01_NAND2'
   Building model 'DW01_sub_width8' (rpl)
   Processing 'DW01_sub_width8'
   Building model 'DW01_inc_width8' (rpl)
   Processing 'DW01_inc_width8'
-  Processing 'abs_unit_N9_1_DW01_inc_0_DW01_inc_7'
-  Processing 'abs_unit_N9_1_DW01_sub_0_DW01_sub_13'
-  Processing 'abs_unit_N9_2_DW01_inc_0_DW01_inc_8'
-  Processing 'abs_unit_N9_2_DW01_sub_0_DW01_sub_14'
-  Processing 'abs_unit_N9_3_DW01_inc_0_DW01_inc_9'
-  Processing 'abs_unit_N9_3_DW01_sub_0_DW01_sub_15'
-  Processing 'abs_unit_N9_0_DW01_inc_0_DW01_inc_10'
-  Processing 'abs_unit_N9_0_DW01_sub_0_DW01_sub_16'
-  Mapping 'multiplier_N15_1_DW_mult_tc_0'
-  Mapping 'multiplier_N15_0_DW_mult_tc_0'
+  Processing 'abs_unit_N9_1_DW01_inc_0_DW01_inc_5'
+  Processing 'abs_unit_N9_1_DW01_sub_0_DW01_sub_8'
+  Processing 'abs_unit_N9_2_DW01_inc_0_DW01_inc_6'
+  Processing 'abs_unit_N9_2_DW01_sub_0_DW01_sub_9'
+  Processing 'abs_unit_N9_3_DW01_inc_0_DW01_inc_7'
+  Processing 'abs_unit_N9_3_DW01_sub_0_DW01_sub_10'
+  Processing 'abs_unit_N9_0_DW01_inc_0_DW01_inc_8'
+  Processing 'abs_unit_N9_0_DW01_sub_0_DW01_sub_11'
   Mapping 'MULT1_N12_1_DW_mult_tc_0'
   Mapping 'MULT1_N12_2_DW_mult_tc_0'
   Mapping 'MULT1_N12_3_DW_mult_tc_0'
@@ -164,24 +128,21 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:09   31294.4      0.92       3.0    6405.1                          
-    0:00:09   31294.4      0.92       3.0    6405.1                          
-    0:00:12   34057.0      0.00       0.0      42.6                          
-    0:00:12   34057.0      0.00       0.0      42.6                          
-    0:00:12   34057.0      0.00       0.0      42.6                          
-    0:00:12   34057.0      0.00       0.0      42.6                          
-    0:00:12   34057.0      0.00       0.0      42.6                          
-    0:00:16   24165.8      0.00       0.0      19.2                          
-    0:00:16   24012.4      0.00       0.0      19.2                          
-    0:00:17   24012.1      0.00       0.0      19.2                          
-    0:00:17   24012.1      0.00       0.0      19.2                          
-    0:00:17   24012.1      0.00       0.0      19.2                          
-    0:00:17   24012.1      0.00       0.0      19.2                          
-    0:00:17   24012.1      0.00       0.0      19.2                          
-    0:00:17   24012.9      0.00       0.0       0.0                          
-    0:00:17   24012.9      0.00       0.0       0.0                          
-    0:00:17   24012.9      0.00       0.0       0.0                          
-    0:00:17   24012.9      0.00       0.0       0.0                          
+    0:00:12   16421.0      0.03       0.1       8.3                          
+    0:00:12   16421.0      0.03       0.1       8.3                          
+    0:00:12   16421.0      0.03       0.1       8.3                          
+    0:00:12   16420.7      0.03       0.1       8.3                          
+    0:00:12   16420.7      0.03       0.1       8.3                          
+    0:00:15   11127.6      0.00       0.0       0.0                          
+    0:00:15   11052.6      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
 
 
 
@@ -192,9 +153,9 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:17   24012.9      0.00       0.0       0.0                          
-    0:00:17   24012.9      0.00       0.0       0.0                          
-    0:00:18   23996.4      0.00       0.0     406.1                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:16   11052.3      0.00       0.0       0.0                          
+    0:00:17   11043.5      0.00       0.0     156.8                          
 
 
   Beginning Design Rule Fixing  (max_transition)  (max_capacitance)
@@ -204,8 +165,8 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:18   23996.4      0.00       0.0     406.1                          
-    0:00:18   23998.3      0.00       0.0       0.0                          
+    0:00:17   11043.5      0.00       0.0     156.8                          
+    0:00:17   11044.3      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -215,22 +176,22 @@ Information: Added key list 'DesignWare' to design 'Round_1'. (DDB-72)
    ELAPSED            WORST NEG   SETUP    DESIGN                            
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:18   23998.3      0.00       0.0       0.0                          
-    0:00:18   23998.3      0.00       0.0       0.0                          
-    0:00:18   23962.1      0.00       0.0       0.0                          
-    0:00:19   23936.0      0.00       0.0       0.0                          
-    0:00:19   23913.9      0.00       0.0       0.0                          
-    0:00:19   23900.1      0.00       0.0       0.0                          
-    0:00:19   23895.3      0.00       0.0       0.0                          
-    0:00:19   23895.3      0.00       0.0       0.0                          
-    0:00:19   23895.3      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
-    0:00:19   23889.5      0.00       0.0       0.0                          
+    0:00:17   11044.3      0.00       0.0       0.0                          
+    0:00:17   11044.3      0.00       0.0       0.0                          
+    0:00:18   11029.7      0.00       0.0       0.0                          
+    0:00:18   11021.7      0.00       0.0       0.0                          
+    0:00:18   11013.2      0.00       0.0       0.0                          
+    0:00:18   11007.1      0.01       0.0       0.0                          
+    0:00:18   11004.7      0.01       0.0       0.0                          
+    0:00:18   11004.7      0.01       0.0       0.0                          
+    0:00:18   11005.8      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
+    0:00:19   10996.2      0.00       0.0       0.0                          
 Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
 
 
@@ -239,7 +200,6 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
 
   Optimization Complete
   ---------------------
-Warning: Design 'AME_Architecture_expanded' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
-     Net 'constructing_unit/Datapath/FaS_registers0_v_2/LE': 1716 load(s), 1 driver(s)
-     Net 'extimating_unit/Pixel_Retrieval_Unit/firstPelPos_calc/firstPelPos_y/CurBlock/clk': 2719 load(s), 1 driver(s)
+Warning: Design 'extimator_expanded' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'Pixel_Retrieval_Unit/firstPelPos_calc/firstPelPos_y/CurBlock/clk': 1242 load(s), 1 driver(s)
 1
