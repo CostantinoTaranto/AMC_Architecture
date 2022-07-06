@@ -19,7 +19,7 @@ architecture beh of DATA_MEMORY is
 	constant frame_w : integer := 416;
 	constant frame_h : integer := 240;
 	constant x0 : integer := 64;
-	constant y0 : integer := 128;
+	constant y0 : integer := 0;
 	type integer_array is array (natural range <>) of integer;
 	type dm_array is array (0 to (frame_w*frame_h-1)) of std_logic_vector(7 downto 0);
 	
