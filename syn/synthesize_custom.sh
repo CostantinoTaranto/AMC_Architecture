@@ -12,7 +12,7 @@ fi
 #copy the setup file
 cp ./synopsys_setup_file/.synopsys_dc.setup ./.synopsys_dc.setup
 #run initialization script
-source /software/scripts/init_synopsys_64
+source /eda/scripts/init_design_vision
 #run synopsys in shell mode and execute the command file
 dc_shell -f synopsys_commands_custom.tcl
 

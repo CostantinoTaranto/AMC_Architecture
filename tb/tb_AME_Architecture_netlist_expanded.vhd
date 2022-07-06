@@ -114,7 +114,7 @@ architecture tb of tb_AME_Architecture_netlist_expanded is
 	signal ExtRF_out2_h, ExtRF_out2_v : std_logic_vector(10 downto 0);
 	
 
-	constant Tc: time := 12 ns; --4*Tc
+	constant Tc: time := 3 ns; 
 
 begin
 

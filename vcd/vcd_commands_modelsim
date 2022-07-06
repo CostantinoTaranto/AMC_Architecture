@@ -1,0 +1,2 @@
+vcd file ../vcd/AME_Architecture_netlist_expanded.vcd
+vcd add /tb_AME_Architecture_netlist_expanded/uut/AME_Architecture_netlist/*

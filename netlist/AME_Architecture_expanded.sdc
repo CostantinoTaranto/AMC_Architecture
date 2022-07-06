@@ -1,9 +1,9 @@
 ###################################################################
 
-# Created by write_sdc on Sat Jul  2 20:29:14 2022
+# Created by write_sdc on Tue Jul  5 11:16:10 2022
 
 ###################################################################
-set sdc_version 1.9
+set sdc_version 2.1
 
 set_units -time ns -resistance MOhm -capacitance fF -voltage V -current mA
 set_load -pin_load 3.40189 [get_ports cREADY]
@@ -475,7 +475,7 @@ set_load -pin_load 3.40189 [get_ports {ExtRF_out2_v[3]}]
 set_load -pin_load 3.40189 [get_ports {ExtRF_out2_v[2]}]
 set_load -pin_load 3.40189 [get_ports {ExtRF_out2_v[1]}]
 set_load -pin_load 3.40189 [get_ports {ExtRF_out2_v[0]}]
-create_clock [get_ports clk]  -name MY_CLK  -period 3.01  -waveform {0 1.505}
+create_clock [get_ports clk]  -name MY_CLK  -period 2.93  -waveform {0 1.465}
 set_clock_uncertainty 0.07  [get_clocks MY_CLK]
 set_input_delay -clock MY_CLK  -max 0.5  [get_ports clk]
 set_input_delay -clock MY_CLK  -max 0.5  [get_ports {cMV0_in[21]}]

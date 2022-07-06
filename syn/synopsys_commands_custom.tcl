@@ -14,7 +14,7 @@ link
 
 #*******  Applying constraints   ***************
 #create clock (period in ns)
-create_clock -name MY_CLK -period 3.01 clk
+create_clock -name MY_CLK -period 2.93 clk
 #since the clock is a “special” signal in the design, we set the "don't touch" property  
 set_dont_touch_network MY_CLK
 
