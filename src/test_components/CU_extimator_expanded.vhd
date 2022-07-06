@@ -4,26 +4,26 @@ use IEEE.std_logic_1164.all;
 library work;
 use work.AMEpkg.all;
 
-	entity CU_extimator_expanded is
-		port( VALID, last_block_x, last_block_y: in std_logic;
-			  last_cand, Second_ready, CountTerm_OUT: in std_logic;
-			  clk, CU_RST: in std_logic;
-			  INTER_DATA_VALID_SET, INTER_DATA_VALID_RESET: out std_logic;
-			  --INTER_DATA_VALID_(SET/RESET) is quite particular. When it is set, after 3 clock
-			  --cycles the "intermediate data valid" is set. When it is reset, after 5 clock cycles it is reset.
-			  --this signal feeds, with different timigs, "MULT1_VALID", "ADD3_VALID" and "incrY".
-			  ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET: out std_logic;
-			  --ADD3_MVin_LE_(fSET,nSET,fRESET) are also three particular signals. "fSET" and "fRESET" (forced SET/RESET) force
-			  --the LE to be IMMEDIATELY 1 or 0. "nSET" (normal SET) sets the LE to be 1 after 9 clock cycles.
-			  READY_RST, RST1, RST2, CE_REPx, CE_BLKx, RST_BLKx, CE_REPy, CE_BLKy, RST_BLKy : out std_logic;
-			  RF_Addr: out std_logic_vector(1 downto 0);
-			  --RF_Addr selects the input for the RF_Addr, which is '0' when "00", '1' when "01" and 'Best_Cand' when "11"
-			  LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
-			  DONE: out std_logic;
-			  --Expanded part
-			  PS_out, NS_out: out std_logic_vector(4 downto 0)			  
-		);
-	end entity;
+entity CU_extimator_expanded is
+	port( VALID, last_block_x, last_block_y: in std_logic;
+		  last_cand, Second_ready, CountTerm_OUT: in std_logic;
+		  clk, CU_RST: in std_logic;
+		  INTER_DATA_VALID_SET, INTER_DATA_VALID_RESET: out std_logic;
+		  --INTER_DATA_VALID_(SET/RESET) is quite particular. When it is set, after 3 clock
+		  --cycles the "intermediate data valid" is set. When it is reset, after 5 clock cycles it is reset.
+		  --this signal feeds, with different timigs, "MULT1_VALID", "ADD3_VALID" and "incrY".
+		  ADD3_MVin_LE_fSET, ADD3_MVin_LE_nSET, ADD3_MVin_LE_fRESET: out std_logic;
+		  --ADD3_MVin_LE_(fSET,nSET,fRESET) are also three particular signals. "fSET" and "fRESET" (forced SET/RESET) force
+		  --the LE to be IMMEDIATELY 1 or 0. "nSET" (normal SET) sets the LE to be 1 after 9 clock cycles.
+		  READY_RST, RST1, RST2, CE_REPx, CE_BLKx, RST_BLKx, CE_REPy, CE_BLKy, RST_BLKy : out std_logic;
+		  RF_Addr: out std_logic_vector(1 downto 0);
+		  --RF_Addr selects the input for the RF_Addr, which is '0' when "00", '1' when "01" and 'Best_Cand' when "11"
+		  LE_ab, SAD_tmp_RST, Comp_EN, OUT_LE, CountTerm_EN, CandCount_CE, RF_in_RE: out std_logic;
+		  DONE: out std_logic;
+		  --Expanded part
+		  PS_out, NS_out: out std_logic_vector(4 downto 0)
+	);
+end entity;
 
 architecture beh of CU_extimator_expanded is
 
@@ -36,33 +36,6 @@ architecture beh of CU_extimator_expanded is
 
 	signal PS, NS: std_logic_vector(4 downto 0);
 	signal VALID_int, last_block_x_int, last_block_y_int, last_cand_int, Second_ready_int, CountTerm_OUT_int: std_logic;
-	signal RF_in_RE_dummy_int : std_logic;
-	
-	--Moving registers
-	
-	signal READY_RST_int				: std_logic;
-	signal RST1_int					    : std_logic;
-	signal RST2_int					    : std_logic;
-	signal CE_REPx_int					: std_logic;
-	signal CE_BLKx_int					: std_logic;
-	signal RST_BLKx_int				    : std_logic;
-	signal CE_REPy_int					: std_logic;
-	signal CE_BLKy_int					: std_logic;
-	signal RST_BLKy_int				    : std_logic;
-	signal RF_Addr_int					: std_logic_vector(1 downto 0);
-	signal LE_ab_int					: std_logic;
-	signal SAD_tmp_RST_int				: std_logic;
-	signal Comp_EN_int					: std_logic;
-	signal OUT_LE_int					: std_logic;
-	signal CountTerm_EN_int			    : std_logic;
-	signal CandCount_CE_int			    : std_logic;
-	--signal RF_in_RE_dummy_int			: std_logic;
-	signal INTER_DATA_VALID_SET_int	    : std_logic;
-	signal INTER_DATA_VALID_RESET_int	: std_logic;
-	signal ADD3_MVin_LE_fSET_int		: std_logic;
-	signal ADD3_MVin_LE_nSET_int		: std_logic;
-	signal ADD3_MVin_LE_fRESET_int		: std_logic;
-	signal DONE_int					    : std_logic;
 
 begin
 
@@ -94,13 +67,13 @@ begin
 	end process;
 
 ----NEXT STATE CALCULATION
-	next_state_calc: process(PS,VALID,last_block_x,last_block_y,last_cand,Second_ready,CountTerm_OUT)
+	next_state_calc: process(PS,VALID_int,last_block_x_int,last_block_y_int,last_cand_int,Second_ready_int,CountTerm_OUT_int)
 	begin
 		case PS is
 			when "00000" =>
 				NS<="00001";
 			when "00001" =>
-				if VALID='1' then
+				if VALID_int='1' then
 					NS<="00010";
 				else
 					NS<="00001";
@@ -132,25 +105,23 @@ begin
 			when "01110" =>
 				NS<="01111";
 			when "01111" =>
-				if last_block_x='0' THEN
+				if last_block_x_int='0' THEN
 					NS<="10001";
-				elsif last_block_x='1' AND last_block_y='0' THEN
+				elsif last_block_x_int='1' AND last_block_y_int='0' THEN
 					NS<="10000";
-				elsif last_block_x='1' AND last_block_y='1' THEN
-					if last_cand='0' then
+				elsif last_block_x_int='1' AND last_block_y_int='1' THEN
+					if last_cand_int='0' then
 						NS<="10010";
 					else
 						NS<="10110";
 					end if;
-				else
-						NS<="01111";
 				end if;
 			when "10000" =>
 				NS<="10011";
 			when "10001" =>
 				NS<="10011";
 			when "10010" =>
-				if Second_ready='1' OR VALID='1' THEN
+				if Second_ready_int='1' OR VALID_int='1' THEN
 					NS<="10100";
 				else
 					NS<="10101";
@@ -168,7 +139,7 @@ begin
 			when "10110" =>
 				NS<="10111";
 			when "10111"=>
-				if CountTerm_OUT='1' then
+				if CountTerm_OUT_int='1' then
 					NS<="11000";
 				else
 					NS<="10111";
@@ -189,597 +160,539 @@ begin
 	begin
 		case PS is
 			when "00000" =>
-				READY_RST_int<='1';
-				RST1_int<='1';
-				RST2_int<='1';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='1';
-				RF_Addr_int<="00";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='0';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='1';
-				DONE_int<='0';
+				READY_RST<='1';
+				RST1<='1';
+				RST2<='1';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='1';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='1';
+				RF_Addr<="00";
+				LE_ab<='0';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='0';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='1';
+				DONE<='0';
 			when "00001" =>
-				READY_RST_int<='1';
-				RST1_int<='0';
-				RST2_int<='1';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='1';
-				RF_Addr_int<="00";
-				LE_ab_int<='1';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';----
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='1';----
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='1';
+				RST1<='0';
+				RST2<='1';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='1';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='1';
+				RF_Addr<="00";
+				LE_ab<='1';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';----
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='1';----
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "00010" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";----
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='1';----
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='1';----
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";----
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='1';----
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='1';----
+				DONE<='0';
 			when "00011" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';----
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';----
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "00100" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';-----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';-----
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "00101" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';-----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';-----
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "00110" | "00111" =>
 			--Same signlas as previous state
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "01000" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='1';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='1';----
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "01001" | "01010" | "01011" | "01101" | "01110" | "01111" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';----
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';----
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "01100" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10000" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';----
-				CE_REPy_int<='1';----
-				CE_BLKy_int<='1';----
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='0';
+				RST_BLKx<='1';----
+				CE_REPy<='1';----
+				CE_BLKy<='1';----
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10001" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='1';----
-				RST_BLKx_int<='0';
-				CE_REPy_int<='1';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='1';----
+				RST_BLKx<='0';
+				CE_REPy<='1';----
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10010" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';----
-				CE_REPy_int<='1';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='1';----
-				RF_Addr_int<="01";
-				LE_ab_int<='1';----
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='1';----
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='1';----
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='1';----
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='1';----
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='0';
+				RST_BLKx<='1';----
+				CE_REPy<='1';----
+				CE_BLKy<='0';
+				RST_BLKy<='1';----
+				RF_Addr<="01";
+				LE_ab<='1';----
+				SAD_tmp_RST<='0';
+				Comp_EN<='1';----
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='1';----
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='1';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='1';----
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10011" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';----
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';----
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';----
+				SAD_tmp_RST<='0';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10100" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='0';----
-				SAD_tmp_RST_int<='1';----
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';----
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='0';----
+				SAD_tmp_RST<='1';----
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10101" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="01";
-				LE_ab_int<='1';
-				SAD_tmp_RST_int<='1';----
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';----
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="01";
+				LE_ab<='1';
+				SAD_tmp_RST<='1';----
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10110" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='1';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';----
-				CE_REPy_int<='1';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='1';----
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='0';
-				Comp_EN_int<='1';----
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='1';----
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='1';----
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='1';----
+				CE_BLKx<='0';
+				RST_BLKx<='1';----
+				CE_REPy<='1';----
+				CE_BLKy<='0';
+				RST_BLKy<='1';----
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='0';
+				Comp_EN<='1';----
+				OUT_LE<='0';
+				CountTerm_EN<='1';----
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='1';----
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "10111" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';----
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';----
-				CE_REPy_int<='0';----
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';----
-				RF_Addr_int<="01";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';----
-				Comp_EN_int<='0';----
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='1';----
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';----
+				CE_BLKx<='0';
+				RST_BLKx<='0';----
+				CE_REPy<='0';----
+				CE_BLKy<='0';
+				RST_BLKy<='0';----
+				RF_Addr<="01";
+				LE_ab<='0';
+				SAD_tmp_RST<='1';----
+				Comp_EN<='0';----
+				OUT_LE<='0';
+				CountTerm_EN<='1';----
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "11000" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="11";--Read from "Best Cand"
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';----
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="11";--Read from "Best Cand"
+				LE_ab<='0';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';----
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "11001" =>
-				READY_RST_int<='0';
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="11";--Read from "Best Cand"
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='1';----
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='0';
+				READY_RST<='0';
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="11";--Read from "Best Cand"
+				LE_ab<='0';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='1';----
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='0';
 			when "11010" =>
-				READY_RST_int<='1';----
-				RST1_int<='0';
-				RST2_int<='0';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='0';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='0';
-				RF_Addr_int<="11";--Read from "Best Cand"
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';----
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='1';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='0';
-				DONE_int<='1';
+				READY_RST<='1';----
+				RST1<='0';
+				RST2<='0';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='0';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='0';
+				RF_Addr<="11";--Read from "Best Cand"
+				LE_ab<='0';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='0';----
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='1';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='0';
+				DONE<='1';
 			when OTHERS =>
-				READY_RST_int<='1';
-				RST1_int<='1';
-				RST2_int<='1';
-				CE_REPx_int<='0';
-				CE_BLKx_int<='0';
-				RST_BLKx_int<='1';
-				CE_REPy_int<='0';
-				CE_BLKy_int<='0';
-				RST_BLKy_int<='1';
-				RF_Addr_int<="00";
-				LE_ab_int<='0';
-				SAD_tmp_RST_int<='1';
-				Comp_EN_int<='0';
-				OUT_LE_int<='0';
-				CountTerm_EN_int<='0';
-				CandCount_CE_int<='0';
-				RF_in_RE_dummy_int<='0';
-				INTER_DATA_VALID_SET_int<='0';
-				INTER_DATA_VALID_RESET_int<='0';
-				ADD3_MVin_LE_fSET_int<='0';
-				ADD3_MVin_LE_nSET_int<='0';
-				ADD3_MVin_LE_fRESET_int<='1';
-				DONE_int<='0';
+				READY_RST<='1';
+				RST1<='1';
+				RST2<='1';
+				CE_REPx<='0';
+				CE_BLKx<='0';
+				RST_BLKx<='1';
+				CE_REPy<='0';
+				CE_BLKy<='0';
+				RST_BLKy<='1';
+				RF_Addr<="00";
+				LE_ab<='0';
+				SAD_tmp_RST<='1';
+				Comp_EN<='0';
+				OUT_LE<='0';
+				CountTerm_EN<='0';
+				CandCount_CE<='0';
+				RF_in_RE<='0';
+				INTER_DATA_VALID_SET<='0';
+				INTER_DATA_VALID_RESET<='0';
+				ADD3_MVin_LE_fSET<='0';
+				ADD3_MVin_LE_nSET<='0';
+				ADD3_MVin_LE_fRESET<='1';
+				DONE<='0';
 		end case;
 	end process;		
 
 	--Expanded part
 	PS_out<=PS;
 	NS_out<=NS;
-
-	--Attempt to understand the glitch problem
-	RF_in_RE<='1';
-
-	--Moving the register from in to out
-	cu_out_samp: process(clk, CU_RST)
-	begin
-		if CU_RST='1' then
-			READY_RST				<='1';
-			RST1					<='1';
-			RST2					<='1';
-			CE_REPx					<='0';
-			CE_BLKx					<='0';
-			RST_BLKx				<='1';
-			CE_REPy					<='0';
-			CE_BLKy					<='0';
-			RST_BLKy				<='1';
-			RF_Addr					<="00";
-			LE_ab					<='0';
-			SAD_tmp_RST				<='1';
-			Comp_EN					<='0';
-			OUT_LE					<='0';
-			CountTerm_EN			<='0';
-			CandCount_CE			<='0';
-			--RF_in_RE_dummy			<='0';
-			INTER_DATA_VALID_SET	<='0';
-			INTER_DATA_VALID_RESET	<='0';
-			ADD3_MVin_LE_fSET		<='0';
-			ADD3_MVin_LE_nSET		<='0';
-			ADD3_MVin_LE_fRESET		<='1';
-			DONE					<='0';
-		elsif rising_edge(clk) then
-			READY_RST					<=	READY_RST_int				;
-			RST1						<=	RST1_int					;
-			RST2						<=	RST2_int					;
-			CE_REPx						<=	CE_REPx_int					;
-			CE_BLKx						<=	CE_BLKx_int					;
-			RST_BLKx					<=	RST_BLKx_int				;
-			CE_REPy						<=	CE_REPy_int					;
-			CE_BLKy						<=	CE_BLKy_int					;
-			RST_BLKy					<=	RST_BLKy_int				;
-			RF_Addr						<=	RF_Addr_int					;
-			LE_ab						<=	LE_ab_int					;
-			SAD_tmp_RST					<=	SAD_tmp_RST_int				;
-			Comp_EN						<=	Comp_EN_int					;
-			OUT_LE						<=	OUT_LE_int					;
-			CountTerm_EN				<=	CountTerm_EN_int			;
-			CandCount_CE				<=	CandCount_CE_int			;
-			--RF_in_RE_dummy				<=	RF_in_RE_dummy_int			;
-			INTER_DATA_VALID_SET		<=	INTER_DATA_VALID_SET_int	;
-			INTER_DATA_VALID_RESET		<=	INTER_DATA_VALID_RESET_int	;
-			ADD3_MVin_LE_fSET			<=	ADD3_MVin_LE_fSET_int		;
-			ADD3_MVin_LE_nSET			<=	ADD3_MVin_LE_nSET_int		;
-			ADD3_MVin_LE_fRESET			<=	ADD3_MVin_LE_fRESET_int		;
-			DONE						<=	DONE_int					;
-		end if;
-	end process;
-	
 
 end architecture;

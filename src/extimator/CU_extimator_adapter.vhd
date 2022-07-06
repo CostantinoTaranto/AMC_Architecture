@@ -53,7 +53,6 @@ architecture beh of CU_extimator_adapter is
 	signal ADD3_MVin_LE_int: std_logic;
 	signal A3MVin_set, A3MVin_LE_samp: std_logic;
 	signal A3MVin_set_reset : std_logic_vector(1 downto 0);
-	signal ADD3_MVin_LE_fRESET_half_delayed : std_logic;
 
 ----LE_ab
 	constant LE_ab_DELAY: integer := 4;
@@ -172,7 +171,7 @@ begin
 			when "00" => --SET 0 RESET 0
 				ADD3_MVin_LE_int<=A3MVin_LE_samp;
 			when OTHERS =>
-				ADD3_MVin_LE_int<=A3MVin_LE_samp;
+				ADD3_MVin_LE_int<='0';
 		end case;
 	end process;
 
@@ -186,7 +185,7 @@ begin
 	--		ADD3_MVin_LE_int<=ADD3_MVin_LE_int;
 	--	end if;
 	--end process;
-	--ADD3_MVin_LE<=ADD3_MVin_LE_int;
+	ADD3_MVin_LE<=ADD3_MVin_LE_int;
 
 ----RF_Addr
 	RF_Addr_decoding: process(RF_Addr_CU,BestCand)
