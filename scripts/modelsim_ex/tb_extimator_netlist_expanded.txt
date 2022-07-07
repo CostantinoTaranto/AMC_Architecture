@@ -1,0 +1,15 @@
+--LOG_FILENAME
+com_log.txt
+--SOURCE
+vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/constructor/*
+vcom -93 -work ./work ../tb/output_checker.vhd
+vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd
+vlog -work ./work ../netlist/extimator_expanded.v
+vcom -93 -work ./work ../netlist/extimator_expanded_netlist_wrapper.vhd
+--TESTBENCH
+vcom -93 -work ./work ../tb/tb_extimator_netlist_expanded.vhd	
+--TB_NAME
+tb_extimator_netlist_expanded
+--TOP_ENTITY_NAME
+extimator_expanded

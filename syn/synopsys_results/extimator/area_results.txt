@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : extimator_expanded
+Version: R-2020.09-SP2
+Date   : Thu Jul  7 12:38:40 2022
+****************************************
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db)
+
+Number of ports:                         6064
+Number of nets:                         11073
+Number of cells:                         5053
+Number of combinational cells:           3484
+Number of sequential cells:              1265
+Number of macros/black boxes:               0
+Number of buf/inv:                       1145
+Number of references:                       8
+
+Combinational area:               4466.672023
+Buf/Inv area:                      661.542001
+Noncombinational area:            6632.444175
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 11099.116198
+Total area:                 undefined
+1

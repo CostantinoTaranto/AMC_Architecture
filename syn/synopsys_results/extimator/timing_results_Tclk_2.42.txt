@@ -1,0 +1,110 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'extimator_expanded' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : extimator_expanded
+Version: R-2020.09-SP2
+Date   : Wed Jul  6 21:37:19 2022
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: Pixel_Retrieval_Unit/ADD3_0/count_reg
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: Pixel_Retrieval_Unit/ADD3_0/output_register/Q_int_reg[19]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  extimator_expanded 5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  Pixel_Retrieval_Unit/ADD3_0/count_reg/CK (DFFR_X1)      0.00 #     0.00 r
+  Pixel_Retrieval_Unit/ADD3_0/count_reg/Q (DFFR_X1)       0.13       0.13 f
+  Pixel_Retrieval_Unit/ADD3_0/U82/ZN (AOI22_X1)           0.08       0.21 r
+  Pixel_Retrieval_Unit/ADD3_0/U49/ZN (INV_X1)             0.03       0.24 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/op1[0] (adder_N20_1)
+                                                          0.00       0.24 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/A[0] (adder_N20_1_DW01_add_0_DW01_add_9)
+                                                          0.00       0.24 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1/ZN (AND2_X1)
+                                                          0.04       0.28 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_1/CO (FA_X1)
+                                                          0.09       0.37 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_2/CO (FA_X1)
+                                                          0.09       0.46 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_3/CO (FA_X1)
+                                                          0.09       0.55 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_4/CO (FA_X1)
+                                                          0.09       0.64 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_5/CO (FA_X1)
+                                                          0.09       0.73 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_6/CO (FA_X1)
+                                                          0.09       0.82 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_7/CO (FA_X1)
+                                                          0.09       0.91 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_8/CO (FA_X1)
+                                                          0.09       1.00 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_9/CO (FA_X1)
+                                                          0.09       1.09 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_10/CO (FA_X1)
+                                                          0.09       1.18 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_11/CO (FA_X1)
+                                                          0.09       1.27 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_12/CO (FA_X1)
+                                                          0.09       1.36 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_13/CO (FA_X1)
+                                                          0.09       1.45 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_14/CO (FA_X1)
+                                                          0.09       1.54 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_15/CO (FA_X1)
+                                                          0.09       1.64 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_16/CO (FA_X1)
+                                                          0.09       1.73 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_17/CO (FA_X1)
+                                                          0.09       1.82 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_18/CO (FA_X1)
+                                                          0.09       1.91 f
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/U1_19/S (FA_X1)
+                                                          0.13       2.04 r
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/add_19/SUM[19] (adder_N20_1_DW01_add_0_DW01_add_9)
+                                                          0.00       2.04 r
+  Pixel_Retrieval_Unit/ADD3_0/partial_adder/sum[19] (adder_N20_1)
+                                                          0.00       2.04 r
+  Pixel_Retrieval_Unit/ADD3_0/output_register/D[19] (REG_N_LE_N20_1)
+                                                          0.00       2.04 r
+  Pixel_Retrieval_Unit/ADD3_0/output_register/U50/ZN (NAND2_X1)
+                                                          0.03       2.07 f
+  Pixel_Retrieval_Unit/ADD3_0/output_register/U49/ZN (OAI21_X1)
+                                                          0.03       2.10 r
+  Pixel_Retrieval_Unit/ADD3_0/output_register/Q_int_reg[19]/D (DFFR_X1)
+                                                          0.01       2.11 r
+  data arrival time                                                  2.11
+
+  clock MY_CLK (rise edge)                                2.42       2.42
+  clock network delay (ideal)                             0.00       2.42
+  clock uncertainty                                      -0.07       2.35
+  Pixel_Retrieval_Unit/ADD3_0/output_register/Q_int_reg[19]/CK (DFFR_X1)
+                                                          0.00       2.35 r
+  library setup time                                     -0.04       2.31
+  data required time                                                 2.31
+  --------------------------------------------------------------------------
+  data required time                                                 2.31
+  data arrival time                                                 -2.11
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.20
+
+
+1
