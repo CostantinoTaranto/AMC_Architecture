@@ -2,6 +2,7 @@
 com_log.txt
 --SOURCE
 vcom -93 -work ./work ../src/generic/AMEpkg.vhd
+vcom -93 -work ./work ../src/generic/*
 vcom -93 -work ./work ../src/constructor/*
 vcom -93 -work ./work ../tb/output_checker.vhd
 vcom -93 -work ./work ../tb/memory/DATA_MEMORY.vhd

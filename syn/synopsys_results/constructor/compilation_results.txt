@@ -1,0 +1,138 @@
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | R-2020.09-DWBB_202009.2 |     *     |
+| Licensed DW Building Blocks        | F-2011.09-DWBB_201109.3 |     *     |
+============================================================================
+
+
+Information: There are 199 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'MV_RF_0'
+  Processing 'COUNT_N_N4_TARGET10'
+  Processing 'COUNT_N_N3_TARGET6'
+  Processing 'FlFl_0'
+  Processing 'comparator_N28'
+  Processing 'D_min_REG'
+  Processing 'REG_N_N28_0'
+  Processing 'adder_N27'
+  Processing 'REG_N_N27_0'
+  Processing 'if_UA_0'
+  Processing 'multiplier_N15_0'
+  Processing 'REG_N_N15_0'
+  Processing 'subtractor_N15_0'
+  Processing 'sign_extender_N_in11_N_out15_0'
+  Processing 'adder_N14'
+  Processing 'REG_N_N14_0'
+  Processing 'sign_extender_N_in11_N_out14_0'
+  Processing 'signed_Lshifter_N_in13_N_out14_0'
+  Processing 'signed_Lshifter_N_in12_N_out13_0'
+  Processing 'sign_extender_N_in12_N_out14_0'
+  Processing 'signed_shifter_N12_0'
+  Processing 'REG_N_N2_0'
+  Processing 'LR_SH2_0'
+  Processing 'REG_N_N12_0'
+  Processing 'subtractor_N11_0'
+  Processing 'subtractor_N14'
+  Processing 'unsigned_shifter_N2_0'
+  Processing 'h_over_w'
+Information: Added key list 'DesignWare' to design 'h_over_w'. (DDB-72)
+  Processing 'DP_constructor'
+  Processing 'CU_constructor'
+  Processing 'constructor'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Mapping 'comparator_N28_DW_cmp_0'
+  Processing 'adder_N27_DW01_add_0'
+  Processing 'subtractor_N15_1_DW01_sub_0'
+  Processing 'adder_N14_DW01_add_0_DW01_add_1'
+  Processing 'subtractor_N11_1_DW01_sub_0_DW01_sub_1'
+  Processing 'subtractor_N15_0_DW01_sub_0_DW01_sub_2'
+  Processing 'subtractor_N14_DW01_sub_0_DW01_sub_3'
+  Processing 'subtractor_N11_0_DW01_sub_0_DW01_sub_4'
+  Mapping 'multiplier_N15_1_DW_mult_tc_0'
+  Mapping 'multiplier_N15_0_DW_mult_tc_0'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:05   16811.2      0.00       0.0       0.0                          
+    0:00:05   16812.3      0.00       0.0       0.0                          
+    0:00:05   16812.3      0.00       0.0       0.0                          
+    0:00:05   16812.3      0.00       0.0       0.0                          
+    0:00:05   16812.3      0.00       0.0       0.0                          
+    0:00:07   12849.1      0.00       0.0       0.0                          
+    0:00:08   12783.2      0.00       0.0       0.0                          
+    0:00:08   12782.9      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12785.0      0.00       0.0       0.0                          
+    0:00:08   12782.4      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:08   12782.4      0.00       0.0       0.0                          
+    0:00:08   12782.4      0.00       0.0       0.0                          
+    0:00:08   12762.9      0.00       0.0       0.0                          
+    0:00:09   12743.0      0.00       0.0       0.0                          
+    0:00:09   12732.4      0.00       0.0       0.0                          
+    0:00:09   12726.0      0.00       0.0       0.0                          
+    0:00:09   12725.4      0.00       0.0       0.0                          
+    0:00:09   12725.4      0.00       0.0       0.0                          
+    0:00:09   12725.4      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+    0:00:09   12723.3      0.00       0.0       0.0                          
+Loading db file '/software/dk/nangate45/synopsys/NangateOpenCellLibrary_typical_ecsm_nowlm.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'constructor' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'Datapath/FaS_registers0_v_2/LE': 1716 load(s), 1 driver(s)
+     Net 'Datapath/R_LR_SH2/LSH_second/clk': 1454 load(s), 1 driver(s)
+1

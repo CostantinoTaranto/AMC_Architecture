@@ -8,13 +8,13 @@ set power_preserve_rtl_hier_names true
 #-------ELABORATION PHASE
 #Launch elaborate command to load the components
 #elaborate <top entity name> -arch <architecture name> -lib WORK > log_fileName
-elaborate extimator_expanded -arch structural -lib WORK > ./synopsys_results/elaborate_out.log
+elaborate constructor -arch structural -lib WORK > ./synopsys_results/elaborate_out.log
 #uniquify #optional command to addres to only 1 specific architecture
 link
 
 #*******  Applying constraints   ***************
 #create clock (period in ns)
-create_clock -name MY_CLK -period 2.17 clk
+create_clock -name MY_CLK -period 2.82 clk
 #since the clock is a “special” signal in the design, we set the "don't touch" property  
 set_dont_touch_network MY_CLK
 
@@ -42,11 +42,11 @@ ungroup -all -flatten
 #Then, we have to export the netlist in verilog. So that we impose verilog rules for the names of the internal signals. This is obtained with
 change_names -hierarchy -rules verilog
 #We also save a file describing the delay of the netlist:
-write_sdf ../netlist/extimator_expanded.sdf
+write_sdf ../netlist/constructor.sdf
 #We can now save the netlist in verilog:
-write -f verilog -hierarchy -output ../netlist/extimator_expanded.v
+write -f verilog -hierarchy -output ../netlist/constructor.v
 #and the constraints to the input and output ports in a standard format:
-write_sdc ../netlist/extimator_expanded.sdc
+write_sdc ../netlist/constructor.sdc
 
 #******* close Design compiler    ****************
 quit

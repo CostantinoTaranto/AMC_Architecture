@@ -72,7 +72,7 @@ else
 				read LINE <&3
 				read LINE <&3
 				echo "Neltlist simulation"
-				eval "vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_extimator_netlist_expanded/uut/extimator_netlist=../netlist/extimator_expanded.sdf work.$TB_NAME"
+				eval "vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_constructor_netlist/uut/constructor_netlist=../netlist/constructor.sdf work.$TB_NAME"
 			fi
 		fi
 	else

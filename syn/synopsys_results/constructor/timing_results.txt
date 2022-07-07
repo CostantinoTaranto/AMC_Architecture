@@ -1,0 +1,102 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'constructor' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : constructor
+Version: R-2020.09-SP2
+Date   : Thu Jul  7 16:42:42 2022
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: Datapath/D_h_sample/Q_int_reg[0]
+              (rising edge-triggered flip-flop clocked by MY_CLK)
+  Endpoint: Datapath/D_h_sq_sample/Q_int_reg[26]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  constructor        5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  Datapath/D_h_sample/Q_int_reg[0]/CK (DFFR_X1)           0.00 #     0.00 r
+  Datapath/D_h_sample/Q_int_reg[0]/Q (DFFR_X1)            0.18       0.18 r
+  Datapath/D_h_sample/Q[0] (REG_N_N15_4)                  0.00       0.18 r
+  Datapath/L_squarer/op1[0] (multiplier_N15_0)            0.00       0.18 r
+  Datapath/L_squarer/mult_13/a[0] (multiplier_N15_0_DW_mult_tc_0_DW_mult_tc_1)
+                                                          0.00       0.18 r
+  Datapath/L_squarer/mult_13/U666/ZN (INV_X2)             0.10       0.28 f
+  Datapath/L_squarer/mult_13/U665/ZN (NAND2_X2)           0.11       0.40 r
+  Datapath/L_squarer/mult_13/U681/ZN (OAI22_X1)           0.06       0.46 f
+  Datapath/L_squarer/mult_13/U64/CO (HA_X1)               0.06       0.52 f
+  Datapath/L_squarer/mult_13/U63/CO (FA_X1)               0.09       0.61 f
+  Datapath/L_squarer/mult_13/U62/CO (FA_X1)               0.11       0.72 f
+  Datapath/L_squarer/mult_13/U584/ZN (NAND2_X1)           0.05       0.76 r
+  Datapath/L_squarer/mult_13/U586/ZN (NAND3_X1)           0.04       0.80 f
+  Datapath/L_squarer/mult_13/U662/ZN (NAND2_X1)           0.03       0.83 r
+  Datapath/L_squarer/mult_13/U663/ZN (NAND3_X1)           0.05       0.88 f
+  Datapath/L_squarer/mult_13/U624/ZN (NAND2_X1)           0.04       0.91 r
+  Datapath/L_squarer/mult_13/U626/ZN (NAND3_X1)           0.05       0.96 f
+  Datapath/L_squarer/mult_13/U630/ZN (NAND2_X1)           0.04       0.99 r
+  Datapath/L_squarer/mult_13/U632/ZN (NAND3_X1)           0.05       1.04 f
+  Datapath/L_squarer/mult_13/U615/ZN (NAND2_X1)           0.04       1.08 r
+  Datapath/L_squarer/mult_13/U616/ZN (NAND3_X1)           0.04       1.11 f
+  Datapath/L_squarer/mult_13/U56/CO (FA_X1)               0.10       1.21 f
+  Datapath/L_squarer/mult_13/U567/ZN (NAND2_X1)           0.03       1.25 r
+  Datapath/L_squarer/mult_13/U568/ZN (NAND3_X1)           0.05       1.30 f
+  Datapath/L_squarer/mult_13/U590/ZN (NAND2_X1)           0.04       1.33 r
+  Datapath/L_squarer/mult_13/U592/ZN (NAND3_X1)           0.05       1.38 f
+  Datapath/L_squarer/mult_13/U596/ZN (NAND2_X1)           0.04       1.41 r
+  Datapath/L_squarer/mult_13/U598/ZN (NAND3_X1)           0.04       1.45 f
+  Datapath/L_squarer/mult_13/U52/CO (FA_X1)               0.10       1.55 f
+  Datapath/L_squarer/mult_13/U578/ZN (NAND2_X1)           0.03       1.58 r
+  Datapath/L_squarer/mult_13/U580/ZN (NAND3_X1)           0.04       1.62 f
+  Datapath/L_squarer/mult_13/U50/CO (FA_X1)               0.09       1.71 f
+  Datapath/L_squarer/mult_13/U49/CO (FA_X1)               0.09       1.80 f
+  Datapath/L_squarer/mult_13/U48/CO (FA_X1)               0.09       1.89 f
+  Datapath/L_squarer/mult_13/U47/CO (FA_X1)               0.09       1.98 f
+  Datapath/L_squarer/mult_13/U46/CO (FA_X1)               0.10       2.08 f
+  Datapath/L_squarer/mult_13/U602/ZN (NAND2_X1)           0.03       2.12 r
+  Datapath/L_squarer/mult_13/U604/ZN (NAND3_X1)           0.04       2.15 f
+  Datapath/L_squarer/mult_13/U44/CO (FA_X1)               0.10       2.25 f
+  Datapath/L_squarer/mult_13/U636/ZN (NAND2_X1)           0.03       2.29 r
+  Datapath/L_squarer/mult_13/U638/ZN (NAND3_X1)           0.05       2.33 f
+  Datapath/L_squarer/mult_13/U644/ZN (NAND2_X1)           0.05       2.38 r
+  Datapath/L_squarer/mult_13/U639/ZN (NAND3_X1)           0.04       2.42 f
+  Datapath/L_squarer/mult_13/U650/ZN (NAND2_X1)           0.03       2.45 r
+  Datapath/L_squarer/mult_13/U652/ZN (NAND3_X1)           0.04       2.49 f
+  Datapath/L_squarer/mult_13/U40/CO (FA_X1)               0.09       2.58 f
+  Datapath/L_squarer/mult_13/U39/S (FA_X1)                0.13       2.71 r
+  Datapath/L_squarer/mult_13/product[26] (multiplier_N15_0_DW_mult_tc_0_DW_mult_tc_1)
+                                                          0.00       2.71 r
+  Datapath/L_squarer/product[26] (multiplier_N15_0)       0.00       2.71 r
+  Datapath/D_h_sq_sample/D[26] (REG_N_N27_0)              0.00       2.71 r
+  Datapath/D_h_sq_sample/Q_int_reg[26]/D (DFFR_X1)        0.01       2.72 r
+  data arrival time                                                  2.72
+
+  clock MY_CLK (rise edge)                                2.82       2.82
+  clock network delay (ideal)                             0.00       2.82
+  clock uncertainty                                      -0.07       2.75
+  Datapath/D_h_sq_sample/Q_int_reg[26]/CK (DFFR_X1)       0.00       2.75 r
+  library setup time                                     -0.03       2.72
+  data required time                                                 2.72
+  --------------------------------------------------------------------------
+  data required time                                                 2.72
+  data arrival time                                                 -2.72
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
